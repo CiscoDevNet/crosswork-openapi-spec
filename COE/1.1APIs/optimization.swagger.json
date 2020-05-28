@@ -1,0 +1,2432 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cisco-crosswork-optimization-engine-operations",
+    "description": "",
+    "version": "2019-08-30"
+  },
+  "basePath": "/crosswork/nbi/optima/v1/restconf",
+  "tags": [
+    {
+      "name": "root",
+      "description": "root resources"
+    },
+    {
+      "name": "operations",
+      "description": "operations resources"
+    },
+    {
+      "name": "data",
+      "description": "data resources"
+    },
+    {
+      "name": "get",
+      "description": "get resources"
+    },
+    {
+      "name": "post",
+      "description": "post resources"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "produces": [
+    "application/yang-data+json"
+  ],
+  "consumes": [
+    "application/yang-data+json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "root",
+          "get"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "root_get",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/root"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/operations": {
+      "get": {
+        "tags": [
+          "operations",
+          "get"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "operations_get",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/operations"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/operations/cisco-crosswork-optimization-engine-operations:sr-policies-on-interface": {
+      "post": {
+        "tags": [
+          "operations",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "operations_cisco_crosswork_optimization_engine_operations_sr_policies_on_interface_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/operations/cisco-crosswork-optimization-engine-operations:sr-policies-on-node": {
+      "post": {
+        "tags": [
+          "operations",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "operations_cisco_crosswork_optimization_engine_operations_sr_policies_on_node_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/operations/cisco-crosswork-optimization-engine-operations:sr-policy-routes": {
+      "post": {
+        "tags": [
+          "operations",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "operations_cisco_crosswork_optimization_engine_operations_sr_policy_routes_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/operations/cisco-crosswork-optimization-engine-operations:sr-policy-route-preview": {
+      "post": {
+        "tags": [
+          "operations",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "operations_cisco_crosswork_optimization_engine_operations_sr_policy_route_preview_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/yang-library-version": {
+      "get": {
+        "tags": [
+          "yang-library-version",
+          "get"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "yang_library_version_get",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/yang-library-version"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/data": {
+      "get": {
+        "tags": [
+          "data",
+          "get"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_get",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/data"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "data",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/data-post"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/data/cisco-crosswork-optimization-engine-operations:sr-policies-on-interface": {
+      "post": {
+        "tags": [
+          "data",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_cisco_crosswork_optimization_engine_operations_sr_policies_on_interface_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/data/cisco-crosswork-optimization-engine-operations:sr-policies-on-node": {
+      "post": {
+        "tags": [
+          "data",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_cisco_crosswork_optimization_engine_operations_sr_policies_on_node_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/data/cisco-crosswork-optimization-engine-operations:sr-policy-routes": {
+      "post": {
+        "tags": [
+          "data",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_cisco_crosswork_optimization_engine_operations_sr_policy_routes_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/data/cisco-crosswork-optimization-engine-operations:sr-policy-route-preview": {
+      "post": {
+        "tags": [
+          "data",
+          "post"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "data_cisco_crosswork_optimization_engine_operations_sr_policy_route_preview_post",
+        "produces": [
+          "application/yang-data+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-output"
+            }
+          },
+          "204": {
+            "$ref": "#/responses/204"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "401": {
+            "$ref": "#/responses/401"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "405": {
+            "$ref": "#/responses/405"
+          },
+          "409": {
+            "$ref": "#/responses/409"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "content": {
+      "name": "content",
+      "in": "query",
+      "description": "controlling descendant nodes in response",
+      "required": false,
+      "type": "string",
+      "format": "enumeration",
+      "default": "config",
+      "enum": [
+        "config",
+        "nonconfig",
+        "all"
+      ]
+    },
+    "depth": {
+      "name": "depth",
+      "in": "query",
+      "description": "limit the depth of nodes in response",
+      "required": false,
+      "type": "integer",
+      "format": "uint16"
+    },
+    "fields": {
+      "name": "fields",
+      "in": "query",
+      "description": "optionally identify specific data nodes in response",
+      "required": false,
+      "type": "string",
+      "format": "string"
+    },
+    "filter": {
+      "name": "filter",
+      "in": "query",
+      "description": "xpath expression to filter data nodes in response",
+      "required": false,
+      "type": "string",
+      "format": "string"
+    },
+    "with-defaults": {
+      "name": "with-defaults",
+      "in": "query",
+      "description": "controlling default values in response",
+      "required": false,
+      "type": "string",
+      "format": "enumeration",
+      "default": "report-all",
+      "enum": [
+        "report-all",
+        "trim",
+        "explicit",
+        "report-all-tagged"
+      ]
+    },
+    "insert": {
+      "name": "insert",
+      "in": "query",
+      "description": "controlling the order when adding new list elements",
+      "required": false,
+      "type": "string",
+      "format": "enumeration",
+      "default": "first",
+      "enum": [
+        "first",
+        "last",
+        "before",
+        "after"
+      ]
+    },
+    "point": {
+      "name": "point",
+      "in": "query",
+      "description": "used to specify the insertion point",
+      "required": false,
+      "type": "string",
+      "format": "string"
+    },
+    "sr-policies-head-end": {
+      "name": "sr-policies-head-end",
+      "in": "path",
+      "description": "The IP address of the SR policy source.",
+      "required": true,
+      "type": "string",
+      "format": "union"
+    },
+    "sr-policies-end-point": {
+      "name": "sr-policies-end-point",
+      "in": "path",
+      "description": "The IP address of the SR policy destination.",
+      "required": true,
+      "type": "string",
+      "format": "union"
+    },
+    "sr-policies-color": {
+      "name": "sr-policies-color",
+      "in": "path",
+      "description": "The color for the SR policy.",
+      "required": true,
+      "type": "integer",
+      "format": "uint32"
+    },
+    "results-head-end": {
+      "name": "results-head-end",
+      "in": "path",
+      "description": "The IP address of the SR policy source.",
+      "required": true,
+      "type": "string",
+      "format": "union"
+    },
+    "results-end-point": {
+      "name": "results-end-point",
+      "in": "path",
+      "description": "The IP address of the SR policy destination.",
+      "required": true,
+      "type": "string",
+      "format": "union"
+    },
+    "results-color": {
+      "name": "results-color",
+      "in": "path",
+      "description": "The color for the SR policy.",
+      "required": true,
+      "type": "integer",
+      "format": "uint32"
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input": {
+      "name": "sr-policy-routes",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input"
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input": {
+      "name": "sr-policy-route-preview",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input"
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input": {
+      "name": "sr-policies-on-node",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input"
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input": {
+      "name": "sr-policies-on-interface",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input"
+      }
+    },
+    "nodes-node": {
+      "name": "nodes-node",
+      "in": "path",
+      "description": "The hostname of the node",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "node-sr-policies-node": {
+      "name": "node-sr-policies-node",
+      "in": "path",
+      "description": "The hostname of the node",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "interfaces-node": {
+      "name": "interfaces-node",
+      "in": "path",
+      "description": "The hostname of the source-node for the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "interfaces-interface": {
+      "name": "interfaces-interface",
+      "in": "path",
+      "description": "The name of the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "interface-sr-policies-node": {
+      "name": "interface-sr-policies-node",
+      "in": "path",
+      "description": "The hostname of the source-node for the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "interface-sr-policies-interface": {
+      "name": "interface-sr-policies-interface",
+      "in": "path",
+      "description": "The name of the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "igp-route-node": {
+      "name": "igp-route-node",
+      "in": "path",
+      "description": "The hostname of the source-node for the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "igp-route-interface": {
+      "name": "igp-route-interface",
+      "in": "path",
+      "description": "The name of the interface",
+      "required": true,
+      "type": "string",
+      "format": "string"
+    },
+    "hops-step": {
+      "name": "hops-step",
+      "in": "path",
+      "description": "The representation of the hop order in the path.",
+      "required": true,
+      "type": "integer",
+      "format": "uint32"
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input": {
+      "name": "sr-policy-routes",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input"
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input": {
+      "name": "sr-policy-route-preview",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input"
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input": {
+      "name": "sr-policies-on-node",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input"
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input": {
+      "name": "sr-policies-on-interface",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input"
+      }
+    },
+    "data-post": {
+      "name": "data",
+      "in": "body",
+      "description": "",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/data-post"
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "OK"
+    },
+    "201": {
+      "description": "Created"
+    },
+    "204": {
+      "description": "No Content"
+    },
+    "400": {
+      "description": "Bad Request"
+    },
+    "401": {
+      "description": "Unauthorized"
+    },
+    "404": {
+      "description": "Not Found"
+    },
+    "405": {
+      "description": "Method Not Allowed"
+    },
+    "409": {
+      "description": "Conflict"
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  },
+  "definitions": {
+    "yang-library-version": {
+      "type": "object",
+      "properties": {
+        "ietf-restconf:yang-library-version": {
+          "type": "object",
+          "description": "This leaf identifies the revision date of the 'ietf-yang-library' YANG module that is implemented by this server. See RESTCONF RFC 8040 for further information.",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "properties": {}
+        }
+      }
+    },
+    "root": {
+      "type": "object",
+      "properties": {
+        "ietf-restconf:restconf": {
+          "type": "object",
+          "x-yang": {
+            "type": "root"
+          },
+          "description": "This is the RESTCONF root resource for the RESTCONF datastore and operation resources. See RESTCONF RFC 8040 for further information.",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {}
+            },
+            "operations": {
+              "type": "object",
+              "properties": {}
+            },
+            "yang-library-version": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:results": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "end-point": {
+                "description": "The IP address of the SR policy destination. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "color": {
+                "description": "The color for the SR policy. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "integer",
+                "format": "uint32"
+              },
+              "path-computation-status": {
+                "description": "The IGP path computation status for an SR policy (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "enumeration",
+                "default": "success",
+                "enum": [
+                  "success",
+                  "failure"
+                ]
+              },
+              "path-computation-message": {
+                "description": "The details of IGP path computation status above (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "igp-route": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "node": {
+                      "description": "The hostname of the source-node for the interface (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "interface": {
+                      "description": "The name of the interface (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "interface-use": {
+                      "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "number",
+                      "format": "double"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "end-point": {
+                "description": "The IP address of the SR policy destination. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "color": {
+                "description": "The color for the SR policy. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "integer",
+                "format": "uint32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:path-computation-status": {
+          "description": "The IGP path computation status for an SR policy (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "success",
+          "enum": [
+            "success",
+            "failure"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:path-computation-message": {
+          "description": "The details of IGP path computation status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:igp-route": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface-use": {
+                "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:head-end": {
+          "description": "The IP address of the SR policy source. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:end-point": {
+          "description": "The IP address of the SR policy destination. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:sr-policy-path": {
+          "description": "(non-presence)",
+          "type": "object",
+          "x-yang": {
+            "type": "container",
+            "is_presence": "false"
+          },
+          "properties": {
+            "hops": {
+              "type": "array",
+              "description": "(list)",
+              "x-yang": {
+                "type": "list"
+              },
+              "items": {
+                "type": "object",
+                "properties": {
+                  "step": {
+                    "description": "The representation of the hop order in the path. (leaf)",
+                    "x-yang": {
+                      "type": "leaf"
+                    },
+                    "type": "integer",
+                    "format": "uint32"
+                  },
+                  "hop": {
+                    "description": "(non-presence)",
+                    "type": "object",
+                    "x-yang": {
+                      "type": "container",
+                      "is_presence": "false"
+                    },
+                    "properties": {
+                      "node-ipv4-sid": {
+                        "description": "The IPv4 node segment identifier (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "integer",
+                        "format": "uint32"
+                      },
+                      "node-ipv4-address": {
+                        "description": "The IPv4 node address (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "union"
+                      },
+                      "node-ipv4-name": {
+                        "description": "The IPv4 node name (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:node-sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the node (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "message": {
+                "description": "(leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "integer",
+                      "format": "uint32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:nodes": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the node (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        },
+        "cisco-crosswork-optimization-engine-operations:filter": {
+          "description": "The SR policy filters to apply on the node list above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "through-nodes",
+          "enum": [
+            "through-nodes",
+            "nodes-as-source",
+            "nodes-as-destination",
+            "nodes-as-source-or-destination"
+          ]
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:interface-sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "message": {
+                "description": "(leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "integer",
+                      "format": "uint32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:interfaces": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "properties": {
+        "ietf-restconf:operations": {
+          "type": "object",
+          "x-yang": {
+            "type": "operations"
+          },
+          "description": "This resource is a container that provides access to the data-model-specific RPC operations supported by the server. See RESTCONF RFC 8040 for further information.",
+          "properties": {
+            "cisco-crosswork-optimization-engine-operations:sr-policies-on-interface": {
+              "type": "string",
+              "format": "[null]"
+            },
+            "cisco-crosswork-optimization-engine-operations:sr-policies-on-node": {
+              "type": "string",
+              "format": "[null]"
+            },
+            "cisco-crosswork-optimization-engine-operations:sr-policy-routes": {
+              "type": "string",
+              "format": "[null]"
+            },
+            "cisco-crosswork-optimization-engine-operations:sr-policy-route-preview": {
+              "type": "string",
+              "format": "[null]"
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:results": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "end-point": {
+                "description": "The IP address of the SR policy destination. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "color": {
+                "description": "The color for the SR policy. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "integer",
+                "format": "uint32"
+              },
+              "path-computation-status": {
+                "description": "The IGP path computation status for an SR policy (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "enumeration",
+                "default": "success",
+                "enum": [
+                  "success",
+                  "failure"
+                ]
+              },
+              "path-computation-message": {
+                "description": "The details of IGP path computation status above (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "igp-route": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "node": {
+                      "description": "The hostname of the source-node for the interface (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "interface": {
+                      "description": "The name of the interface (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "interface-use": {
+                      "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "number",
+                      "format": "double"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "end-point": {
+                "description": "The IP address of the SR policy destination. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "color": {
+                "description": "The color for the SR policy. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "integer",
+                "format": "uint32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:path-computation-status": {
+          "description": "The IGP path computation status for an SR policy (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "success",
+          "enum": [
+            "success",
+            "failure"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:path-computation-message": {
+          "description": "The details of IGP path computation status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:igp-route": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface-use": {
+                "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policy-route-preview-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:head-end": {
+          "description": "The IP address of the SR policy source. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:end-point": {
+          "description": "The IP address of the SR policy destination. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:sr-policy-path": {
+          "description": "(non-presence)",
+          "type": "object",
+          "x-yang": {
+            "type": "container",
+            "is_presence": "false"
+          },
+          "properties": {
+            "hops": {
+              "type": "array",
+              "description": "(list)",
+              "x-yang": {
+                "type": "list"
+              },
+              "items": {
+                "type": "object",
+                "properties": {
+                  "step": {
+                    "description": "The representation of the hop order in the path. (leaf)",
+                    "x-yang": {
+                      "type": "leaf"
+                    },
+                    "type": "integer",
+                    "format": "uint32"
+                  },
+                  "hop": {
+                    "description": "(non-presence)",
+                    "type": "object",
+                    "x-yang": {
+                      "type": "container",
+                      "is_presence": "false"
+                    },
+                    "properties": {
+                      "node-ipv4-sid": {
+                        "description": "The IPv4 node segment identifier (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "integer",
+                        "format": "uint32"
+                      },
+                      "node-ipv4-address": {
+                        "description": "The IPv4 node address (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "union"
+                      },
+                      "node-ipv4-name": {
+                        "description": "The IPv4 node name (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:node-sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the node (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "message": {
+                "description": "(leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "integer",
+                      "format": "uint32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:nodes": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the node (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        },
+        "cisco-crosswork-optimization-engine-operations:filter": {
+          "description": "The SR policy filters to apply on the node list above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "through-nodes",
+          "enum": [
+            "through-nodes",
+            "nodes-as-source",
+            "nodes-as-destination",
+            "nodes-as-source-or-destination"
+          ]
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-output": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:status": {
+          "description": "Enumeration of the request state (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "error",
+          "enum": [
+            "error",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:message": {
+          "description": "The details of status above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "string"
+        },
+        "cisco-crosswork-optimization-engine-operations:interface-sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "message": {
+                "description": "(leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "x-yang": {
+                  "type": "list"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy. (leaf)",
+                      "x-yang": {
+                        "type": "leaf"
+                      },
+                      "type": "integer",
+                      "format": "uint32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:interfaces": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "data-post": {
+      "type": "object",
+      "properties": {
+        "cisco-crosswork-optimization-engine-operations:interfaces": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the source-node for the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              },
+              "interface": {
+                "description": "The name of the interface (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        },
+        "cisco-crosswork-optimization-engine-operations:nodes": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": {
+                "description": "The hostname of the node (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        },
+        "cisco-crosswork-optimization-engine-operations:filter": {
+          "description": "The SR policy filters to apply on the node list above (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "enumeration",
+          "default": "through-nodes",
+          "enum": [
+            "through-nodes",
+            "nodes-as-source",
+            "nodes-as-destination",
+            "nodes-as-source-or-destination"
+          ]
+        },
+        "cisco-crosswork-optimization-engine-operations:sr-policies": {
+          "type": "array",
+          "description": "(list)",
+          "x-yang": {
+            "type": "list"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "end-point": {
+                "description": "The IP address of the SR policy destination. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "string",
+                "format": "union"
+              },
+              "color": {
+                "description": "The color for the SR policy. (leaf)",
+                "x-yang": {
+                  "type": "leaf"
+                },
+                "type": "integer",
+                "format": "uint32"
+              }
+            }
+          }
+        },
+        "cisco-crosswork-optimization-engine-operations:head-end": {
+          "description": "The IP address of the SR policy source. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:end-point": {
+          "description": "The IP address of the SR policy destination. (leaf)",
+          "x-yang": {
+            "type": "leaf"
+          },
+          "type": "string",
+          "format": "union"
+        },
+        "cisco-crosswork-optimization-engine-operations:sr-policy-path": {
+          "description": "(non-presence)",
+          "type": "object",
+          "x-yang": {
+            "type": "container",
+            "is_presence": "false"
+          },
+          "properties": {
+            "hops": {
+              "type": "array",
+              "description": "(list)",
+              "x-yang": {
+                "type": "list"
+              },
+              "items": {
+                "type": "object",
+                "properties": {
+                  "step": {
+                    "description": "The representation of the hop order in the path. (leaf)",
+                    "x-yang": {
+                      "type": "leaf"
+                    },
+                    "type": "integer",
+                    "format": "uint32"
+                  },
+                  "hop": {
+                    "description": "(non-presence)",
+                    "type": "object",
+                    "x-yang": {
+                      "type": "container",
+                      "is_presence": "false"
+                    },
+                    "properties": {
+                      "node-ipv4-sid": {
+                        "description": "The IPv4 node segment identifier (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "integer",
+                        "format": "uint32"
+                      },
+                      "node-ipv4-address": {
+                        "description": "The IPv4 node address (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "union"
+                      },
+                      "node-ipv4-name": {
+                        "description": "The IPv4 node name (leaf)",
+                        "x-yang": {
+                          "type": "leaf"
+                        },
+                        "type": "string",
+                        "format": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "ietf-restconf:data": {
+          "type": "object",
+          "description": "This resource represents the combined configuration and state data resources that can be accessed by a client and cannot be created or deleted by the client. See RESTCONF RFC 8040 for further information.",
+          "x-yang": {
+            "type": "datastore"
+          },
+          "properties": {}
+        }
+      }
+    }
+  }
+}

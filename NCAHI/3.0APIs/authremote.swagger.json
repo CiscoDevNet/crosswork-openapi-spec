@@ -1,0 +1,164 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Remote Authentication Server Integration API",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "version": "1.0.0",
+    "description": "APIs to support integration of the Crosswork platform with remote authentication servers. Currently, only TACACS servers are supported."
+  },
+  "basePath": "/crosswork/authconfig",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/remote/tacacs": {
+      "get": {
+        "summary": "Get list of remote TACACS servers",
+        "description": "Returns the list of TACACS servers that were configured to integrate with Crosswork",
+        "operationId": "GetAllTacacs",
+        "consumes": [
+          "application/json; charset=UTF-8"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/authconfigTacacsServers"
+            }
+          },
+          "403": {
+            "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request."
+          }
+        },
+        "tags": [
+          "authconfig"
+        ]
+      },
+      "put": {
+        "summary": "Update list of remote TACACS servers",
+        "description": "Update the list of TACACS servers that were configured to integrate with Crosswork. The updated list will overwrite the current list of TACACS servers. To delete a given TACACS server, simply remove it from the body payload. To add a new TACACS server, add it to the existing list of servers in the body payload.",
+        "operationId": "UpdateAllTacacs",
+        "consumes": [
+          "application/json; charset=UTF-8"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content. The request was successful and there is no additional content in the response body.",
+            "schema": {
+              "$ref": "#/definitions/authconfigEmpty"
+            }
+          },
+          "403": {
+            "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+          },
+          "422": {
+            "description": "Unprocessable Entity. The server understands the content type of the request entity, and the syntax of the request entity is correct, but it was unable to process the contained instructions."
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request."
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authconfigTacacsServers"
+            }
+          }
+        ],
+        "tags": [
+          "authconfig"
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [{
+    "bearerAuth": []
+  }],
+  "definitions": {
+    "authconfigTacacsServers": {
+      "type": "object",
+      "properties": {
+        "tacacs_servers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/authconfigTacacsServer"
+          },
+          "example": [
+            {
+              "host": "1.2.3.4",
+              "port": 49,
+              "secret": "secret",
+              "service": "raccess",
+              "priority": 1,
+              "timeout": 30
+            }
+          ]
+        }
+      }
+    },
+    "authconfigTacacsServer": {
+      "type": "object",
+      "required": [ "host", "port", "secret", "service", "timeout", "retries" ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "IP Address"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "secret": {
+          "type": "string",
+          "description": "Shared secret"
+        },
+        "service": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Re-transmit timeout"
+        },
+        "interface": {
+          "type": "string",
+          "description": "Interface IP Address"
+        },
+        "policy-id": {
+          "type": "string",
+          "description": "Key name for role ID configured on the TACACS server"
+        }
+      }
+    },
+    "authconfigEmpty": {
+      "type": "object"
+    }
+  }
+}
