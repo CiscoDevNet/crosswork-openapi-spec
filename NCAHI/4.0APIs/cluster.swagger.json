@@ -1,0 +1,1061 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cluster.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v2/cluster/action": {
+      "post": {
+        "summary": "Execute an action on an object, this is for now on a micro service",
+        "operationId": "ExecuteAction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterActionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterAction"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/actions": {
+      "post": {
+        "summary": "Get the Crosswork Cluster Actions",
+        "operationId": "GetClusterActions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterClusterActions"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/actions": {
+      "post": {
+        "summary": "Get the Crosswork Node Actions",
+        "operationId": "GetAppActions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterClusterActions"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterBasicReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/details": {
+      "post": {
+        "summary": "Get the Crosswork App Details",
+        "operationId": "GetAppDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterAppDetails"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterNodeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/health": {
+      "post": {
+        "operationId": "GetAppHealthSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterAppHealthSummary"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterBasicReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/health/list": {
+      "get": {
+        "operationId": "GetAppHealthSummaryList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterAppHealthList"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/resource": {
+      "post": {
+        "summary": "Get the Crosswork App Resource Health",
+        "operationId": "GetAppResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterResource"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterAppReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/app/showtech/actions": {
+      "post": {
+        "summary": "Get the Crosswork Node Actions",
+        "operationId": "GetAppShowtechActions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterClusterActions"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterBasicReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/actions": {
+      "post": {
+        "summary": "Get the Crosswork Node Actions",
+        "operationId": "GetNodeActions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterNodeActions"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterNodeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/details": {
+      "post": {
+        "summary": "Get the Crosswork Cluster Details",
+        "operationId": "GetNodeDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterNodeDetails"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterNodeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/health": {
+      "post": {
+        "operationId": "GetNodeHealthSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterAppHealthSummary"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterBasicReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/resource": {
+      "post": {
+        "summary": "Get the Crosswork Node Resource Health",
+        "operationId": "GetNodeResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterResource"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterNodeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/summary": {
+      "post": {
+        "summary": "Get the Crosswork Node Summary",
+        "operationId": "GetNodeSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterNodeSummary"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterNodeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/node/summary/list": {
+      "get": {
+        "summary": "Get the Crosswork Node List Summary",
+        "operationId": "GetNodeListSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterNodeListSummary"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/summary": {
+      "post": {
+        "summary": "Get the Crosswork Node Summary",
+        "operationId": "GetDCSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterDCSummary"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterDCReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/dc/summary/list": {
+      "get": {
+        "summary": "Get the Crosswork Node List Summary",
+        "operationId": "GeDCListSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterDCListSummary"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/infra/summary": {
+      "get": {
+        "summary": "Get the Crosswork Infrastructure summary",
+        "operationId": "GetInfraSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterInfraSummary"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/microservice/list": {
+      "post": {
+        "operationId": "GetMicroServiceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterMicroServiceList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterBasicReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/resource": {
+      "post": {
+        "summary": "Get the Crosswork Cluster Resource Health",
+        "operationId": "GetClusterResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterResource"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/summary": {
+      "post": {
+        "summary": "Get the Crosswork Cluster Summary",
+        "operationId": "GetClusterSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterClusterSummary"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clusterClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/summary/list": {
+      "get": {
+        "summary": "Get the Crosswork Cluster List Summary",
+        "operationId": "GetClusterListSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterClusterListSummary"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    },
+    "/v2/cluster/version/show": {
+      "get": {
+        "summary": "Get the Crosswork Platform software version.",
+        "operationId": "GetVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/clusterOpResult"
+            }
+          }
+        },
+        "tags": [
+          "ClusterManager"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "clusterAction": {
+      "type": "object",
+      "properties": {
+        "action_name": {
+          "type": "string"
+        },
+        "action_id": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterActionResp": {
+      "type": "object",
+      "properties": {
+        "resp_value": {
+          "$ref": "#/definitions/clusterRespValue"
+        },
+        "resp_error": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterAppDetails": {
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "app_parameters": {
+          "$ref": "#/definitions/clusterAppParameters"
+        },
+        "app_resource": {
+          "$ref": "#/definitions/clusterResource"
+        },
+        "micro_service_list": {
+          "$ref": "#/definitions/clusterMicroServiceList"
+        }
+      },
+      "title": "App Details"
+    },
+    "clusterAppHealthList": {
+      "type": "object",
+      "properties": {
+        "app_health_summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterAppHealthSummary"
+          }
+        }
+      },
+      "title": "Summary of an App Health"
+    },
+    "clusterAppHealthSummary": {
+      "type": "object",
+      "properties": {
+        "health_summary": {
+          "$ref": "#/definitions/clusterHealthSummary"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "Summary of the List of App Health"
+    },
+    "clusterAppParameters": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "Status"
+        },
+        "availability": {
+          "type": "string",
+          "title": "High-Availablity status"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterAppReq": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        }
+      },
+      "title": "App request"
+    },
+    "clusterBasicReq": {
+      "type": "object",
+      "properties": {
+        "req_id": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterClusterActions": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterAction"
+          }
+        }
+      },
+      "title": "Cluster Actions"
+    },
+    "clusterClusterListSummary": {
+      "type": "object",
+      "properties": {
+        "cluster_summary": {
+          "$ref": "#/definitions/clusterClusterSummary",
+          "title": "Health Summary of the Crosswork Node Cluster"
+        }
+      },
+      "title": "Summary of Crosswork VM Node Cluster List"
+    },
+    "clusterClusterReq": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        }
+      },
+      "title": "Cluster request"
+    },
+    "clusterClusterSummary": {
+      "type": "object",
+      "properties": {
+        "health_summary": {
+          "$ref": "#/definitions/clusterHealthSummary",
+          "title": "Health Summary of the Crosswork Node Cluster"
+        },
+        "cluster_id": {
+          "type": "string"
+        }
+      },
+      "title": "Summary of Crosswork VM Node Cluster"
+    },
+    "clusterDCListSummary": {
+      "type": "object",
+      "properties": {
+        "dc_summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterDCSummary"
+          }
+        }
+      },
+      "title": "Summary of DC List"
+    },
+    "clusterDCReq": {
+      "type": "object",
+      "properties": {
+        "dc_id": {
+          "type": "string"
+        }
+      },
+      "title": "DC Request"
+    },
+    "clusterDCSummary": {
+      "type": "object",
+      "properties": {
+        "node_summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterNodeSummary"
+          }
+        },
+        "dc_name": {
+          "type": "string"
+        },
+        "dc_id": {
+          "type": "string"
+        }
+      },
+      "title": "Summary of DC"
+    },
+    "clusterHealthState": {
+      "type": "string",
+      "enum": [
+        "Healthy",
+        "Degraded",
+        "Down"
+      ],
+      "default": "Healthy"
+    },
+    "clusterHealthSummary": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/clusterHealthState"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "healthy": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "degraded": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "down": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "obj_name": {
+          "type": "string"
+        }
+      },
+      "title": "Health Summary Message"
+    },
+    "clusterInfraSummary": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the Infra Layer"
+        },
+        "health_summary": {
+          "$ref": "#/definitions/clusterHealthSummary",
+          "title": "Health of the Infra Layer"
+        },
+        "description": {
+          "type": "string",
+          "title": "Recommendation at this point for this Infra layer"
+        }
+      },
+      "title": "Summary of Crosswork Infrastructure"
+    },
+    "clusterMicroService": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "title": "Name of the Service"
+        },
+        "health_state": {
+          "$ref": "#/definitions/clusterHealthState",
+          "title": "Health of the Service"
+        },
+        "up_time": {
+          "type": "string",
+          "title": "Up time of the Service"
+        },
+        "recommendation": {
+          "type": "string",
+          "title": "Recommendation for this Service"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description of this Service"
+        },
+        "micro_service_action": {
+          "$ref": "#/definitions/clusterMicroServiceAction",
+          "title": "Actions applicable on this microservice"
+        }
+      },
+      "title": "Microservice"
+    },
+    "clusterMicroServiceAction": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterAction"
+          }
+        }
+      },
+      "title": "Actions that can be done on a Microservice"
+    },
+    "clusterMicroServiceList": {
+      "type": "object",
+      "properties": {
+        "micro_service": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterMicroService"
+          }
+        }
+      },
+      "title": "List of Microservices"
+    },
+    "clusterNodeActions": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterAction"
+          }
+        }
+      },
+      "title": "Node Actions"
+    },
+    "clusterNodeDetails": {
+      "type": "object",
+      "properties": {
+        "node_name": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "node_parameters": {
+          "$ref": "#/definitions/clusterNodeParameters"
+        },
+        "node_resource": {
+          "$ref": "#/definitions/clusterResource"
+        },
+        "node_recommendation": {
+          "$ref": "#/definitions/clusterNodeRecommendation"
+        },
+        "micro_service_list": {
+          "$ref": "#/definitions/clusterMicroServiceList"
+        }
+      },
+      "title": "Node Details"
+    },
+    "clusterNodeListSummary": {
+      "type": "object",
+      "properties": {
+        "node_summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clusterNodeSummary"
+          }
+        }
+      },
+      "title": "Summary of Crossowork NodeList Summary"
+    },
+    "clusterNodeParameters": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "Status"
+        },
+        "availability": {
+          "type": "string",
+          "title": "High-Availablity status"
+        },
+        "type": {
+          "type": "string",
+          "title": "Type"
+        },
+        "size_profile": {
+          "$ref": "#/definitions/clusterSizeProfile",
+          "title": "Size Profile"
+        },
+        "host": {
+          "type": "string",
+          "title": "Hypervisor Details"
+        },
+        "data_store": {
+          "type": "string"
+        },
+        "management_ip": {
+          "type": "string",
+          "title": "Network Details"
+        },
+        "data_ip": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterNodeRecommendation": {
+      "type": "object",
+      "properties": {
+        "recommendation": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterNodeReq": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        }
+      },
+      "title": "Node request"
+    },
+    "clusterNodeSummary": {
+      "type": "object",
+      "properties": {
+        "node_name": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "node_health": {
+          "$ref": "#/definitions/clusterHealthState"
+        },
+        "node_type": {
+          "type": "string"
+        },
+        "node_resource": {
+          "$ref": "#/definitions/clusterResource"
+        }
+      },
+      "title": "Summary of Crosswork Node"
+    },
+    "clusterOpResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/clusterRespValue",
+          "description": "ResultValue indicates the success/failure for the requested operation."
+        },
+        "description": {
+          "type": "string",
+          "title": "Addional response information"
+        },
+        "result_map": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Supplementary keyed response info for the operation (for example: version number, error message)"
+        },
+        "result_string": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Simple result string"
+        },
+        "id": {
+          "type": "string",
+          "title": "Resource Identifier returned by operation, if any"
+        }
+      },
+      "description": "OpResult is used to indicate whether an operation has been accepted or not. A string or map payload provides the additional response information (for example: version number, error data)."
+    },
+    "clusterResource": {
+      "type": "object",
+      "properties": {
+        "cpu_summary": {
+          "$ref": "#/definitions/clusterResourceSummary"
+        },
+        "memory_summary": {
+          "$ref": "#/definitions/clusterResourceSummary"
+        },
+        "disk_summary": {
+          "$ref": "#/definitions/clusterResourceSummary"
+        },
+        "last_updated_time": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterResourceSummary": {
+      "type": "object",
+      "properties": {
+        "current_usage": {
+          "type": "string"
+        },
+        "used": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        },
+        "health_state": {
+          "type": "string"
+        }
+      },
+      "title": "Summary of Crosswork Resources"
+    },
+    "clusterRespValue": {
+      "type": "string",
+      "enum": [
+        "NOOP",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "default": "NOOP",
+      "title": "ResultValue"
+    },
+    "clusterSizeProfile": {
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "disk": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
