@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Data Gateway Manager Outage History APIs",
+    "description": "APIs to get Data Gateway Outage History.",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "version": "1.0.0"
+  },
+  "basePath": "/crosswork/dg-manager",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/device/outage-history": {
+      "get": {
+        "description": "Display outage history info for given Physicla Data Gateway or Virtual Data Gateway for last 14 days(Note :include content-type in header e.g. curl -H \"content-type application/json\")",
+        "summary": "Displays the outage history info for given PDG or VDG",
+        "operationId": "GetOutageHistoryOfDG",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vdg",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Virtual Data Gateway UUID"
+          },
+          {
+            "name": "pdg",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Physical Data Gateway UUID"
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of back dated days"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, The request was successful. The result is contained in the response body."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [{
+    "bearerAuth": []
+  }]
+}
