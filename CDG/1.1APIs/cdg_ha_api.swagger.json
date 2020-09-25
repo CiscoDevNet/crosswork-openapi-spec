@@ -1,0 +1,1470 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Data Gateway Manager APIs for DataGateway HA feature",
+    "description": " This document contains details of the Crosswork Data Gateway Manager RESTful APIs that can be used for CRUD operations of Data Gateways and HA Pools",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
+  },
+  "basePath": "/crosswork/dg-manager",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/hapool/query": {
+      "post": {
+        "description": "Get list of HA Pools.You can specify criteria for the pool e.g. select * from HAPool where HAStatus=HAPool_PROTECTED",
+        "summary": "Get list of HA pools",
+        "operationId": "GetHApools",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetHApoolsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/hapool": {
+      "delete": {
+        "description": "Delete HA pools with uuids specified in the payload",
+        "summary": "Delete HA Pool",
+
+        "operationId": "DeleteHAPool",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeleteHAPoolRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "description": "Update HA pool with uuid specified in the payload\n 1) you can update number of spares\n 2) number of ips in pool\n 3) number of assigned data gateways in pool\n Make sure you satisfy the criteria such that Number of IPs in pool <= Physical data gateway uuids <= (Number of IPs in pool  + Spares)",
+        "summary": "Update HA pool",
+
+        "operationId": "UpdateHApool",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateHApoolRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "description": "Creates HA pool with the payload specified.\n Make sure you satisfy criteria such that Number of IPs in pool <= Physical data gateway uuids <= (Number of IPs in pool  + Spares)",
+        "summary": "Create HA Pool",
+
+        "operationId": "CreateHAPool",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateHAPoolRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/dg": {
+      "delete": {
+        "description": "Delete physical data gateways with uuids specified in payload",
+        "summary": "Delete Physical DG",
+
+        "operationId": "DeletePhysicalDG",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeletePhysicalDGRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "description": "You can update fields such as admin state maintenance/up of data gaeways whose uuids are specified in the payload ",
+        "summary": "Update data gateway such as admin state to maintenance/up",
+        "operationId": "UpdateadminstateofDGtomaintenance/up",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateadminstateofDGtomaintenance~1upRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/dg/query": {
+      "post": {
+        "description": "Get all DGs in the system\n You can apply criteria by providing on ein the request body such as\n {\"criteria\":\"select * from RobotDataGateway\"}",
+        "summary": "Get all DGs",
+        "operationId": "GetallDGs",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetallDGsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [{
+    "bearerAuth": []
+  }],
+  "definitions": {
+    "GetHApoolsRequest": {
+      "title": "GetHApoolsRequest",
+      "example": {
+        "criteria": "select * from HAPool where HAPool_HAStatus=HAPool_PROTECTED"
+      },
+      "type": "object",
+      "properties": {
+        "criteria": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "criteria"
+      ]
+    },
+    "DeleteHAPoolRequest": {
+      "title": "DeleteHAPoolRequest",
+      "example": {
+        "pools": [{
+          "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4"
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "pools": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pool"
+          }
+        }
+      },
+      "required": [
+        "pools"
+      ]
+    },
+    "Pool": {
+      "title": "Pool",
+      "example": {
+        "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4"
+      },
+      "type": "object",
+      "properties": {
+        "puuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "puuid"
+      ]
+    },
+    "UpdateHApoolRequest": {
+      "title": "UpdateHApoolRequest",
+      "example": {
+        "pools": [{
+          "name": "HAPool_Sep17",
+          "description": "test pool",
+          "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4",
+          "ipaddrs": [{
+            "ipaddr": {
+              "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
+              "inet_addr": "10.13.0.73"
+            }
+          }],
+          "pdg_uuids": [
+            "8b15068b-9df7-4dae-b32e-ace89561a955"
+          ],
+          "subnetMask": 16,
+          "spares": "0",
+          "gateway": "10.13.0.1"
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "pools": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pool1"
+          }
+        }
+      },
+      "required": [
+        "pools"
+      ]
+    },
+    "Pool1": {
+      "title": "Pool1",
+      "example": {
+        "name": "HAPool_Sep17",
+        "description": "test pool",
+        "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4",
+        "ipaddrs": [{
+          "ipaddr": {
+            "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
+            "inet_addr": "10.13.0.73"
+          }
+        }],
+        "pdg_uuids": [
+          "8b15068b-9df7-4dae-b32e-ace89561a955"
+        ],
+        "subnetMask": 16,
+        "spares": "0",
+        "gateway": "10.13.0.1"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "puuid": {
+          "type": "string"
+        },
+        "ipaddrs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ipaddr"
+          }
+        },
+        "pdg_uuids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subnetMask": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "spares": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "puuid",
+        "ipaddrs",
+        "pdg_uuids",
+        "subnetMask",
+        "spares",
+        "gateway"
+      ]
+    },
+    "Ipaddr": {
+      "title": "Ipaddr",
+      "example": {
+        "ipaddr": {
+          "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
+          "inet_addr": "10.13.0.73"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "ipaddr": {
+          "$ref": "#/definitions/Ipaddr1"
+        }
+      },
+      "required": [
+        "ipaddr"
+      ]
+    },
+    "Ipaddr1": {
+      "title": "Ipaddr1",
+      "example": {
+        "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
+        "inet_addr": "10.13.0.73"
+      },
+      "type": "object",
+      "properties": {
+        "inet_af": {
+          "type": "string"
+        },
+        "inet_addr": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "inet_af",
+        "inet_addr"
+      ]
+    },
+    "CreateHAPoolRequest": {
+      "title": "CreateHAPoolRequest",
+      "example": {
+        "pools": [{
+          "name": "HAPool_Sep17",
+          "description": "test pool",
+          "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4",
+          "ipaddrs": [{
+            "ipaddr": {
+              "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
+              "inet_addr": "10.13.0.73"
+            }
+          }],
+          "pdg_uuids": [
+            "8b15068b-9df7-4dae-b32e-ace89561a955"
+          ],
+          "subnetMask": 16,
+          "spares": "0",
+          "gateway": "10.13.0.1"
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "pools": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pool1"
+          }
+        }
+      },
+      "required": [
+        "pools"
+      ]
+    },
+    "DeletePhysicalDGRequest": {
+      "title": "DeletePhysicalDGRequest",
+      "example": {
+        "enrollments": [{
+          "duuid": "0c00d416-b954-4314-b27d-eefceba98890",
+          "name": "dg-spoorthi-117",
+          "configData": {
+            "description": "CDG Base VM for Automation",
+            "version": "2.0.0 (branch dg200dev - build number 347)",
+            "interfaces": [{
+                "name": "eth0",
+                "mac": "00:50:56:9e:a1:63",
+                "ipAddr": [{
+                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                  "inetAddr": "172.29.194.117",
+                  "mask": "24"
+                }]
+              },
+              {
+                "name": "eth1",
+                "mac": "00:50:56:9e:95:bb",
+                "ipAddr": [{
+                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                  "inetAddr": "10.14.0.231",
+                  "mask": "16"
+                }]
+              },
+              {
+                "name": "eth2",
+                "mac": "00:50:56:9e:e1:48"
+              }
+            ],
+            "certChain": {
+              "certificate": "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"
+            },
+            "profile": {
+              "cpu": 8,
+              "memory": 31,
+              "nics": 3
+            },
+            "role": "UNASSIGNED",
+            "adminState": "AS_UP"
+          },
+          "operationalData": {
+            "operState": "OS_PARTIAL_UP",
+            "operStateDetails": [{
+                "componentName": "gnmi-collector",
+                "state": "CS_DEGRADED",
+                "stateReason": "Failed to reach gRPC server.",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "syslog-collector",
+                "state": "CS_DEGRADED",
+                "stateReason": "Failed to reach gRPC server.",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "cli-collector",
+                "state": "CS_DEGRADED",
+                "stateReason": "Failed to reach gRPC server.",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "snmp-collector",
+                "state": "CS_DEGRADED",
+                "stateReason": "Failed to reach gRPC server.",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "mdt-collector",
+                "state": "CS_DEGRADED",
+                "stateReason": "Failed to reach gRPC server.",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "route-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "oam-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "controller-gateway",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "image-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              }
+            ],
+            "lastUpdatedTime": "1600200474445479586"
+          }
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "enrollments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Enrollment"
+          }
+        }
+      },
+      "required": [
+        "enrollments"
+      ]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "example": {
+        "duuid": "0c00d416-b954-4314-b27d-eefceba98890",
+        "name": "dg-spoorthi-117",
+        "configData": {
+          "description": "CDG Base VM for Automation",
+          "version": "2.0.0 (branch dg200dev - build number 347)",
+          "interfaces": [{
+              "name": "eth0",
+              "mac": "00:50:56:9e:a1:63",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "172.29.194.117",
+                "mask": "24"
+              }]
+            },
+            {
+              "name": "eth1",
+              "mac": "00:50:56:9e:95:bb",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "10.14.0.231",
+                "mask": "16"
+              }]
+            },
+            {
+              "name": "eth2",
+              "mac": "00:50:56:9e:e1:48"
+            }
+          ],
+          "certChain": {
+            "certificate": "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"
+          },
+          "profile": {
+            "cpu": 8,
+            "memory": 31,
+            "nics": 3
+          },
+          "role": "UNASSIGNED",
+          "adminState": "AS_UP"
+        },
+        "operationalData": {
+          "operState": "OS_PARTIAL_UP",
+          "operStateDetails": [{
+              "componentName": "gnmi-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "syslog-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "cli-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "snmp-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "mdt-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "route-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "oam-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "controller-gateway",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "image-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            }
+          ],
+          "lastUpdatedTime": "1600200474445479586"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "duuid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "configData": {
+          "$ref": "#/definitions/ConfigData"
+        },
+        "operationalData": {
+          "$ref": "#/definitions/OperationalData"
+        }
+      },
+      "required": [
+        "duuid",
+        "name",
+        "configData",
+        "operationalData"
+      ]
+    },
+    "ConfigData": {
+      "title": "ConfigData",
+      "example": {
+        "description": "CDG Base VM for Automation",
+        "version": "2.0.0 (branch dg200dev - build number 347)",
+        "interfaces": [{
+            "name": "eth0",
+            "mac": "00:50:56:9e:a1:63",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "172.29.194.117",
+              "mask": "24"
+            }]
+          },
+          {
+            "name": "eth1",
+            "mac": "00:50:56:9e:95:bb",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "10.14.0.231",
+              "mask": "16"
+            }]
+          },
+          {
+            "name": "eth2",
+            "mac": "00:50:56:9e:e1:48"
+          }
+        ],
+        "certChain": {
+          "certificate": "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"
+        },
+        "profile": {
+          "cpu": 8,
+          "memory": 31,
+          "nics": 3
+        },
+        "role": "UNASSIGNED",
+        "adminState": "AS_UP"
+      },
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Interface"
+          }
+        },
+        "certChain": {
+          "$ref": "#/definitions/CertChain"
+        },
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "role": {
+          "type": "string"
+        },
+        "adminState": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "version",
+        "interfaces",
+        "certChain",
+        "profile",
+        "role",
+        "adminState"
+      ]
+    },
+    "Interface": {
+      "title": "Interface",
+      "example": {
+        "name": "eth0",
+        "mac": "00:50:56:9e:a1:63",
+        "ipAddr": [{
+          "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+          "inetAddr": "172.29.194.117",
+          "mask": "24"
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "ipAddr": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IpAddr4"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "mac"
+      ]
+    },
+    "IpAddr4": {
+      "title": "IpAddr4",
+      "example": {
+        "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+        "inetAddr": "172.29.194.117",
+        "mask": "24"
+      },
+      "type": "object",
+      "properties": {
+        "inetAf": {
+          "type": "string"
+        },
+        "inetAddr": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "inetAf",
+        "inetAddr",
+        "mask"
+      ]
+    },
+    "CertChain": {
+      "title": "CertChain",
+      "example": {
+        "certificate": "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"
+      },
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "certificate"
+      ]
+    },
+    "Profile": {
+      "title": "Profile",
+      "example": {
+        "cpu": 8,
+        "memory": 31,
+        "nics": 3
+      },
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memory": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nics": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "cpu",
+        "memory",
+        "nics"
+      ]
+    },
+    "OperationalData": {
+      "title": "OperationalData",
+      "example": {
+        "operState": "OS_PARTIAL_UP",
+        "operStateDetails": [{
+            "componentName": "gnmi-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "syslog-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "cli-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "snmp-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "mdt-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "route-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "oam-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "controller-gateway",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "image-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          }
+        ],
+        "lastUpdatedTime": "1600200474445479586"
+      },
+      "type": "object",
+      "properties": {
+        "operState": {
+          "type": "string"
+        },
+        "operStateDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperStateDetail"
+          }
+        },
+        "lastUpdatedTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "operState",
+        "operStateDetails",
+        "lastUpdatedTime"
+      ]
+    },
+    "OperStateDetail": {
+      "title": "OperStateDetail",
+      "example": {
+        "componentName": "gnmi-collector",
+        "state": "CS_DEGRADED",
+        "stateReason": "Failed to reach gRPC server.",
+        "imageTag": "2.0.0"
+      },
+      "type": "object",
+      "properties": {
+        "componentName": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateReason": {
+          "type": "string"
+        },
+        "imageTag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "componentName",
+        "state",
+        "imageTag"
+      ]
+    },
+    "UpdateadminstateofDGtomaintenance/upRequest": {
+      "title": "UpdateadminstateofDGtomaintenance/upRequest",
+      "example": {
+        "enrollments": [{
+          "duuid": "9cdc938a-d947-449c-ba8f-a40cc79a4c18",
+          "name": "dg-2",
+          "configData": {
+            "description": "Test_VM",
+            "version": "2.0.0 (branch cdgha - build number 18)",
+            "interfaces": [{
+                "name": "eth0",
+                "mac": "00:50:56:9e:59:b4",
+                "ipAddr": [{
+                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                  "inetAddr": "172.29.194.77",
+                  "mask": "24"
+                }]
+              },
+              {
+                "name": "eth1",
+                "mac": "00:50:56:9e:60:88",
+                "ipAddr": [{
+                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                  "inetAddr": "10.14.0.135",
+                  "mask": "16"
+                }]
+              },
+              {
+                "name": "eth2",
+                "mac": "00:50:56:9e:94:c4"
+              }
+            ],
+            "certChain": {
+              "certificate": "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"
+            },
+            "profile": {
+              "cpu": 8,
+              "memory": 31,
+              "nics": 3
+            },
+            "role": 4,
+            "adminState": "AS_UP",
+            "poolId": "",
+            "vdgUuid": ""
+          },
+          "operationalData": {
+            "operState": "OS_UP",
+            "operStateDetails": [{
+                "componentName": "cli-collector",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "snmp-collector",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "syslog-collector",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "gnmi-collector",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "mdt-collector",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "image-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "oam-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "route-manager",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              },
+              {
+                "componentName": "controller-gateway",
+                "state": "CS_UP",
+                "imageTag": "2.0.0"
+              }
+            ],
+            "lastUpdatedTime": "1598811649706476503"
+          }
+        }]
+      },
+      "type": "object",
+      "properties": {
+        "enrollments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Enrollment1"
+          }
+        }
+      },
+      "required": [
+        "enrollments"
+      ]
+    },
+    "Enrollment1": {
+      "title": "Enrollment1",
+      "example": {
+        "duuid": "9cdc938a-d947-449c-ba8f-a40cc79a4c18",
+        "name": "dg-2",
+        "configData": {
+          "description": "Test_VM",
+          "version": "2.0.0 (branch cdgha - build number 18)",
+          "interfaces": [{
+              "name": "eth0",
+              "mac": "00:50:56:9e:59:b4",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "172.29.194.77",
+                "mask": "24"
+              }]
+            },
+            {
+              "name": "eth1",
+              "mac": "00:50:56:9e:60:88",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "10.14.0.135",
+                "mask": "16"
+              }]
+            },
+            {
+              "name": "eth2",
+              "mac": "00:50:56:9e:94:c4"
+            }
+          ],
+          "certChain": {
+            "certificate": "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"
+          },
+          "profile": {
+            "cpu": 8,
+            "memory": 31,
+            "nics": 3
+          },
+          "role": 4,
+          "adminState": "AS_UP",
+          "poolId": "",
+          "vdgUuid": ""
+        },
+        "operationalData": {
+          "operState": "OS_UP",
+          "operStateDetails": [{
+              "componentName": "cli-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "snmp-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "syslog-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "gnmi-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "mdt-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "image-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "oam-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "route-manager",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
+            {
+              "componentName": "controller-gateway",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            }
+          ],
+          "lastUpdatedTime": "1598811649706476503"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "duuid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "configData": {
+          "$ref": "#/definitions/ConfigData1"
+        },
+        "operationalData": {
+          "$ref": "#/definitions/OperationalData1"
+        }
+      },
+      "required": [
+        "duuid",
+        "name",
+        "configData",
+        "operationalData"
+      ]
+    },
+    "ConfigData1": {
+      "title": "ConfigData1",
+      "example": {
+        "description": "Test_VM",
+        "version": "2.0.0 (branch cdgha - build number 18)",
+        "interfaces": [{
+            "name": "eth0",
+            "mac": "00:50:56:9e:59:b4",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "172.29.194.77",
+              "mask": "24"
+            }]
+          },
+          {
+            "name": "eth1",
+            "mac": "00:50:56:9e:60:88",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "10.14.0.135",
+              "mask": "16"
+            }]
+          },
+          {
+            "name": "eth2",
+            "mac": "00:50:56:9e:94:c4"
+          }
+        ],
+        "certChain": {
+          "certificate": "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"
+        },
+        "profile": {
+          "cpu": 8,
+          "memory": 31,
+          "nics": 3
+        },
+        "role": 4,
+        "adminState": "AS_UP",
+        "poolId": "",
+        "vdgUuid": ""
+      },
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Interface"
+          }
+        },
+        "certChain": {
+          "$ref": "#/definitions/CertChain"
+        },
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "adminState": {
+          "type": "string"
+        },
+        "poolId": {
+          "type": "string"
+        },
+        "vdgUuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "version",
+        "interfaces",
+        "certChain",
+        "profile",
+        "role",
+        "adminState",
+        "poolId",
+        "vdgUuid"
+      ]
+    },
+    "OperationalData1": {
+      "title": "OperationalData1",
+      "example": {
+        "operState": "OS_UP",
+        "operStateDetails": [{
+            "componentName": "cli-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "snmp-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "syslog-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "gnmi-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "mdt-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "image-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "oam-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "route-manager",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
+          {
+            "componentName": "controller-gateway",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          }
+        ],
+        "lastUpdatedTime": "1598811649706476503"
+      },
+      "type": "object",
+      "properties": {
+        "operState": {
+          "type": "string"
+        },
+        "operStateDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperStateDetail1"
+          }
+        },
+        "lastUpdatedTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "operState",
+        "operStateDetails",
+        "lastUpdatedTime"
+      ]
+    },
+    "OperStateDetail1": {
+      "title": "OperStateDetail1",
+      "example": {
+        "componentName": "cli-collector",
+        "state": "CS_UP",
+        "imageTag": "2.0.0"
+      },
+      "type": "object",
+      "properties": {
+        "componentName": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "imageTag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "componentName",
+        "state",
+        "imageTag"
+      ]
+    },
+    "GetallDGsRequest": {
+      "title": "GetallDGsRequest",
+      "example": {
+        "criteria": "select * from RobotDataGateway"
+      },
+      "type": "object",
+      "properties": {
+        "criteria": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "criteria"
+      ]
+    }
+  },
+  "tags": [{
+    "name": "Misc",
+    "description": ""
+  }]
+}
