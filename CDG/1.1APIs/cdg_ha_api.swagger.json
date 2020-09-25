@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Crosswork Data Gateway Manager APIs for DataGateway HA feature",
+    "title": "Crosswork Data Gateway High Availability APIs",
     "description": " This document contains details of the Crosswork Data Gateway Manager RESTful APIs that can be used for CRUD operations of Data Gateways and HA Pools",
     "version": "1.0.0",
     "contact": {
