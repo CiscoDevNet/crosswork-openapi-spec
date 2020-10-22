@@ -430,78 +430,83 @@
     "operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-output": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:status": {
-          "description": "Enumeration of the request state (leaf)",
-          "type": "string",
-          "format": "enumeration",
-          "default": "error",
-          "enum": [
-            "error",
-            "accepted",
-            "rejected"
-          ]
-        },
-        "cisco-crosswork-optimization-engine-operations:message": {
-          "description": "The details of status above (leaf)",
-          "type": "string",
-          "format": "string"
-        },
-        "cisco-crosswork-optimization-engine-operations:results": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "head-end": {
-                "description": "The IP address of the SR policy source. (leaf)",
-                "type": "string",
-                "format": "union"
-              },
-              "end-point": {
-                "description": "The IP address of the SR policy destination. (leaf)",
-                "type": "string",
-                "format": "union"
-              },
-              "color": {
-                "description": "The color for the SR policy. (leaf)",
-                "type": "integer",
-                "format": "uint32"
-              },
-              "path-computation-status": {
-                "description": "The IGP path computation status for an SR policy (leaf)",
-                "type": "string",
-                "format": "enumeration",
-                "default": "success",
-                "enum": [
-                  "success",
-                  "failure"
-                ]
-              },
-              "path-computation-message": {
-                "description": "The details of IGP path computation status above (leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "igp-route": {
-                "type": "array",
-                "description": "(list)",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "node": {
-                      "description": "The hostname of the source-node for the interface (leaf)",
-                      "type": "string",
-                      "format": "string"
-                    },
-                    "interface": {
-                      "description": "The name of the interface (leaf)",
-                      "type": "string",
-                      "format": "string"
-                    },
-                    "interface-use": {
-                      "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
-                      "type": "number",
-                      "format": "double"
+        "cisco-crosswork-optimization-engine-operations:output": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Enumeration of the request state (leaf)",
+              "type": "string",
+              "format": "enumeration",
+              "default": "error",
+              "enum": [
+                "error",
+                "accepted",
+                "rejected"
+              ]
+            },
+            "message": {
+              "description": "The details of status above (leaf)",
+              "type": "string",
+              "format": "string"
+            },
+            "results": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "head-end": {
+                    "description": "The IP address of the SR policy source. (leaf)",
+                    "type": "string",
+                    "format": "union"
+                  },
+                  "end-point": {
+                    "description": "The IP address of the SR policy destination. (leaf)",
+                    "type": "string",
+                    "format": "union"
+                  },
+                  "color": {
+                    "description": "The color for the SR policy. (leaf)",
+                    "type": "integer",
+                    "format": "uint32"
+                  },
+                  "path-computation-status": {
+                    "description": "The IGP path computation status for an SR policy (leaf)",
+                    "type": "string",
+                    "format": "enumeration",
+                    "default": "success",
+                    "enum": [
+                      "success",
+                      "failure"
+                    ]
+                  },
+                  "path-computation-message": {
+                    "description": "The details of IGP path computation status above (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "igp-route": {
+                    "type": "array",
+                    "description": "(list)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "node": {
+                          "description": "The hostname of the source-node for the interface (leaf)",
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "interface": {
+                          "description": "The name of the interface (leaf)",
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "interface-use": {
+                          "description": "Route portion using that interface, ranges from 0 to 1 (leaf)",
+                          "type": "number",
+                          "format": "double"
+                        }
+                      }
                     }
                   }
                 }
@@ -514,26 +519,31 @@
     "operations_cisco-crosswork-optimization-engine-operations_sr-policy-routes-post-input": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:sr-policies": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "head-end": {
-                "description": "The IP address of the SR policy source. (leaf)",
-                "type": "string",
-                "format": "union"
-              },
-              "end-point": {
-                "description": "The IP address of the SR policy destination. (leaf)",
-                "type": "string",
-                "format": "union"
-              },
-              "color": {
-                "description": "The color for the SR policy. (leaf)",
-                "type": "integer",
-                "format": "uint32"
+        "input": {
+          "type": "object",
+          "properties": {
+            "sr-policies": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "head-end": {
+                    "description": "The IP address of the SR policy source. (leaf)",
+                    "type": "string",
+                    "format": "union"
+                  },
+                  "end-point": {
+                    "description": "The IP address of the SR policy destination. (leaf)",
+                    "type": "string",
+                    "format": "union"
+                  },
+                  "color": {
+                    "description": "The color for the SR policy. (leaf)",
+                    "type": "integer",
+                    "format": "uint32"
+                  }
+                }
               }
             }
           }
@@ -543,58 +553,63 @@
     "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-output": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:status": {
-          "description": "Enumeration of the request state (leaf)",
-          "type": "string",
-          "format": "enumeration",
-          "default": "error",
-          "enum": [
-            "error",
-            "accepted",
-            "rejected"
-          ]
-        },
-        "cisco-crosswork-optimization-engine-operations:message": {
-          "description": "The details of status above (leaf)",
-          "type": "string",
-          "format": "string"
-        },
-        "cisco-crosswork-optimization-engine-operations:node-sr-policies": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "node": {
-                "description": "The hostname of the node (leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "message": {
-                "description": "(leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "sr-policies": {
-                "type": "array",
-                "description": "(list)",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "head-end": {
-                      "description": "The IP address of the SR policy source. (leaf)",
-                      "type": "string",
-                      "format": "union"
-                    },
-                    "end-point": {
-                      "description": "The IP address of the SR policy destination. (leaf)",
-                      "type": "string",
-                      "format": "union"
-                    },
-                    "color": {
-                      "description": "The color for the SR policy. (leaf)",
-                      "type": "integer",
-                      "format": "uint32"
+        "cisco-crosswork-optimization-engine-operations:output": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Enumeration of the request state (leaf)",
+              "type": "string",
+              "format": "enumeration",
+              "default": "error",
+              "enum": [
+                "error",
+                "accepted",
+                "rejected"
+              ]
+            },
+            "message": {
+              "description": "The details of status above (leaf)",
+              "type": "string",
+              "format": "string"
+            },
+            "node-sr-policies": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "description": "The hostname of the node (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "message": {
+                    "description": "(leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "sr-policies": {
+                    "type": "array",
+                    "description": "(list)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "head-end": {
+                          "description": "The IP address of the SR policy source. (leaf)",
+                          "type": "string",
+                          "format": "union"
+                        },
+                        "end-point": {
+                          "description": "The IP address of the SR policy destination. (leaf)",
+                          "type": "string",
+                          "format": "union"
+                        },
+                        "color": {
+                          "description": "The color for the SR policy. (leaf)",
+                          "type": "integer",
+                          "format": "uint32"
+                        }
+                      }
                     }
                   }
                 }
@@ -607,94 +622,104 @@
     "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-node-post-input": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:nodes": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "node": {
-                "description": "The hostname of the node (leaf)",
-                "type": "string",
-                "format": "string"
+        "input": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "description": "The hostname of the node (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  }
+                }
               }
+            },
+            "filter": {
+              "description": "The SR policy filters to apply on the node list above (leaf)",
+              "type": "string",
+              "format": "enumeration",
+              "default": "through-nodes",
+              "enum": [
+                "through-nodes",
+                "nodes-as-source",
+                "nodes-as-destination",
+                "nodes-as-source-or-destination"
+              ]
             }
           }
-        },
-        "cisco-crosswork-optimization-engine-operations:filter": {
-          "description": "The SR policy filters to apply on the node list above (leaf)",
-          "type": "string",
-          "format": "enumeration",
-          "default": "through-nodes",
-          "enum": [
-            "through-nodes",
-            "nodes-as-source",
-            "nodes-as-destination",
-            "nodes-as-source-or-destination"
-          ]
         }
       }
     },
     "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-output": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:status": {
-          "description": "Enumeration of the request state (leaf)",
-          "type": "string",
-          "format": "enumeration",
-          "default": "error",
-          "enum": [
-            "error",
-            "accepted",
-            "rejected"
-          ]
-        },
-        "cisco-crosswork-optimization-engine-operations:message": {
-          "description": "The details of status above (leaf)",
-          "type": "string",
-          "format": "string"
-        },
-        "cisco-crosswork-optimization-engine-operations:interface-sr-policies": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "node": {
-                "description": "The hostname of the source-node for the interface (leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "interface": {
-                "description": "The name of the interface (leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "message": {
-                "description": "(leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "sr-policies": {
-                "type": "array",
-                "description": "(list)",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "head-end": {
-                      "description": "The IP address of the SR policy source. (leaf)",
-                      "type": "string",
-                      "format": "union"
-                    },
-                    "end-point": {
-                      "description": "The IP address of the SR policy destination. (leaf)",
-                      "type": "string",
-                      "format": "union"
-                    },
-                    "color": {
-                      "description": "The color for the SR policy. (leaf)",
-                      "type": "integer",
-                      "format": "uint32"
+        "cisco-crosswork-optimization-engine-operations:output": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Enumeration of the request state (leaf)",
+              "type": "string",
+              "format": "enumeration",
+              "default": "error",
+              "enum": [
+                "error",
+                "accepted",
+                "rejected"
+              ]
+            },
+            "message": {
+              "description": "The details of status above (leaf)",
+              "type": "string",
+              "format": "string"
+            },
+            "interface-sr-policies": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "description": "The hostname of the source-node for the interface (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "interface": {
+                    "description": "The name of the interface (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "message": {
+                    "description": "(leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "sr-policies": {
+                    "type": "array",
+                    "description": "(list)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "head-end": {
+                          "description": "The IP address of the SR policy source. (leaf)",
+                          "type": "string",
+                          "format": "union"
+                        },
+                        "end-point": {
+                          "description": "The IP address of the SR policy destination. (leaf)",
+                          "type": "string",
+                          "format": "union"
+                        },
+                        "color": {
+                          "description": "The color for the SR policy. (leaf)",
+                          "type": "integer",
+                          "format": "uint32"
+                        }
+                      }
                     }
                   }
                 }
@@ -707,21 +732,26 @@
     "operations_cisco-crosswork-optimization-engine-operations_sr-policies-on-interface-post-input": {
       "type": "object",
       "properties": {
-        "cisco-crosswork-optimization-engine-operations:interfaces": {
-          "type": "array",
-          "description": "(list)",
-          "items": {
-            "type": "object",
-            "properties": {
-              "node": {
-                "description": "The hostname of the source-node for the interface (leaf)",
-                "type": "string",
-                "format": "string"
-              },
-              "interface": {
-                "description": "The name of the interface (leaf)",
-                "type": "string",
-                "format": "string"
+        "input": {
+          "type": "object",
+          "properties": {
+            "interfaces": {
+              "type": "array",
+              "description": "(list)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "description": "The hostname of the source-node for the interface (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  },
+                  "interface": {
+                    "description": "The name of the interface (leaf)",
+                    "type": "string",
+                    "format": "string"
+                  }
+                }
               }
             }
           }
