@@ -275,42 +275,47 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-modify-post-output": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:results": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "state": {
-                  "description": "The result for a policy create, update or delete operation (leaf)",
-                  "type": "string",
-                  "format": "enumeration",
-                  "default": "success",
-                  "enum": [
-                    "success",
-                    "failure",
-                    "degraded"
-                  ]
-                },
-                "message": {
-                  "description": "The details of state above, for failure and degraded (leaf)",
-                  "type": "string",
-                  "format": "string"
+          "cisco-crosswork-optimization-engine-sr-policy-operations:output": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "state": {
+                      "description": "The result for a policy create, update or delete operation (leaf)",
+                      "type": "string",
+                      "format": "enumeration",
+                      "default": "success",
+                      "enum": [
+                        "success",
+                        "failure",
+                        "degraded"
+                      ]
+                    },
+                    "message": {
+                      "description": "The details of state above, for failure and degraded (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    }
+                  }
                 }
               }
             }
@@ -320,61 +325,66 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-modify-post-input": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:sr-policies": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "path-name": {
-                  "description": "The path name of the SR policy (leaf)",
-                  "type": "string",
-                  "format": "string"
-                },
-                "description": {
-                  "description": "The description of the SR policy (leaf)",
-                  "type": "string",
-                  "format": "string"
-                },
-                "binding-sid": {
-                  "description": "The binding SID for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "profile-id": {
-                  "description": "The profile ID for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "sr-policy-path": {
-                  "description": "(non-presence)",
+          "input": {
+            "type": "object",
+            "properties": {
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
                   "type": "object",
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
                     },
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
                     },
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "path-name": {
+                      "description": "The path name of the SR policy (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "description": {
+                      "description": "The description of the SR policy (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "binding-sid": {
+                      "description": "The binding SID for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "profile-id": {
+                      "description": "The profile ID for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "sr-policy-path": {
+                      "description": "(non-presence)",
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+                        },
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+                        },
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -384,74 +394,79 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-dryrun-post-output": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:state": {
-            "description": "The result for the policy preview operation (leaf)",
-            "type": "string",
-            "format": "enumeration",
-            "default": "success",
-            "enum": [
-              "success",
-              "failure",
-              "degraded"
-            ]
-          },
-          "cisco-crosswork-optimization-engine-sr-policy-operations:message": {
-            "description": "The details of state above, for failure or degraded (leaf)",
-            "type": "string",
-            "format": "string"
-          },
-          "cisco-crosswork-optimization-engine-sr-policy-operations:igp-route": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "node": {
-                  "description": "The hostname of the source-node for the interface (leaf)",
-                  "type": "string",
-                  "format": "string"
-                },
-                "interface": {
-                  "description": "The name of the interface (leaf)",
-                  "type": "string",
-                  "format": "string"
+          "cisco-crosswork-optimization-engine-sr-policy-operations:output": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "description": "The result for the policy preview operation (leaf)",
+                "type": "string",
+                "format": "enumeration",
+                "default": "success",
+                "enum": [
+                  "success",
+                  "failure",
+                  "degraded"
+                ]
+              },
+              "message": {
+                "description": "The details of state above, for failure or degraded (leaf)",
+                "type": "string",
+                "format": "string"
+              },
+              "igp-route": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "node": {
+                      "description": "The hostname of the source-node for the interface (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "interface": {
+                      "description": "The name of the interface (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    }
+                  }
                 }
-              }
-            }
-          },
-          "cisco-crosswork-optimization-engine-sr-policy-operations:segment-list-hops": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "step": {
-                  "description": "The representation of the hop order in the path (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "sid": {
-                  "description": "The segment identifier for the hop (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "ip-address": {
-                  "description": "The IP address of the hop (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "type": {
-                  "description": "The type of the hop (leaf)",
-                  "type": "string",
-                  "format": "enumeration",
-                  "default": "node-ipv4",
-                  "enum": [
-                    "node-ipv4",
-                    "adjacency-ipv4",
-                    "node-ipv6",
-                    "adjacency-ipv6",
-                    "unknown"
-                  ]
+              },
+              "segment-list-hops": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "step": {
+                      "description": "The representation of the hop order in the path (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "sid": {
+                      "description": "The segment identifier for the hop (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "ip-address": {
+                      "description": "The IP address of the hop (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "type": {
+                      "description": "The type of the hop (leaf)",
+                      "type": "string",
+                      "format": "enumeration",
+                      "default": "node-ipv4",
+                      "enum": [
+                        "node-ipv4",
+                        "adjacency-ipv4",
+                        "node-ipv6",
+                        "adjacency-ipv6",
+                        "unknown"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -461,72 +476,82 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-dryrun-post-input": {
         "type": "object",
         "properties": {
-          "head-end": {
-            "description": "The IP address of the SR policy source (leaf)",
-            "type": "string",
-            "format": "union"
-          },
-          "end-point": {
-            "description": "The IP address of the SR policy destination (leaf)",
-            "type": "string",
-            "format": "union"
-          },
-          "sr-policy-path": {
-            "description": "(non-presence)",
+          "input": {
             "type": "object",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+            "properties": {
+              "head-end": {
+                "description": "The IP address of the SR policy source (leaf)",
+                "type": "string",
+                "format": "union"
               },
-              {
-                "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+              "end-point": {
+                "description": "The IP address of the SR policy destination (leaf)",
+                "type": "string",
+                "format": "union"
               },
-              {
-                "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+              "sr-policy-path": {
+                "description": "(non-presence)",
+                "type": "object",
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+                  },
+                  {
+                    "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+                  },
+                  {
+                    "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+                  }
+                ]
               }
-            ]
+            }
           }
         }
       },
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-delete-post-output": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:results": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "state": {
-                  "description": "The result for a policy create, update or delete operation (leaf)",
-                  "type": "string",
-                  "format": "enumeration",
-                  "default": "success",
-                  "enum": [
-                    "success",
-                    "failure",
-                    "degraded"
-                  ]
-                },
-                "message": {
-                  "description": "The details of state above, for failure and degraded (leaf)",
-                  "type": "string",
-                  "format": "string"
+          "cisco-crosswork-optimization-engine-sr-policy-operations:output": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "state": {
+                      "description": "The result for a policy create, update or delete operation (leaf)",
+                      "type": "string",
+                      "format": "enumeration",
+                      "default": "success",
+                      "enum": [
+                        "success",
+                        "failure",
+                        "degraded"
+                      ]
+                    },
+                    "message": {
+                      "description": "The details of state above, for failure and degraded (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    }
+                  }
                 }
               }
             }
@@ -536,26 +561,31 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-delete-post-input": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:sr-policies": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
+          "input": {
+            "type": "object",
+            "properties": {
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    }
+                  }
                 }
               }
             }
@@ -565,42 +595,47 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-create-post-output": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:results": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "state": {
-                  "description": "The result for a policy create, update or delete operation (leaf)",
-                  "type": "string",
-                  "format": "enumeration",
-                  "default": "success",
-                  "enum": [
-                    "success",
-                    "failure",
-                    "degraded"
-                  ]
-                },
-                "message": {
-                  "description": "The details of state above, for failure and degraded (leaf)",
-                  "type": "string",
-                  "format": "string"
+          "cisco-crosswork-optimization-engine-sr-policy-operations:output": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
+                    },
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "state": {
+                      "description": "The result for a policy create, update or delete operation (leaf)",
+                      "type": "string",
+                      "format": "enumeration",
+                      "default": "success",
+                      "enum": [
+                        "success",
+                        "failure",
+                        "degraded"
+                      ]
+                    },
+                    "message": {
+                      "description": "The details of state above, for failure and degraded (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    }
+                  }
                 }
               }
             }
@@ -610,61 +645,66 @@
       "operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-create-post-input": {
         "type": "object",
         "properties": {
-          "cisco-crosswork-optimization-engine-sr-policy-operations:sr-policies": {
-            "type": "array",
-            "description": "(list)",
-            "items": {
-              "type": "object",
-              "properties": {
-                "head-end": {
-                  "description": "The IP address of the SR policy source (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "end-point": {
-                  "description": "The IP address of the SR policy destination (leaf)",
-                  "type": "string",
-                  "format": "union"
-                },
-                "color": {
-                  "description": "The color for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "path-name": {
-                  "description": "The path name of the SR policy (leaf)",
-                  "type": "string",
-                  "format": "string"
-                },
-                "description": {
-                  "description": "The description of the SR policy (leaf)",
-                  "type": "string",
-                  "format": "string"
-                },
-                "binding-sid": {
-                  "description": "The binding SID for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "profile-id": {
-                  "description": "The profile ID for the SR policy (leaf)",
-                  "type": "integer",
-                  "format": "uint32"
-                },
-                "sr-policy-path": {
-                  "description": "(non-presence)",
+          "input": {
+            "type": "object",
+            "properties": {
+              "sr-policies": {
+                "type": "array",
+                "description": "(list)",
+                "items": {
                   "type": "object",
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+                  "properties": {
+                    "head-end": {
+                      "description": "The IP address of the SR policy source (leaf)",
+                      "type": "string",
+                      "format": "union"
                     },
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+                    "end-point": {
+                      "description": "The IP address of the SR policy destination (leaf)",
+                      "type": "string",
+                      "format": "union"
                     },
-                    {
-                      "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+                    "color": {
+                      "description": "The color for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "path-name": {
+                      "description": "The path name of the SR policy (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "description": {
+                      "description": "The description of the SR policy (leaf)",
+                      "type": "string",
+                      "format": "string"
+                    },
+                    "binding-sid": {
+                      "description": "The binding SID for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "profile-id": {
+                      "description": "The profile ID for the SR policy (leaf)",
+                      "type": "integer",
+                      "format": "uint32"
+                    },
+                    "sr-policy-path": {
+                      "description": "(non-presence)",
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
+                        },
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_dynamic"
+                        },
+                        {
+                          "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_bwod"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
