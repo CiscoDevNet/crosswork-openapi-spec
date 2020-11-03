@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/collection_service.proto",
+    "title": "Crosswork Collection Service APIs",
     "version": "version not set"
   },
   "schemes": [
@@ -27,22 +27,14 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "application_context.application_id",
-            "description": "Unique ID to identify your application. Crosswork Applications need to prefix application id with cw prefix.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "application_context.context_id",
-            "description": "Unique ID to identify your application subscription across all collection jobs. Recommended to use UUID.",
-            "in": "query",
-            "required": false,
-            "type": "string"
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/collection_serviceDeleteCollectionJobRequest"
           }
-        ],
+        }],
         "tags": [
           "CollectionService"
         ]
@@ -162,16 +154,14 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/collection_serviceCreateCollectionJobRequest"
-            }
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/collection_serviceCreateCollectionJobRequest"
           }
-        ],
+        }],
         "tags": [
           "CollectionService"
         ]
@@ -437,6 +427,15 @@
         "result": {
           "$ref": "#/definitions/collection_serviceResult",
           "title": "Sync Request reply , indicating whether request has accepted or rejected"
+        }
+      }
+    },
+    "collection_serviceDeleteCollectionJobRequest": {
+      "type": "object",
+      "properties": {
+        "application_context": {
+          "$ref": "#/definitions/collection_serviceApplicationContext",
+          "description": "Unique handle to identify your application's collection job , serves as Key to Object on which CRUD ops are done."
         }
       }
     },
