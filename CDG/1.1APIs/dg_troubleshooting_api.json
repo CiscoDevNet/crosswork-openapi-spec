@@ -1,5 +1,5 @@
 {
-  "swagger": "3.0",
+  "swagger": "2.0",
   "info": {
     "title": "Crosswork Data Gateway Manager Troubleshooting APIs",
     "description": "APIs to support CDG troubleshooting",
