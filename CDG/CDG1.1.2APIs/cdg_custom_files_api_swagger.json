@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Crosswork Data 2 Gateway Management Custom Software APIs",
+    "title": "Crosswork Data Gateway Management Custom Software APIs",
     "description": "APIs to support Cisco Crosswork Data Gateway Management's custom software functionality.",
     "contact": {
       "name": "Crosswork Team, Cisco",
