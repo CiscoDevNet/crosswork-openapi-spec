@@ -3,7 +3,7 @@
   "info": {
     "title": "Crosswork Network Controller Service Summary API",
     "description": "This document contains details of the Crosswork Network Controller Service Summary APIs",
-    "version": "1.0",
+    "version": "2.0",
     "contact": {
       "name": "Crosswork Team, Cisco",
       "email": "support@cisco.com"
