@@ -1,0 +1,4011 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Change Automation Web Server",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "description": "A web server dedicated to RESTful queries into the Crosswork Change Automation application."
+  },
+  "basePath": "/crosswork/nca",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/nca-oam/v1/settings/mopjobs/promptCredentials": {
+      "get": {
+        "summary": "Retrieve the value denoting if override credentials prompt is enabled or disabled in Change Automation",
+        "operationId": "GetDeviceCredPrompt",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorDeviceCredPromptGetResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "tags": [
+          "OAM"
+        ]
+      },
+      "post": {
+        "summary": "Enable or Disable override credentials prompt in Change Automation",
+        "operationId": "PostDeviceCredPrompt",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorDeviceCredPromptSetResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorDeviceCredPromptSetReq"
+            }
+          }
+        ],
+        "tags": [
+          "OAM"
+        ]
+      }
+    },
+    "/nca-oam/v1/settings/mopjobs/scheduling/state": {
+      "get": {
+        "summary": "Retrieve the value denoting if job scheduling is enabled or disabled in Change Automation",
+        "operationId": "GetMopJobSchedulingState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorJobSchedStateGetResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "tags": [
+          "OAM"
+        ]
+      },
+      "post": {
+        "summary": "Enable or Disable job scheduling in Change Automation",
+        "operationId": "PostMopJobSchedulingState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorJobSchedStateSetResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorJobSchedStateSetReq"
+            }
+          }
+        ],
+        "tags": [
+          "OAM"
+        ]
+      }
+    },
+    "/v1/mopjobs": {
+      "post": {
+        "summary": "Schedule a MoP execution job with custom execution parameters",
+        "operationId": "NCA_PostMopJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      },
+      "patch": {
+        "summary": "Patch a MoP execution job. A patch request can either rollback tasks or run\na task",
+        "operationId": "NCA_PatchMopJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobUpdateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/abort": {
+      "post": {
+        "summary": "Abort one or more MoP job(s) or job set(s).",
+        "operationId": "NCA_PostMopJobsAbort",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobsAbortResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobsAbortReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/events/query": {
+      "post": {
+        "summary": "Get MoP events associated with MoP job(s). The events can be filtered by\ndevice name, event time and MoP job ID",
+        "operationId": "NCA_GetMopJobEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobEventsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobEventsReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/query": {
+      "post": {
+        "summary": "Get one or more MoP execution job(s) based on the filter fields.",
+        "operationId": "NCA_GetMopJobs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobsReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/sets/query": {
+      "post": {
+        "summary": "Get one or more MoP execution job set details based on the filter fields.",
+        "operationId": "NCA_GetMopJobSets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobSetsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobSetsReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/sets/status/counts": {
+      "get": {
+        "summary": "Get a specific MoP execution job set details.",
+        "operationId": "NCA_GetJobSetStatusCounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobSetCountReadResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/sets/{set_id}": {
+      "get": {
+        "summary": "Get a specific MoP execution job set details.",
+        "operationId": "NCA_GetMopJobSet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobSetReadResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "set_id",
+            "description": "A unique ID to identify a set of MoP job(s).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mopjobs/{execution_id}": {
+      "get": {
+        "summary": "Get a specific MoP execution job.",
+        "operationId": "NCA_GetMopJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopJobsReadResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "execution_id",
+            "description": "Executionid of the mopjob",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/mops": {
+      "post": {
+        "summary": "Create a new MoP",
+        "operationId": "PostMop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorMopCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorMopCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      },
+      "delete": {
+        "summary": "Delete one or more custom MoPs in Change Automation",
+        "operationId": "DeleteMops",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsDeleteResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/mops/import": {
+      "post": {
+        "summary": "Import a tar.gz archive with files needed to create/update custom MoPs in\nChange Automation",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "operationId": "NCA_PostMopsImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsImportResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "import",
+            "description": "A tar.gz archive containing one or more playbooks",
+            "type": "file"
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/mops/query": {
+      "post": {
+        "summary": "Retrieve one or more MoPs based on the filter fields. The API currently\nsupports retrieving all mops or multiple filters. Default behavior is to\nfetch all mops.",
+        "operationId": "NCA_GetMops",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/mops/{mop_id}": {
+      "get": {
+        "summary": "Retrieve a specific MoP.",
+        "operationId": "NCA_GetMop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mop_id",
+            "description": "ID of the mop which is requested. ID is a unique value that is assigned to\neach mop when it is on-boarded. If specified, mop_id field takes precedence\nover additional filters. This field requires absolute value. For partial\nsearches in mop_name filters, use /mops API.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/mops/{mop_id}/compatible": {
+      "post": {
+        "summary": "Validate the playbook and device combination",
+        "operationId": "NCA_PostMopDeviceCompatibility",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopDeviceCompatibleResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mop_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "description": "Target devices",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MopDeviceCompatibleReqDevices"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/mops/{mop_id}/specs": {
+      "get": {
+        "summary": "Get the params specs and execution policy specs for one or more playbooks.\nEmpty filter will return the specs for all playbooks.",
+        "operationId": "NCA_GetMopSpecs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationMopSpecsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mop_id",
+            "description": "ID of the mop for which specs files are needed. API will return error if\nmop_id is not specified",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/servicestatus": {
+      "get": {
+        "summary": "Get the service state of Change Automation",
+        "operationId": "NCA_GetServiceState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationServiceStatusReadResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/versions": {
+      "get": {
+        "summary": "Get a specific MoP execution job set details.",
+        "operationId": "NCA_GetAPIVersions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/change_automationApiVersionsResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "tags": [
+          "NCA"
+        ]
+      }
+    },
+    "/v1/device/config/process": {
+      "post": {
+        "summary": "Process the sample device configuration payload",
+        "operationId": "PostDeviceConfigProcess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorDeviceConfigProcessResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorConfigProcessReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConfigExplorer"
+        ]
+      }
+    },
+    "/v1/mops/export": {
+      "post": {
+        "summary": "Export a tar.gz archive with files related to one or more Playbooks in Change Automation",
+        "operationId": "PostMopsExport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorMopsExportResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorMopsExportReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlaybooks"
+        ]
+      }
+    },
+    "/v1/plays": {
+      "delete": {
+        "summary": "Delete one or more custom Plays",
+        "operationId": "DeletePlays",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysDeleteResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/check": {
+      "post": {
+        "summary": "Create a new check Play",
+        "operationId": "PostPlayCheckCreate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlayCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorCheckPlayCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/check/expression/query": {
+      "post": {
+        "summary": "Get the human readable check expression string given a valid check gate",
+        "operationId": "QueryCheckExpression",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorCheckExpressionResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorCheckExpressionReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/collect": {
+      "post": {
+        "summary": "Create a new collect Play",
+        "operationId": "PostPlayCollectCreate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlayCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorCollectPlayCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/device/config": {
+      "post": {
+        "summary": "Create a new config Play",
+        "operationId": "PostPlayDeviceConfigCreate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlayCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorConfigPlayCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/export": {
+      "post": {
+        "summary": "Export one or more plays",
+        "operationId": "PostPlaysExport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysExportResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysExportReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/import": {
+      "post": {
+        "summary": "Import one or more plays. The max allowed size of import file is 10MB\nWhen sending the rest request, the size of the archive file needs to set\nagainst key 'import' in the body of the API.",
+        "operationId": "PostPlaysImport",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysImportResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "import",
+            "description": "A tar.gz archive containing one or more plays",
+            "type": "file"
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/query": {
+      "post": {
+        "summary": "Retrieve one or more Plays based on the filter fields. Default behavior is\nto fetch all Plays if no filters are specified.",
+        "operationId": "GetPlays",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorPlaysReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/plays/service": {
+      "post": {
+        "summary": "Create a new service Play",
+        "operationId": "PostPlayServiceCreate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorPlayCreateResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorConfigPlayCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/service/config/process": {
+      "post": {
+        "summary": "Process the sample service configuration payload",
+        "operationId": "PostServiceConfigProcess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorSvcConfigProcessResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorConfigProcessReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConfigExplorer"
+        ]
+      }
+    },
+    "/v1/yang/modules": {
+      "get": {
+        "summary": "Get a list of all supported YANG modules",
+        "operationId": "GetYangModules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorYangModulesReadResp"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "refresh",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/yang/modules/{module_id}": {
+      "get": {
+        "summary": "Get details of a given YANG module",
+        "operationId": "GetYangModuleDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorYangModuleDetailsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/yang/modules/{module_id}/leaf/query": {
+      "post": {
+        "summary": "Get the details of a leaf field in the given YANG Module",
+        "operationId": "GetYangModuleLeaf",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorYangModuleLeafReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorYangModuleLeafReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    },
+    "/v1/yang/modules/{module_id}/metrics/query": {
+      "post": {
+        "summary": "Get a list of all the metrics for the given YANG module",
+        "operationId": "GetYangModuleMetrics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/generatorYangModuleMetricsReadResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is malformed in some way and the server cannot process it.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError400"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request.",
+            "schema": {
+              "$ref": "#/definitions/change_automationError500"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/generatorYangModuleMetricsReadReq"
+            }
+          }
+        ],
+        "tags": [
+          "NCAPlays"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "MopDeviceCompatibleReqDevices": {
+      "type": "object",
+      "properties": {
+        "device_group": {
+          "type": "string",
+          "description": "Device group name (DLM tag), one job will be executed for each device\nin this group."
+        },
+        "devices": {
+          "$ref": "#/definitions/change_automationDevicesIds",
+          "description": "List of devices on which the job will be executed."
+        }
+      }
+    },
+    "MopDeviceCompatibleRespResult": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "COMPATIBLE",
+        "INCOMPATIBLE"
+      ],
+      "default": "COMPATIBLE",
+      "example": "COMPATIBLE",
+      "description": "- COMPATIBLE: The combination is Valid\n - INCOMPATIBLE: The combination is Invalid"
+    },
+    "MopExecutionPolicyExecStrategyType": {
+      "type": "string",
+      "enum": [
+        "STRATEGY_UNKNOWN",
+        "STRATEGY_CONTINUOUS",
+        "STRATEGY_SINGLE_STEP",
+        "STRATEGY_DRY_RUN"
+      ],
+      "default": "STRATEGY_CONTINUOUS",
+      "example": "STRATEGY_CONTINUOUS"
+    },
+    "MopExecutionPolicyOnFailureActionType": {
+      "type": "string",
+      "enum": [
+        "ON_FAILURE_UNKNOWN",
+        "ON_FAILURE_PAUSE",
+        "ON_FAILURE_COMPLETE_ROLLBACK",
+        "ON_FAILURE_ABORT"
+      ],
+      "default": "ON_FAILURE_PAUSE",
+      "example": "ON_FAILURE_PAUSE"
+    },
+    "MopJobSetCountReadRespMopJobStatusCount": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "status of the job set"
+        },
+        "count": {
+          "type": "string",
+          "format": "uint64",
+          "title": "count of the jobs with the status"
+        }
+      }
+    },
+    "MopJobSetReadRespMopJobExisting": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "description": "Execution ID of the MoP job."
+        },
+        "check_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which pre-checks should start for the job. Default is now, i.e.\nas soon as possible."
+        },
+        "status": {
+          "type": "string",
+          "title": "Status of the mop job"
+        }
+      },
+      "description": "MopJobExisting is a scheduled/completed MoP job in the system."
+    },
+    "MopJobSetsReadReqTimeRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Starting time stamp for the filter."
+        },
+        "till": {
+          "type": "string",
+          "format": "uint64",
+          "title": "End time stamp for the filter. This should be greater than time_from"
+        }
+      },
+      "title": "Time range struct"
+    },
+    "MopJobUpdateReqOpType": {
+      "type": "string",
+      "enum": [
+        "OP_UNKNOWN",
+        "OP_ROLLBACK",
+        "OP_RESUME",
+        "OP_ABORT",
+        "OP_PAUSE"
+      ],
+      "default": "OP_ROLLBACK",
+      "example": "OP_ROLLBACK"
+    },
+    "ServiceStatusReadRespState": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "NOSERVICE",
+        "LIMITEDSERVICE",
+        "FULLSERVICE"
+      ],
+      "default": "NOSERVICE",
+      "example": "NOSERVICE",
+      "description": " - NOSERVICE: NOSERVICE indicates that one or more critical services are unreachable.\nNo operations are supported in NCA\n - LIMITEDSERVICE: LIMITEDSERVICE indicates that NCA one or more optional components are\nunreachable. When in this state, NCA will provide full read support.\nUsers can schedule execution requests but some functionality might be\nmissing\n - FULLSERVICE: FULLSERVICE indicates that NCA is in full service mode. All functionalies\nsupported by NCA are running including graphs creations etc."
+    },
+    "change_automationAbortResp": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "description": "Execution ID of the MoP job for which abort request was processed."
+        },
+        "status": {
+          "$ref": "#/definitions/change_automationRequestStatus",
+          "description": "Status of the abort request. The status only reflects whether the request\nwas accepted or rejected. Even if a request is ACCEPTED, the abort request\nmight not get processed if the mop has run to completion before a chance to\nprocess the request."
+        },
+        "message": {
+          "type": "string",
+          "description": "In case of request getting rejected, message field provides more details."
+        }
+      }
+    },
+    "change_automationApiVersion": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "title": "Version of the API"
+        },
+        "revision": {
+          "type": "string",
+          "title": "Revision within the version"
+        },
+        "status": {
+          "type": "string",
+          "title": "Status of the version"
+        }
+      }
+    },
+    "change_automationApiVersionsResp": {
+      "type": "object",
+      "properties": {
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationApiVersion"
+          }
+        }
+      }
+    },
+    "change_automationDevicesIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of device hostnames."
+        }
+      },
+      "description": "List of devices on which the job will be executed.\nIf multiple devices are provided for a playbook targeting one device at a\ntime, one job will be executed in parallel for each device in list. If\nmultiple devices are provided for a playbook targeting multiple devices, one\njob will be executed. Either device group or devices must be specified."
+    },
+    "change_automationModifiedMop": {
+      "type": "object",
+      "properties": {
+        "mop_id": {
+          "type": "string",
+          "description": "Unique identifier for a MoP."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message describes why the MoP modifiication failed, or suceeded."
+        },
+        "status": {
+          "$ref": "#/definitions/change_automationModifiedMopStatus"
+        }
+      }
+    },
+    "change_automationModifiedMopStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "SUCCEEDED",
+        "FAILED"
+      ],
+      "default": "SUCCEEDED",
+      "example": "SUCCEEDED",
+      "description": " - SUCCEEDED: SUCCEEDED indicates that the requested modification succeeded.\n - FAILED: FAILED indicates that the requested modification failed."
+    },
+    "change_automationMop": {
+      "type": "object",
+      "properties": {
+        "mop_id": {
+          "type": "string",
+          "description": "A unique identifier for a playbook which is the name of the playbook file\nwithout the extension."
+        },
+        "mop_version": {
+          "type": "string",
+          "description": "A version for the playbook specified by the creator."
+        },
+        "name": {
+          "type": "string",
+          "description": "A name for the playbook, with which it is identified on UI."
+        },
+        "description": {
+          "type": "string",
+          "description": "An optional description for the playbook."
+        },
+        "sw_platform": {
+          "type": "string",
+          "title": "Software platform on which the playbook can be run. e.g. \"IOS-XR\""
+        },
+        "sw_version": {
+          "type": "string",
+          "description": "Software version(s) for which the playbook is supported, e.g. \"6.2.1\". This\nfield could be a comma separated list. A singular value would denote that\nthis is the minimum supported version."
+        },
+        "hw_platform": {
+          "type": "string",
+          "description": "Hardware platform on which the playbook is supported."
+        },
+        "pb_file_name": {
+          "type": "string",
+          "description": "Playbook file name. Each MoP corresponds to one Ansible playbook file."
+        },
+        "pb_exec_policy_file_name": {
+          "type": "string",
+          "description": "Playbook execution policy spec file name."
+        },
+        "pb_params_sample_file_name": {
+          "type": "string",
+          "description": "Parameters sample file name. Sample of how the UI params look like."
+        },
+        "pb_params_spec_file_name": {
+          "type": "string",
+          "description": "Parameters specifications file name. Specifications of all the parameters\nneeded for the playbook."
+        },
+        "min_nodes": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Minimum number of nodes that need to be specifed for this playbook. If 0,\nUI will not enforce node selection"
+        },
+        "max_nodes": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Maximum number of nodes that can be be specified for this playbook. If 0,\nUI will not enforce any upper bound"
+        },
+        "parsed_pb": {
+          "$ref": "#/definitions/change_automationPlaybookPhases",
+          "title": "A detailed task level breakdown of the playbook. This field is populated if\nthe parse boolean flag is set to TRUE in the incoming request"
+        },
+        "is_custom": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Flag indicating if this is a custom/user-defined MoP or not."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User who created this MoP."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which this custom MoP was created."
+        }
+      }
+    },
+    "change_automationMopDeviceCompatibleResp": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/MopDeviceCompatibleRespResult",
+          "title": "Result field indicating if the selected playbook can be executed on the\nselected device(s) or device group"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationMopDeviceCompatibleRespError"
+          },
+          "title": "List of errors. Each entry will describe a device which is incompatible and\nthe reason for incompatibility"
+        }
+      }
+    },
+    "change_automationMopDeviceCompatibleRespError": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "string",
+          "title": "Hostname of the device which is not compatible which the playbook"
+        },
+        "reason": {
+          "type": "string",
+          "title": "Reason for incompatibility"
+        }
+      }
+    },
+    "change_automationMopExecutionPolicy": {
+      "type": "object",
+      "properties": {
+        "execution_strategy": {
+          "$ref": "#/definitions/MopExecutionPolicyExecStrategyType",
+          "title": "Type of execution of playbook"
+        },
+        "pause_on_tasks": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": "ID's of the tasks on which the execution should pause when in single\nstepping mode"
+        },
+        "on_failure": {
+          "$ref": "#/definitions/MopExecutionPolicyOnFailureActionType",
+          "title": "Action that the user wishes to take on task failure"
+        },
+        "collect_syslog": {
+          "type": "boolean",
+          "title": "Denotes whether to collect device syslogs or not"
+        },
+        "timeout": {
+          "type": "string",
+          "title": "MoP timeout"
+        }
+      }
+    },
+    "change_automationMopJob": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "title": "A unique ID to track the execution of MOP"
+        },
+        "mop_id": {
+          "type": "string",
+          "title": "ID of the mop to be executed"
+        },
+        "check_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which pre-checks should start for the job. Default is now, i.e. as\nsoon as possible."
+        },
+        "exec_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which the actual execution, i.e. maintenance tasks should begin.\nDefault is now, i.e. as soon as possible."
+        },
+        "execution_params": {
+          "type": "string",
+          "description": "JSON object specifying the execution parameters for the MoP job."
+        },
+        "execution_policy": {
+          "$ref": "#/definitions/change_automationMopExecutionPolicy",
+          "title": "JSON object specifying the execution policy in key-value format"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of devices on which the mop is executed."
+        },
+        "status": {
+          "type": "string",
+          "title": "Current Status of the mop execution"
+        },
+        "exec_end_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Denotes the time at which mop execution was completed. This field will be\npopulated only after the execition is complete."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Time at which mop got scheduled for execution with infra"
+        },
+        "update_time": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Update time is a rolling field which stores the time of the latest update\nto the mopjob instance. If can be a reflection of any of the time fields"
+        },
+        "update_desc": {
+          "type": "string",
+          "title": "Update desc contains the description of the rolling update_time field.\nExample, when update_time reflects created_at, update_desc can contain\nsomething like, \"Time at which mopjob was created\""
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The user who submitted the request."
+        },
+        "last_updated_task": {
+          "type": "integer",
+          "format": "int64",
+          "title": "ID of the last task that was executed. If the MOP is in running state, this\nfield will contain the ID of the task that is being executed currently"
+        },
+        "parsed_pb": {
+          "$ref": "#/definitions/change_automationPlaybookPhases",
+          "description": "A detailed task level breakdown of the playbook."
+        },
+        "set_id": {
+          "type": "string",
+          "description": "An identifier for a job set to which this job belongs."
+        },
+        "mop_name": {
+          "type": "string",
+          "title": "Name of the MoP executed"
+        }
+      }
+    },
+    "change_automationMopJobCloneReq": {
+      "type": "object",
+      "properties": {
+        "src_execution_id": {
+          "type": "string",
+          "description": "Execution ID of the MoP job from which a new job will be created."
+        },
+        "src_set_id": {
+          "type": "string",
+          "description": "Job set ID of MoP job(s) from which a new job set will be created."
+        },
+        "check_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which pre-checks should start for the job. Default is now, i.e. as\nsoon as possible."
+        },
+        "exec_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which the actual execution, i.e. maintenance tasks should begin.\nDefault is now, i.e. as soon as possible."
+        },
+        "submitter": {
+          "type": "string",
+          "description": "The user who submitted the request."
+        }
+      }
+    },
+    "change_automationMopJobCreateReq": {
+      "type": "object",
+      "properties": {
+        "mop_id": {
+          "type": "string",
+          "title": "ID of the mop to be executed"
+        },
+        "check_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which pre-checks should start for the job. Default is now, i.e. as\nsoon as possible."
+        },
+        "exec_start_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which the actual execution, i.e. maintenance tasks should begin.\nDefault is now, i.e. as soon as possible."
+        },
+        "execution_params": {
+          "type": "string",
+          "description": "JSON object specifying the execution parameters for the MoP job."
+        },
+        "execution_policy": {
+          "$ref": "#/definitions/change_automationMopExecutionPolicy",
+          "title": "JSON formatted string of playbook execution policy"
+        },
+        "device_group": {
+          "type": "string",
+          "description": "Device group name (DLM tag). One job will be executed in parallel for\neach device in this group. Can only be used with playbooks targeting one\ndevice at a time. Either device group or devices must be specified."
+        },
+        "devices": {
+          "$ref": "#/definitions/change_automationDevicesIds"
+        },
+        "submitter": {
+          "type": "string",
+          "description": "The user who submitted the request."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name for the job set."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for the job set."
+        },
+        "device_user": {
+          "type": "string"
+        },
+        "device_pass": {
+          "type": "string"
+        }
+      }
+    },
+    "change_automationMopJobCreateResp": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "description": "A unique ID to track the MoP job created. If a device group and or series\nwas requested, this will empty."
+        },
+        "set_id": {
+          "type": "string",
+          "description": "A unique ID to track the set of MoP job(s) created."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which job got scheduled for execution."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The user who created the request."
+        }
+      }
+    },
+    "change_automationMopJobEventsReadReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Denotes the number of mopjob events per page requested by user."
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "title": "// The page number of the result. Page number subtracted by 1 and multiplied\n/ by the limit determines the offset from which records are returned"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationNCAEventType"
+          },
+          "description": "Types of the event. If not set, query execution will yield all event types."
+        },
+        "after": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Time after field determines the timestamp at which to start returning\nevents. Only events with time greater than or equal to after will be\nreturned"
+        },
+        "before": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Time after field determines the timestamp at which to start returning\nevents. Only events with time less than or equal to before will be returned"
+        },
+        "device": {
+          "type": "string",
+          "description": "Name of the device for which events are requested."
+        },
+        "execution_id": {
+          "type": "string",
+          "title": "ExecutionId of the mop for which the user wants events"
+        },
+        "reverse": {
+          "type": "boolean",
+          "title": "If set the events will be returned in reverse chronological order, i.e.,\nnewest first. By default, the flag is false so events will be returned in\nchronological order"
+        }
+      }
+    },
+    "change_automationMopJobEventsReadResp": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Array of JSON formatted events which match all the input criteria"
+        }
+      }
+    },
+    "change_automationMopJobSet": {
+      "type": "object",
+      "properties": {
+        "set_id": {
+          "type": "string",
+          "description": "A unique ID to identify a set of MoP job(s)."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the job set."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Time at which this job set was created"
+        },
+        "last_updated_at": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Time at which there was an update to the job set, w.r.t jobs in this set."
+        },
+        "last_update": {
+          "type": "string",
+          "description": "Last update description for this job set."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name for the job set."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for the job set."
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the job set, derived from the user provided name."
+        },
+        "mop_id": {
+          "type": "string",
+          "description": "A unique identifier for a playbook which is the name of the playbook file\nwithout the extension."
+        },
+        "execution_params": {
+          "type": "string",
+          "description": "JSON object specifying the execution parameters for the MoP job."
+        },
+        "execution_policy": {
+          "$ref": "#/definitions/change_automationMopExecutionPolicy",
+          "title": "JSON formatted string of playbook execution policy"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "User who started the job set"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Start time for the job set"
+        },
+        "device_group": {
+          "type": "string",
+          "description": "Device group name (DLM tag) selected for the job set, if any."
+        },
+        "devices": {
+          "$ref": "#/definitions/change_automationDevicesIds",
+          "description": "List of devices on which the job set will be executed, will be empty if the\nset is using a device group."
+        },
+        "mop_name": {
+          "type": "string",
+          "title": "Name of the playbook that was used for this set"
+        },
+        "parsed_pb": {
+          "$ref": "#/definitions/change_automationPlaybookPhases",
+          "description": "A detailed task level breakdown of the playbook."
+        }
+      },
+      "description": "MopJobSet represents an aggregate of related MoP jobs with common inputs,\ntarget devices and schedule. Jobs could be related by a device group."
+    },
+    "change_automationMopJobSetCountReadResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Total number of mop job sets"
+        },
+        "status_counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MopJobSetCountReadRespMopJobStatusCount"
+          }
+        }
+      }
+    },
+    "change_automationMopJobSetReadResp": {
+      "type": "object",
+      "properties": {
+        "job_set": {
+          "$ref": "#/definitions/change_automationMopJobSet",
+          "description": "Job set requested for."
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MopJobSetReadRespMopJobExisting"
+          },
+          "description": "All the MoP jobs belonging to this job set."
+        }
+      }
+    },
+    "change_automationMopJobSetsReadReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Denotes the number of job sets per page requested by user."
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The page number of the result. Page number subtracted by 1 and multiplied\nby the limit determines the offset from which records are returned."
+        },
+        "set_id": {
+          "type": "string",
+          "description": "Filter results by job set ID."
+        },
+        "mop_id": {
+          "type": "string",
+          "description": "Filter results by MoP ID."
+        },
+        "status": {
+          "type": "string",
+          "description": "Filter results by status of job set."
+        },
+        "device_group": {
+          "type": "string",
+          "description": "Filter results by device group on which the job set was run."
+        },
+        "name": {
+          "type": "string",
+          "description": "Filter results by user provided job set name."
+        },
+        "label": {
+          "type": "string",
+          "description": "Filter results by user provided job set label."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Filter results by the user who created the job set."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Filter results by job tags."
+        },
+        "sort_by": {
+          "$ref": "#/definitions/change_automationMopJobSetsReadReqSortBy",
+          "title": "Sort by one of the available fields"
+        },
+        "order": {
+          "$ref": "#/definitions/change_automationOrder",
+          "description": "Ordering for the sort. Used when a sort_by is specified."
+        },
+        "start_time": {
+          "$ref": "#/definitions/MopJobSetsReadReqTimeRange",
+          "title": "Filter results by a range of start times for the sets"
+        },
+        "mop_name": {
+          "type": "string",
+          "title": "Filter by Mop Name"
+        }
+      }
+    },
+    "change_automationMopJobSetsReadReqSortBy": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "last_updated_at",
+        "label",
+        "name",
+        "mop_id",
+        "status",
+        "created_by",
+        "created_at"
+      ],
+      "default": "last_updated_at",
+      "example": "last_updated_at",
+      "description": " - UNKNOWN: Default sort. Results will be sorted on created at with running and\nscheduled states at top\n - last_updated_at: Sort by last updated at time.\n - label: Sort by label.\n - name: Sort by name.\n - mop_id: Sort by mopId.\n - status: Sort by job status.\n - created_by: Sort by user who created the job.\n - created_at: Sort by created at time."
+    },
+    "change_automationMopJobSetsReadResp": {
+      "type": "object",
+      "properties": {
+        "sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationMopJobSet"
+          },
+          "description": "List of MoP job sets."
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of total number of mop job sets returned"
+        }
+      }
+    },
+    "change_automationMopJobTaskReadResp": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "description": "Execution ID for which the tasks were requested."
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationMopTask"
+          },
+          "description": "An array of all the mop tasks returned for user query."
+        }
+      }
+    },
+    "change_automationMopJobUpdateReq": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "description": "Execution ID of the mopjob being patched."
+        },
+        "task_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Task ID with of the task within the execution instance which is being\npatched."
+        },
+        "op": {
+          "$ref": "#/definitions/MopJobUpdateReqOpType",
+          "title": "Type of patch operation"
+        },
+        "rollback_to_task": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Parameter for rollback operation"
+        },
+        "run_params": {
+          "type": "string",
+          "title": "Parameter for run operation"
+        },
+        "submitter": {
+          "type": "string",
+          "description": "The user who submitted the request."
+        }
+      }
+    },
+    "change_automationMopJobUpdateResp": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/change_automationRequestStatus",
+          "title": "Status of the patch request. The status only reflects whether the request\nwas accepted or rejected based on the input params"
+        },
+        "message": {
+          "type": "string",
+          "title": "In case of request getting rejected, message field provides more details"
+        }
+      }
+    },
+    "change_automationMopJobsAbortReq": {
+      "type": "object",
+      "properties": {
+        "stabilize": {
+          "type": "boolean",
+          "title": "Denotes if orchestrator is supposed to wait for the system to reach a\nstable state before ending execution. This flag will denote if the mopjobs\nare terminated with STOP signal or KILL signal. Currently the abort\noperation waits until the end of current operation"
+        },
+        "execution_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of execution IDs that the user wishes to abort."
+        },
+        "set_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of job set IDs that the user wishes to abort."
+        },
+        "submitter": {
+          "type": "string",
+          "description": "The user who submitted the request."
+        }
+      }
+    },
+    "change_automationMopJobsAbortResp": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationAbortResp"
+          },
+          "description": "List of results corresponding to all the jobs requested for abortion."
+        }
+      }
+    },
+    "change_automationMopJobsReadReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Denotes the number of mopjobs per page requested by user."
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The page number of the result. Page number subtracted by 1 and multiplied\nby the limit determines the offset from which records are returned"
+        },
+        "mop_id": {
+          "type": "string",
+          "description": "Filter results by MoP ID."
+        },
+        "device": {
+          "type": "string",
+          "description": "Filter results by device."
+        },
+        "status": {
+          "type": "string",
+          "description": "Filter results by status of a job."
+        },
+        "set_id": {
+          "type": "string",
+          "description": "Filter results by job set ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Filter results by job set name."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Filter results by job tags."
+        },
+        "sort_by": {
+          "$ref": "#/definitions/change_automationMopJobsReadReqSortBy",
+          "title": "Sort by one of the available fields"
+        },
+        "order": {
+          "$ref": "#/definitions/change_automationOrder",
+          "description": "Ordering for the sort. Used when a sort_by is specified."
+        }
+      }
+    },
+    "change_automationMopJobsReadReqSortBy": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "created_at",
+        "status",
+        "exec_end_time",
+        "check_start_time",
+        "exec_start_time",
+        "update_time",
+        "created_by"
+      ],
+      "default": "created_at",
+      "example": "created_at",
+      "description": " - UNKNOWN: Default sort. Results will be sorted on created at with running,\nscheduled and paused states at top.\n - created_at: Sort by created at time.\n - status: Sort by job status.\n - exec_end_time: Sort by exec end time.\n - check_start_time: Sort by check start time.\n - exec_start_time: Sort by exec start time.\n - update_time: Sort by update time.\n - created_by: Sort by creator name."
+    },
+    "change_automationMopJobsReadResp": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationMopJob"
+          },
+          "title": "List of mopjobs that were retrieved as a result of the query"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of total number of mop jobs returned"
+        }
+      }
+    },
+    "change_automationMopSpecsReadResp": {
+      "type": "object",
+      "properties": {
+        "mop_id": {
+          "type": "string",
+          "title": "ID of the playbook"
+        },
+        "pb_exec_policy_specs": {
+          "type": "string",
+          "description": "Playbook execution policy spec file content."
+        },
+        "pb_params_specs": {
+          "type": "string",
+          "description": "Playbook params/vars spec file content."
+        }
+      }
+    },
+    "change_automationMopTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Task ID if the task"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the task"
+        },
+        "version": {
+          "type": "string",
+          "title": "Version of the task"
+        },
+        "verb": {
+          "type": "string",
+          "title": "Name of the verb which the task invokes"
+        },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of the playbook phases in which the task is executed"
+        },
+        "args": {
+          "type": "string",
+          "title": "Arguments passed to the task"
+        },
+        "vars": {
+          "type": "string",
+          "title": "Ansible hostvars for the verb associated to the task"
+        },
+        "results": {
+          "type": "string",
+          "title": "Result of the task execution as returned by ansible"
+        },
+        "status": {
+          "$ref": "#/definitions/change_automationMopTaskStatus",
+          "title": "Status of the task execution"
+        }
+      }
+    },
+    "change_automationMopTaskStatus": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "PAUSED",
+        "ROLLEDBACK"
+      ],
+      "default": "RUNNING",
+      "example": "RUNNING",
+      "description": "- RUNNING: The tasks is currently running\n - SUCCEEDED: Task was successfully completed\n - FAILED: Task execution failed\n - PAUSED: Task is currently paused due to on failure or execution policy\n - ROLLEDBACK: Task failed and was Rolledback"
+    },
+    "change_automationMopsDeleteReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the delete."
+        },
+        "mop_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of MoP IDs that need to be deleted."
+        }
+      }
+    },
+    "change_automationMopsDeleteResp": {
+      "type": "object",
+      "properties": {
+        "mops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationModifiedMop"
+          },
+          "description": "List of modified MoPs."
+        }
+      }
+    },
+    "change_automationMopsImportReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the import."
+        },
+        "import_dir": {
+          "type": "string",
+          "description": "Temporary directory where MoP files imported from UI have been placed."
+        }
+      }
+    },
+    "change_automationMopsImportResp": {
+      "type": "object",
+      "properties": {
+        "mops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationModifiedMop"
+          },
+          "description": "List of modified MoPs."
+        }
+      }
+    },
+    "change_automationMopsReadReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Denotes the number of mops per page requested by user."
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The page number of the result. Page number subtracted by 1 and multiplied\nby the limit determines the offset from which records are returned"
+        },
+        "mop_name": {
+          "type": "string",
+          "title": "Filter results mop name. The value is applied in a partial string search on\nthe filter.name field. Wildcard based search is not supported. For example,\nvalue could be 'interface' if the user wishes to retrieve all mop which\ncontain interface in it's name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Filter results by mop description. The value is applied in a partial string\nsearch on the filter.name field. Wildcard based search is not supported.\nFor example, value could be 'interface' if the user wishes to retrieve all\nmop which contain interface in it's description"
+        },
+        "sw_platform": {
+          "type": "string",
+          "description": "Filter by software platform. The value is applied is case insensitve and\nperform complete string match."
+        },
+        "created_by": {
+          "type": "string",
+          "title": "Filter results by owner name of the mop. Only the playbook belonging to a\nuser value will be returned"
+        },
+        "version": {
+          "type": "string",
+          "title": "Filter by mop version. The version filter will be applied as a case\nsensitive string"
+        },
+        "predefined_only": {
+          "type": "boolean",
+          "title": "Only return prefined playbooks"
+        },
+        "sort_by": {
+          "$ref": "#/definitions/change_automationMopsReadReqSortBy",
+          "title": "Sort by one of the available fields"
+        },
+        "order": {
+          "$ref": "#/definitions/change_automationOrder",
+          "title": "Ordering for the sort. Used when a sort_by is specified"
+        }
+      }
+    },
+    "change_automationMopsReadReqSortBy": {
+      "type": "string",
+      "enum": [
+        "mop_name",
+        "description",
+        "platform",
+        "created_by",
+        "version",
+        "modified_time"
+      ],
+      "default": "mop_name",
+      "description": "- mop_name: Sort by mop name. Results will be sorted on name by default\n - description: Sort by mop description\n - platform: Sort by software platform\n - created_by: Sort by name of the creator\n - version: Sort by mop version\n - modified_time: Sort by last modified time"
+    },
+    "change_automationMopsReadResp": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of total number of mops returned"
+        },
+        "mops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationMop"
+          },
+          "title": "Array containing all the mops that were returned based on the input\nparameters"
+        }
+      }
+    },
+    "change_automationNCAEventType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "CONSOLE",
+        "GENERIC",
+        "MOP_TASK",
+        "NODE_STATUS_UPDATE",
+        "WAE_RESULT",
+        "MOP_STATUS",
+        "MOP_PAUSED",
+        "MOP_CONFIG",
+        "CONT_CHECK_RESULT",
+        "SYSLOG_STATUS"
+      ],
+      "default": "CONSOLE",
+      "example": "CONSOLE"
+    },
+    "change_automationOrder": {
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ],
+      "default": "asc",
+      "description": "- asc: Sort in ascending order by default\n - desc: Sort in decending order"
+    },
+    "change_automationPlaybookPhases": {
+      "type": "object",
+      "properties": {
+        "continuous": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationPlaybookTask"
+          },
+          "title": "List of all continuous tasks in the playbook"
+        },
+        "pre_maintenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationPlaybookTask"
+          },
+          "title": "List of all pre-maintenance tasks in the playbook"
+        },
+        "maintenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationPlaybookTask"
+          },
+          "title": "List of all maintenance tasks in the playbook"
+        },
+        "post_maintenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/change_automationPlaybookTask"
+          },
+          "title": "List of all post-maintenance tasks in the playbook"
+        }
+      }
+    },
+    "change_automationPlaybookTask": {
+      "type": "object",
+      "properties": {
+        "idx": {
+          "type": "integer",
+          "format": "int64",
+          "title": "ID of the task"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the task"
+        },
+        "verb": {
+          "type": "string",
+          "description": "ID of the verb the task invokes."
+        }
+      }
+    },
+    "change_automationRequestStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNKNOWN",
+        "STATUS_ACCEPTED",
+        "STATUS_DECLINED"
+      ],
+      "default": "STATUS_ACCEPTED",
+      "example": "STATUS_ACCEPTED"
+    },
+    "change_automationServiceStatusReadResp": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/ServiceStatusReadRespState",
+          "title": "Current service state of NCA"
+        },
+        "unreachable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of components that are unreachable"
+        }
+      }
+    },
+    "DeviceConfigNedNedType": {
+      "type": "string",
+      "enum": [
+        "unknown_ned_type",
+        "cli",
+        "netconf"
+      ],
+      "default": "cli",
+      "example": "cli"
+    },
+    "DeviceConfigReadReqDepth": {
+      "type": "string",
+      "enum": [
+        "Invalid",
+        "Shallow",
+        "All"
+      ],
+      "default": "Invalid"
+    },
+    "GatherPathSensorPath": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Sensor path for the data to be evaluated."
+        },
+        "field": {
+          "type": "string",
+          "description": "Field for the sensor path."
+        }
+      }
+    },
+    "MopPlayAlertPolicy": {
+      "type": "object",
+      "properties": {
+        "not_required": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Is the check required or not for its check profile to pass. Failure of\nany required check in a profile will fail the atomic and profile alert.\nDefaults to required. Set to true to make the check optional in its\nprofile."
+        },
+        "min_passes": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Minimum number of times (inclusive limit) this check must pass on\ncollected data before it is considered a successful/passed atomic\nalert."
+        },
+        "not_consecutive": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Are consecutive alert passes to be considered when counting against the\nminimum passes required for this check? Defaults to consecutive.\nSet true to disable consecutive alert constraint, any passed alert will\ncount towards the minimum."
+        },
+        "pass_rate": {
+          "type": "number",
+          "format": "float",
+          "description": "Minimum pass rate i.e. (passes/(passes+failures) (inclusive limit) of\nthis check on collected data before it is considered a\nsuccessful/passed atomic alert."
+        },
+        "max_fails": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Maximum number of times (exclusive limit) this check can fail on\ncollected data before it is considered a failed atomic alert."
+        },
+        "fail_rate": {
+          "type": "number",
+          "format": "float",
+          "description": "Maximum fail rate i.e. (failures/(passes+failures) (exclusive limit) of\nthis check on collected data before it is considered a failed atomic\nalert."
+        },
+        "state_change": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Send atomic alert on state change only? i.e. when alert status changes\nfrom let's say passed to failed, or vice versa. This does not have any\nfunctional impact other than reducing the throughput of atomic alerts\nfor better performance."
+        }
+      }
+    },
+    "MopPlayTag": {
+      "type": "string",
+      "enum": [
+        "unknown_tag",
+        "continuous",
+        "pre_maintenance",
+        "maintenance",
+        "post_maintenance",
+        "serial"
+      ],
+      "default": "continuous",
+      "example": "continuous",
+      "description": "Play's Ansible tag, used as a label for the MoP phase"
+    },
+    "MopPlayruntimeParam": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the runtime variable for this play\nwhich is to receive the value of a registered task result"
+        },
+        "jinja_expr": {
+          "type": "string",
+          "description": "Jinja expression to access and filter any variable to get the value for\nthis variable at runtime."
+        }
+      }
+    },
+    "PortableMOPExportPlay": {
+      "type": "object",
+      "properties": {
+        "pb_play": {
+          "$ref": "#/definitions/generatorMopPlay",
+          "title": "The part of the play that is injected into the PB"
+        },
+        "data_spec": {
+          "type": "string",
+          "title": "The data spec for the play if the play is a custom play"
+        }
+      }
+    },
+    "YangModuleMetricsReadRespPath": {
+      "type": "object",
+      "properties": {
+        "path_id": {
+          "type": "string"
+        },
+        "gather_path": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "YangModulesReadRespModule": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "type": "string"
+        },
+        "revisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "generatorCheckExpressionReq": {
+      "type": "object",
+      "properties": {
+        "check_gate": {
+          "$ref": "#/definitions/generatorGate",
+          "description": "Check gate represents the data check to be evaluated on the collected\ndata."
+        },
+        "gather_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorGatherPath"
+          },
+          "title": "List of gather paths object for calculating minimum cadence"
+        }
+      }
+    },
+    "generatorCheckExpressionResp": {
+      "type": "object",
+      "properties": {
+        "check_expression": {
+          "type": "string",
+          "description": "Check Expression string created from check gate."
+        },
+        "min_cadence": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Minimum cadence needed, calculated from the gather paths."
+        }
+      }
+    },
+    "generatorCheckPlayCreateReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique user defined name for the play."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description to be added to play documentation."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of labels that users wish to apply to the play. Labels are free form\nstring values. Users can choose to apply any value that they want\nThese labels can be used as filter values later."
+        },
+        "cadence": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Frequency of data collection, expressed in seconds."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User who requested to create this play."
+        },
+        "gather_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorGatherPath"
+          },
+          "description": "List of gather paths object for data collection."
+        },
+        "check_gate": {
+          "$ref": "#/definitions/generatorGate",
+          "description": "Check gate represents the data check to be evaluated on the collected\ndata."
+        },
+        "dry_run": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Do a dry run for check play creation, responding back with validation\nerrors, if any."
+        }
+      }
+    },
+    "generatorCollectPlayCreateReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique user defined name for the play."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description to be added to play documentation."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of labels that users wish to apply to the play. Labels are free form\nstring values. Users can choose to apply any value that they want\nThese labels can be used as filter values later."
+        },
+        "cadence": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Frequency of data collection, expressed in seconds."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User who requested to create this play."
+        },
+        "gather_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorGatherPath"
+          },
+          "description": "List of gather paths object for data collection."
+        },
+        "filter_gate": {
+          "$ref": "#/definitions/generatorGate",
+          "description": "Filter gate represents the data filter to be evaluated on the collected\ndata."
+        },
+        "dry_run": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Do a dry run for collect play creation, responding back with validation\nerrors, if any."
+        }
+      }
+    },
+    "generatorConfigKeyParam": {
+      "type": "object",
+      "properties": {
+        "json_path": {
+          "type": "string",
+          "title": "JSON path that can be mapped to a unique node in the payload"
+        },
+        "description": {
+          "type": "string",
+          "title": "User overridden description for the field"
+        },
+        "make_default": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Set the current value of a leaf in config payload as it's default in\nschema"
+        }
+      }
+    },
+    "generatorConfigPlayCreateReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "User friendly name string to be displayed to on the UI"
+        },
+        "description": {
+          "type": "string",
+          "title": "A detailed description to be added to documentation,"
+        },
+        "data": {
+          "type": "string",
+          "title": "JSON formatted sample config payload used for parameterization"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorConfigKeyParam"
+          },
+          "title": "List of JSON objects indicating keys which need to be parametrized"
+        },
+        "schema": {
+          "type": "string",
+          "title": "Serialized schema for the payload as received from\n/v1/device/config/process"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of labels that users wish to apply to the play. Labels are free form\nstring values. Users can choose to apply any value that they want\nThese labels can be used as filter values later"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User who requested to create this play."
+        },
+        "dry_run": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Do a dry run for config play creation, responding back with validation\nerrors, if any."
+        }
+      }
+    },
+    "generatorConfigProcessReq": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The raw JSON tail-f data as obtained from ncs_cli by piping display to\njson."
+        },
+        "nso_id": {
+          "type": "string",
+          "title": "ID of the NSO instance managing the device\nwhich from which config is provided"
+        }
+      }
+    },
+    "generatorDeviceConfigNed": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/DeviceConfigNedNedType"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "generatorDeviceConfigProcessResp": {
+      "type": "object",
+      "properties": {
+        "attr_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorJsonPathDescriptor"
+          },
+          "title": "List annotating all the json paths identified from the sample\npayload"
+        },
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorDeviceConfigSchema"
+          },
+          "title": "Serialized schema tree. This will be used in the next step"
+        },
+        "platform_neds": {
+          "$ref": "#/definitions/generatorPlatformAndNed",
+          "title": "Platform and ned type details as retrieved from NSO"
+        }
+      }
+    },
+    "generatorDeviceConfigReadReq": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string",
+          "title": "Specify either the device hostname as seen in CW"
+        },
+        "current_path": {
+          "type": "string",
+          "title": "This the current path in the config tree being queried. If left empty,\nthe path value will be defaulted to config"
+        },
+        "depth": {
+          "$ref": "#/definitions/DeviceConfigReadReqDepth",
+          "title": "Depth indicates the level from current_path until which the configuration\nis to be fetched. By default, backend will always fetch depth 1, in order\nto avoid latencies with larger config payloads"
+        }
+      }
+    },
+    "generatorDeviceConfigReadResp": {
+      "type": "object",
+      "properties": {
+        "current_path": {
+          "type": "string",
+          "title": "The path in the tree for the returned data"
+        },
+        "next_hops": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Possible next hops in the config tree"
+        },
+        "config": {
+          "type": "string",
+          "title": "The raw JSON config. Users can select this and move on to parameter\nidentification"
+        }
+      }
+    },
+    "generatorDeviceCredPromptGetResp": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/generatorKnob"
+        }
+      }
+    },
+    "generatorDeviceCredPromptSetReq": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/generatorKnob"
+        }
+      }
+    },
+    "generatorDeviceCredPromptSetResp": {
+      "type": "object"
+    },
+    "generatorGate": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "$ref": "#/definitions/generatorGateOperation",
+          "description": "Operation performed on the inputs/groups within this gate."
+        },
+        "check_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorInput"
+          },
+          "description": "Inputs or groups for the gate on which the operation will be applied."
+        }
+      }
+    },
+    "generatorGateOperation": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "and",
+        "or"
+      ],
+      "default": "and",
+      "example": "and"
+    },
+    "generatorGatherPath": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Gather Path or encoding path for the data to be collected."
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Keys for data in this gather path."
+        },
+        "sensor_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GatherPathSensorPath"
+          },
+          "description": "List of sensor path objects selected by user under the given gather path."
+        }
+      }
+    },
+    "generatorInput": {
+      "type": "object",
+      "properties": {
+        "check_primitive": {
+          "$ref": "#/definitions/generatorPrimitive",
+          "title": "Parameter if it's a check primitive"
+        },
+        "check_gate": {
+          "$ref": "#/definitions/generatorGate",
+          "title": "Parameter if it's a nested gate"
+        }
+      }
+    },
+    "generatorJobSchedStateGetResp": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/generatorKnob"
+        }
+      }
+    },
+    "generatorJobSchedStateSetReq": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/generatorKnob"
+        }
+      }
+    },
+    "generatorJobSchedStateSetResp": {
+      "type": "object"
+    },
+    "generatorJsonPathDescriptor": {
+      "type": "object",
+      "properties": {
+        "json_path": {
+          "type": "string",
+          "title": "Path pointing to the unique node in the config tree"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description of the config tree node as identified\nby the YANG model"
+        },
+        "types": {
+          "type": "string",
+          "title": "All possible datatype for the config node"
+        }
+      }
+    },
+    "generatorKnob": {
+      "type": "string",
+      "enum": [
+        "not_set",
+        "enabled",
+        "disabled"
+      ],
+      "default": "enabled",
+      "example": "enabled",
+      "description": "Knob denotes is a property is enabled or disabled"
+    },
+    "generatorModifiedPlay": {
+      "type": "object",
+      "properties": {
+        "play_id": {
+          "type": "string",
+          "description": "Unique identifier for a Play."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message describes why the Play modification failed, or succeeded."
+        },
+        "status": {
+          "$ref": "#/definitions/generatorModifiedPlayStatus"
+        }
+      }
+    },
+    "generatorModifiedPlayStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "SUCCEEDED",
+        "FAILED"
+      ],
+      "default": "SUCCEEDED",
+      "example": "SUCCEEDED",
+      "description": " - SUCCEEDED: SUCCEEDED indicates that the requested modification succeeded.\n - FAILED: FAILED indicates that the requested modification failed."
+    },
+    "generatorMopCreateReq": {
+      "type": "object",
+      "properties": {
+        "mop": {
+          "$ref": "#/definitions/change_automationMop",
+          "description": "Mop definition with metadata for creating a new playbook."
+        },
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorMopPlay"
+          },
+          "description": "Plays is an ordered list of play details needed to be stitched together\ninto a playbook."
+        },
+        "dry_run": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Do a dry run for playbook creation, responding back with validation\nerrors, if any."
+        },
+        "force": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Force the creation of this playbook, replacing any existing playbook with\nsame ID."
+        }
+      }
+    },
+    "generatorMopCreateResp": {
+      "type": "object",
+      "properties": {
+        "mop": {
+          "$ref": "#/definitions/change_automationMop",
+          "title": "Newly created MoP"
+        }
+      }
+    },
+    "generatorMopPlay": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID of the play/verb"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name is a one line name for the play that will be seen in the playbook."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MopPlayTag"
+          },
+          "title": "Tags are the CA play tags"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Conditions is a list of Jinja2 expression, each must evaluate to a\nboolean, the play will either be run or skipped based on logical and of\nthese conditions"
+        },
+        "runtime_params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MopPlayruntimeParam"
+          },
+          "description": "Runtime parameters which will receive their value from a previous task's\nregistered result."
+        },
+        "policy": {
+          "$ref": "#/definitions/MopPlayAlertPolicy",
+          "description": "Policy specification of criteria for each check provided by the end user.\nIt is evaluated for each check result on collected data based on runtime\nstate of all the alerts observed till now, to determine the runtime\nstatus for an alert. This status will further be used to generate an\natomic alert and to evaluate the profile of this check. If omitted, a\ndefault policy will be used based on the phase in which this check verb\nis used in a playbook."
+        }
+      },
+      "description": "MopPlay is the runtime details needed to identify the underlying play and\nhow to use that in a playbook."
+    },
+    "generatorMopsExportReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the export."
+        },
+        "mop_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of MoP IDs that need to be exported."
+        }
+      }
+    },
+    "generatorMopsExportResp": {
+      "type": "object",
+      "properties": {
+        "mops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorPortableMOP"
+          },
+          "description": "List of portable MoPs which has the information on MoP files needed for\nexporting to UI."
+        }
+      },
+      "description": "MopsExportResp contains the tar file with all the files needed to define\nthe MoPs requested."
+    },
+    "generatorPlatformAndNed": {
+      "type": "object",
+      "properties": {
+        "sw_platform": {
+          "type": "string",
+          "title": "Software platform for the device as retrieved from NSO"
+        },
+        "sw_version": {
+          "type": "string",
+          "title": "Software version for the device as retrieved from NSO"
+        },
+        "hw_platform": {
+          "type": "string",
+          "title": "Model for the device as retrieved from NSO"
+        },
+        "ned": {
+          "$ref": "#/definitions/generatorDeviceConfigNed",
+          "title": "Ned details for the device as retrieved from NSO"
+        }
+      }
+    },
+    "generatorPlay": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique identifier for a play which is the name of the play file without\nthe extension."
+        },
+        "name": {
+          "type": "string",
+          "description": "A name for the play, with which it is identified on UI."
+        },
+        "version": {
+          "type": "string",
+          "description": "An opaque version for play."
+        },
+        "description": {
+          "type": "string",
+          "description": "An optional description for the play."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User who created this Play."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Unix epoch timestamp at which the Play was created."
+        },
+        "is_custom": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Whether this a user created play or a stock play"
+        },
+        "type": {
+          "$ref": "#/definitions/generatorPlayType",
+          "description": "Type of play returned."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "User applied labels"
+        },
+        "documentation": {
+          "type": "string",
+          "description": "Ansible module documentation text for the play."
+        },
+        "schema": {
+          "type": "string",
+          "title": "JSON schema of the variables used by the play"
+        },
+        "runtime_params": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Runtime parameters variable names."
+        }
+      }
+    },
+    "generatorPlayCreateResp": {
+      "type": "object",
+      "properties": {
+        "play": {
+          "$ref": "#/definitions/generatorPlay",
+          "title": "Generated play"
+        }
+      }
+    },
+    "generatorPlayType": {
+      "type": "string",
+      "enum": [
+        "unknown_play_type",
+        "check",
+        "device_config",
+        "service",
+        "collect",
+        "action"
+      ],
+      "default": "check",
+      "example": "check"
+    },
+    "generatorPlaysDeleteReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the delete."
+        },
+        "play_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of Play IDs that need to be deleted."
+        }
+      }
+    },
+    "generatorPlaysDeleteResp": {
+      "type": "object",
+      "properties": {
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorModifiedPlay"
+          },
+          "description": "List of Plays that were deleted."
+        }
+      }
+    },
+    "generatorPlaysExportReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the export."
+        },
+        "play_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of Play IDs that need to be exported."
+        }
+      }
+    },
+    "generatorPlaysExportResp": {
+      "type": "object",
+      "properties": {
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorPortablePlay"
+          },
+          "title": "List of portable plays which has the information on play files needed\nfor exporting to UI"
+        }
+      }
+    },
+    "generatorPlaysImportReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "Name of the user who requested the import."
+        },
+        "import_dir": {
+          "type": "string",
+          "description": "Temporary directory where MoP files imported from UI have been placed."
+        }
+      }
+    },
+    "generatorPlaysImportResp": {
+      "type": "object",
+      "properties": {
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorModifiedPlay"
+          },
+          "description": "List of modified plays."
+        }
+      }
+    },
+    "generatorPlaysReadReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Denotes the number of plays per page requested by user."
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The page number of the result. Page number subtracted by 1 and multiplied\nby the limit determines the offset from which records are returned."
+        },
+        "id": {
+          "type": "string",
+          "description": "Filter results play ID, a unique generated ID for the play in the system."
+        },
+        "name": {
+          "type": "string",
+          "description": "Filter results play name. The value is applied in a partial case\ninsensitive string search on the play's name field. Wildcard based search\nis not supported. For example, value could be 'interface' if the user\nwishes to retrieve all plays which contain interface in it's name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Filter results by play description. The value is applied in a partial\ncase insensitive string search on the play's description field. Wildcard\nbased search is not supported. For example, value could be 'interface' if\nthe user wishes to retrieve all plays which contain interface in it's\ndescription."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Filter results by the username of the play creator."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Filter results by one or more labels of the play"
+        },
+        "type": {
+          "$ref": "#/definitions/generatorPlayType",
+          "description": "Filter results by type of play."
+        },
+        "sort_by": {
+          "$ref": "#/definitions/generatorPlaysReadReqSortBy",
+          "title": "Sort by one of the available fields"
+        },
+        "order": {
+          "$ref": "#/definitions/change_automationOrder",
+          "title": "Ordering for the sort. Typically used when a sort_by is specified"
+        },
+        "predefined_only": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Only return prefined plays"
+        }
+      }
+    },
+    "generatorPlaysReadReqSortBy": {
+      "type": "string",
+      "enum": [
+        "name",
+        "description",
+        "created_by",
+        "created_at",
+        "type"
+      ],
+      "default": "name",
+      "description": "- name: Sort by play name. Results will be sorted on name by default\n - description: Sort by play description\n - created_by: Sort by name of the creator\n - created_at: Sort by time of play creation\n - type: Sort by type of the play"
+    },
+    "generatorPlaysReadResp": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of total number of plays returned"
+        },
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorPlay"
+          },
+          "title": "Array containing all the plays that were returned based on the input\nparameters"
+        }
+      }
+    },
+    "generatorPortableMOP": {
+      "type": "object",
+      "properties": {
+        "playbook": {
+          "$ref": "#/definitions/change_automationMop",
+          "description": "Mop definition with metadata for creating a new playbook."
+        },
+        "plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PortableMOPExportPlay"
+          },
+          "title": "Plays is an ordered list of play details needed to be stitched together\ninto a playbook"
+        }
+      }
+    },
+    "generatorPortablePlay": {
+      "type": "object",
+      "properties": {
+        "play_id": {
+          "type": "string",
+          "title": "ID of the play"
+        },
+        "play_name": {
+          "type": "string",
+          "title": "Name of the play. The name field is used to maintain uniqueness\nof plays on a instance"
+        },
+        "data_spec": {
+          "type": "string",
+          "title": "Self describing string that can be used to regenerate the plays"
+        }
+      }
+    },
+    "generatorPrimitive": {
+      "type": "object",
+      "properties": {
+        "lhs": {
+          "type": "string",
+          "description": "Left hand side of the expression.\nA sensor key or field name selected for comparison."
+        },
+        "op": {
+          "$ref": "#/definitions/generatorPrimitiveOperation",
+          "description": "A comparison operation performed between the lhs and rhs."
+        },
+        "rhs": {
+          "type": "string",
+          "description": "Right hand side of the expression.\nA use provided static value for comparison, optionally omitted if runtime\nflag is enabled."
+        },
+        "is_runtime": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Boolean flag to denote if rhs will be provided as a runtime variable\ninput for the play."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the lhs param. YANG sensor key/field type."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the primitive operation."
+        }
+      }
+    },
+    "generatorPrimitiveOperation": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "eq",
+        "neq",
+        "gt",
+        "lt",
+        "in",
+        "regex",
+        "contains",
+        "has_prefix",
+        "has_suffix"
+      ],
+      "default": "eq",
+      "example": "eq"
+    },
+    "generatorSvcConfigProcessResp": {
+      "type": "object",
+      "properties": {
+        "attr_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorJsonPathDescriptor"
+          },
+          "title": "List annotating all the json paths identified from the sample\npayload"
+        },
+        "schema": {
+          "$ref": "#/definitions/generatorServiceConfigSchema",
+          "title": "Serialized schema tree. This will be used in the next step"
+        }
+      }
+    },
+    "generatorYangModuleDetailsReadResp": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "type": "string"
+        },
+        "gather_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "generatorYangModuleLeafReadReq": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "type": "string"
+        },
+        "gather_path": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        }
+      }
+    },
+    "generatorYangModuleLeafReadResp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "path_id": {
+          "type": "string"
+        },
+        "gather_path": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "base_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "default": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enums": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "generatorYangModuleMetricsReadReq": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "type": "string"
+        },
+        "gather_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "generatorYangModuleMetricsReadResp": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/YangModuleMetricsReadRespPath"
+          }
+        }
+      }
+    },
+    "generatorYangModulesReadResp": {
+      "type": "object",
+      "properties": {
+        "modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/YangModulesReadRespModule"
+          }
+        }
+      }
+    },
+    "change_automationError500": {
+      "type": "object",
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "HTTP return code",
+          "example": "500"
+        },
+        "severity": {
+          "type": "string",
+          "description": "Error severity level",
+          "enum": [
+            "Critical",
+            "Warning",
+            "Fatal"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message",
+          "example": "top level error string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "change_automationError400": {
+      "type": "object",
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "HTTP return code",
+          "example": "400"
+        },
+        "severity": {
+          "type": "string",
+          "description": "Error severity level",
+          "enum": [
+            "Critical",
+            "Warning",
+            "Fatal"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message",
+          "example": "top level error string"
+        },
+        "data": {
+          "type": "string",
+          "description": "Details of the error",
+          "example": "detailed description of the error"
+        }
+      }
+    },
+    "generatorDeviceConfigSchema": {
+      "type": "object",
+      "properties": {
+        "xpath": {
+          "type": "string",
+          "description": "tailf path"
+        },
+        "json_path": {
+          "type": "string",
+          "description": "path to the node in the sample json payload"
+        },
+        "parent": {
+          "type": "string",
+          "description": "tailf path of the parent node"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/generatorDeviceConfigSchemaTypeDescriptor"
+          }
+        }
+      }
+    },
+    "generatorDeviceConfigSchemaTypeDescriptor": {
+      "type": "object",
+      "properties": {
+        "datatype": {
+          "type": "string",
+          "description": "yang data type of the node"
+        },
+        "info": {
+          "type": "string",
+          "description": "yang schema description of the node"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "pattern of the value of leaf nodes"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "key value for a list yang type"
+          }
+        },
+        "enums": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "enumerations for string type leaf yang nodes"
+          }
+        }
+      }
+    },
+    "generatorServiceConfigSchema": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "service endpoint"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of action endpoints for the service"
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "datatype": {
+              "type": "string",
+              "description": "yang data type of the node"
+            },
+            "info": {
+              "type": "string",
+              "description": "yang schema description of the node"
+            },
+            "pattern": {
+              "type": "string",
+              "description": "pattern of the value of leaf nodes"
+            },
+            "keys": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "key value for a list yang type"
+              }
+            },
+            "enums": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "enumerations for string type leaf yang nodes"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
