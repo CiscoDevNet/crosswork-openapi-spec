@@ -37,12 +37,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -76,12 +76,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -113,12 +113,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -150,12 +150,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -168,8 +168,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Adding a description to this response",
+            "schema": {
+              "$ref": "#/definitions/CreateHApool"
+            }
           }
         },
         "security": []
@@ -189,12 +191,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -225,12 +227,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -263,12 +265,12 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": ""
+        },
           {
             "name": "Body",
             "in": "body",
@@ -492,7 +494,6 @@
         "pools": [{
           "name": "HAPool_Sep17",
           "description": "test pool",
-          "puuid": "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4",
           "ipaddrs": [{
             "ipaddr": {
               "inet_af": "ROBOT_INET_ADDR_TYPE_v4",
@@ -520,6 +521,26 @@
         "pools"
       ]
     },
+    "CreateHApool": {
+      "title": "CreateHApool",
+      "example": {
+        "poolID": [
+          "a7c3e0f6-d113-4549-ac4e-6ef5cec0e2d4 HAPool_Sep17"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "poolID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "poolID"
+      ]
+    },
     "DeletePhysicalDGRequest": {
       "title": "DeletePhysicalDGRequest",
       "example": {
@@ -530,14 +551,14 @@
             "description": "CDG Base VM for Automation",
             "version": "2.0.0 (branch dg200dev - build number 347)",
             "interfaces": [{
-                "name": "eth0",
-                "mac": "00:50:56:9e:a1:63",
-                "ipAddr": [{
-                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-                  "inetAddr": "172.29.194.117",
-                  "mask": "24"
-                }]
-              },
+              "name": "eth0",
+              "mac": "00:50:56:9e:a1:63",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "172.29.194.117",
+                "mask": "24"
+              }]
+            },
               {
                 "name": "eth1",
                 "mac": "00:50:56:9e:95:bb",
@@ -566,11 +587,11 @@
           "operationalData": {
             "operState": "OS_PARTIAL_UP",
             "operStateDetails": [{
-                "componentName": "gnmi-collector",
-                "state": "CS_DEGRADED",
-                "stateReason": "Failed to reach gRPC server.",
-                "imageTag": "2.0.0"
-              },
+              "componentName": "gnmi-collector",
+              "state": "CS_DEGRADED",
+              "stateReason": "Failed to reach gRPC server.",
+              "imageTag": "2.0.0"
+            },
               {
                 "componentName": "syslog-collector",
                 "state": "CS_DEGRADED",
@@ -642,14 +663,14 @@
           "description": "CDG Base VM for Automation",
           "version": "2.0.0 (branch dg200dev - build number 347)",
           "interfaces": [{
-              "name": "eth0",
-              "mac": "00:50:56:9e:a1:63",
-              "ipAddr": [{
-                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-                "inetAddr": "172.29.194.117",
-                "mask": "24"
-              }]
-            },
+            "name": "eth0",
+            "mac": "00:50:56:9e:a1:63",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "172.29.194.117",
+              "mask": "24"
+            }]
+          },
             {
               "name": "eth1",
               "mac": "00:50:56:9e:95:bb",
@@ -678,11 +699,11 @@
         "operationalData": {
           "operState": "OS_PARTIAL_UP",
           "operStateDetails": [{
-              "componentName": "gnmi-collector",
-              "state": "CS_DEGRADED",
-              "stateReason": "Failed to reach gRPC server.",
-              "imageTag": "2.0.0"
-            },
+            "componentName": "gnmi-collector",
+            "state": "CS_DEGRADED",
+            "stateReason": "Failed to reach gRPC server.",
+            "imageTag": "2.0.0"
+          },
             {
               "componentName": "syslog-collector",
               "state": "CS_DEGRADED",
@@ -759,14 +780,14 @@
         "description": "CDG Base VM for Automation",
         "version": "2.0.0 (branch dg200dev - build number 347)",
         "interfaces": [{
-            "name": "eth0",
-            "mac": "00:50:56:9e:a1:63",
-            "ipAddr": [{
-              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-              "inetAddr": "172.29.194.117",
-              "mask": "24"
-            }]
-          },
+          "name": "eth0",
+          "mac": "00:50:56:9e:a1:63",
+          "ipAddr": [{
+            "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+            "inetAddr": "172.29.194.117",
+            "mask": "24"
+          }]
+        },
           {
             "name": "eth1",
             "mac": "00:50:56:9e:95:bb",
@@ -933,11 +954,11 @@
       "example": {
         "operState": "OS_PARTIAL_UP",
         "operStateDetails": [{
-            "componentName": "gnmi-collector",
-            "state": "CS_DEGRADED",
-            "stateReason": "Failed to reach gRPC server.",
-            "imageTag": "2.0.0"
-          },
+          "componentName": "gnmi-collector",
+          "state": "CS_DEGRADED",
+          "stateReason": "Failed to reach gRPC server.",
+          "imageTag": "2.0.0"
+        },
           {
             "componentName": "syslog-collector",
             "state": "CS_DEGRADED",
@@ -1045,14 +1066,14 @@
             "description": "Test_VM",
             "version": "2.0.0 (branch cdgha - build number 18)",
             "interfaces": [{
-                "name": "eth0",
-                "mac": "00:50:56:9e:59:b4",
-                "ipAddr": [{
-                  "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-                  "inetAddr": "172.29.194.77",
-                  "mask": "24"
-                }]
-              },
+              "name": "eth0",
+              "mac": "00:50:56:9e:59:b4",
+              "ipAddr": [{
+                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+                "inetAddr": "172.29.194.77",
+                "mask": "24"
+              }]
+            },
               {
                 "name": "eth1",
                 "mac": "00:50:56:9e:60:88",
@@ -1083,10 +1104,10 @@
           "operationalData": {
             "operState": "OS_UP",
             "operStateDetails": [{
-                "componentName": "cli-collector",
-                "state": "CS_UP",
-                "imageTag": "2.0.0"
-              },
+              "componentName": "cli-collector",
+              "state": "CS_UP",
+              "imageTag": "2.0.0"
+            },
               {
                 "componentName": "snmp-collector",
                 "state": "CS_UP",
@@ -1154,14 +1175,14 @@
           "description": "Test_VM",
           "version": "2.0.0 (branch cdgha - build number 18)",
           "interfaces": [{
-              "name": "eth0",
-              "mac": "00:50:56:9e:59:b4",
-              "ipAddr": [{
-                "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-                "inetAddr": "172.29.194.77",
-                "mask": "24"
-              }]
-            },
+            "name": "eth0",
+            "mac": "00:50:56:9e:59:b4",
+            "ipAddr": [{
+              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+              "inetAddr": "172.29.194.77",
+              "mask": "24"
+            }]
+          },
             {
               "name": "eth1",
               "mac": "00:50:56:9e:60:88",
@@ -1192,10 +1213,10 @@
         "operationalData": {
           "operState": "OS_UP",
           "operStateDetails": [{
-              "componentName": "cli-collector",
-              "state": "CS_UP",
-              "imageTag": "2.0.0"
-            },
+            "componentName": "cli-collector",
+            "state": "CS_UP",
+            "imageTag": "2.0.0"
+          },
             {
               "componentName": "snmp-collector",
               "state": "CS_UP",
@@ -1268,14 +1289,14 @@
         "description": "Test_VM",
         "version": "2.0.0 (branch cdgha - build number 18)",
         "interfaces": [{
-            "name": "eth0",
-            "mac": "00:50:56:9e:59:b4",
-            "ipAddr": [{
-              "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
-              "inetAddr": "172.29.194.77",
-              "mask": "24"
-            }]
-          },
+          "name": "eth0",
+          "mac": "00:50:56:9e:59:b4",
+          "ipAddr": [{
+            "inetAf": "ROBOT_INET_ADDR_TYPE_v4",
+            "inetAddr": "172.29.194.77",
+            "mask": "24"
+          }]
+        },
           {
             "name": "eth1",
             "mac": "00:50:56:9e:60:88",
@@ -1354,10 +1375,10 @@
       "example": {
         "operState": "OS_UP",
         "operStateDetails": [{
-            "componentName": "cli-collector",
-            "state": "CS_UP",
-            "imageTag": "2.0.0"
-          },
+          "componentName": "cli-collector",
+          "state": "CS_UP",
+          "imageTag": "2.0.0"
+        },
           {
             "componentName": "snmp-collector",
             "state": "CS_UP",

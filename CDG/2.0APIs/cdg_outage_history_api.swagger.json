@@ -1,0 +1,197 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Crosswork Data Gateway Maanager OutageHistory APIs",
+    "description": "APIs to support Data Gateway Outage History",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
+  },
+  "host": "example.com",
+  "basePath": "/crosswork/dg-manager/v1/device/outage-history",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/query": {
+      "post": {
+        "description": "Query Outage History records with Virtual/Physical Data Gateway ID",
+        "summary": "Query Outage History",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "QueryOutageHistory",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetOutageHistoryForVDGRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "GetOutageHistoryForVDGRequest": {
+      "title": "GetOutageHistoryForVDGRequest",
+      "example": {
+        "queryParams": [
+          {
+            "field": "DGID",
+            "value": {
+              "valueStr": ""
+            }
+          },
+          {
+            "field": "VDGID",
+            "value": {
+              "valueStr": "b7fa0480-e421-42cf-868d-94ecd660116b"
+            }
+          },
+          {
+            "field": "DAYS",
+            "value": {
+              "valueStr": "14"
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryParam"
+          }
+        }
+      },
+      "required": [
+        "queryParams"
+      ]
+    },
+    "QueryParam": {
+      "title": "QueryParam",
+      "example": {
+        "field": "DGID",
+        "value": {
+          "valueStr": ""
+        }
+      },
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/Value"
+        }
+      },
+      "required": [
+        "field",
+        "value"
+      ]
+    },
+    "Value": {
+      "title": "Value",
+      "example": {
+        "valueStr": ""
+      },
+      "type": "object",
+      "properties": {
+        "valueStr": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "valueStr"
+      ]
+    },
+    "GetOutageHistoryForPDGRequest": {
+      "title": "GetOutageHistoryForPDGRequest",
+      "example": {
+        "queryParams": [
+          {
+            "field": "DGID",
+            "value": {
+              "valueStr": "b7fa0480-e421-42cf-868d-94ecd660116c"
+            }
+          },
+          {
+            "field": "VDGID",
+            "value": {
+              "valueStr": ""
+            }
+          },
+          {
+            "field": "DAYS",
+            "value": {
+              "valueStr": "14"
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryParam"
+          }
+        }
+      },
+      "required": [
+        "queryParams"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
