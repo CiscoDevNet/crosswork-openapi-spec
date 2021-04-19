@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": {
 		"description": "APIs exposed by nso-connector service",
-		"version": "2",
+		"version": "2.0.33",
 		"title": "nso-connector service APIs",
 		"termsOfService": "http://www.cisco.com/web/siteassets/legal/terms_condition.html",
 		"contact": {
