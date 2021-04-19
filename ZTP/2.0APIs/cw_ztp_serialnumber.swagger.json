@@ -1,0 +1,388 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/cw_ztp_serialnumber.proto",
+    "version": "2.0.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/ovdata/export": {
+      "post": {
+        "summary": "ExportOwnershipVoucherData API\nExport ov data to generate JSON with serial numbers and pinned-domain-cert\nRequest Body: ZtpSerialNumberOVRequest contains base64 enc string content of tar.\nResponse Body: ZtpSerialNumberOVResponse",
+        "operationId": "ExportOwnershipVoucherData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberOVResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberOVRequest"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      }
+    },
+    "/v1/ovs/import": {
+      "post": {
+        "summary": "ImportOwnershipVouchers API\nImport ov tar to add vouchers in bulk\nRequest Body: ZtpSerialNumberImport contains base64 enc string content of tar.\nResponse Body: ZtpSerialNumberImportResponse",
+        "operationId": "ImportOwnershipVouchers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberImportResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberImport"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      }
+    },
+    "/v1/serialnumbers": {
+      "delete": {
+        "summary": "DeleteSerialNumbers API\nDelete the serial numbers - single or multiple\nRequest Body: ZtpSerialNumberList\nResponse Body: ZtpSerialNumberResponse",
+        "operationId": "DeleteSerialNumbers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberList"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      },
+      "post": {
+        "summary": "AddSerialNumbers API\nAdd the serial numbers - single or multiple\nRequest Body: ZtpSerialNumberList\nResponse Body: ZtpSerialNumberResponse",
+        "operationId": "AddSerialNumbers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberList"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      },
+      "put": {
+        "summary": "UpdateSerialNumber API\nUpdate a serial number\nRequest Body: ZtpSerialNumber\nResponse Body: ZtpSerialNumberResponse",
+        "operationId": "UpdateSerialNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumber"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      }
+    },
+    "/v1/serialnumbers/import": {
+      "post": {
+        "summary": "ImportSerialNumbers API\nImport sn csv to add serial numbers in bulk.\nRequest Body: ZtpSerialNumberImport contains base64 enc string content of csv.\nResponse Body: ZtpSerialNumberImportResponse",
+        "operationId": "ImportSerialNumbers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberImportResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberImport"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      }
+    },
+    "/v1/serialnumbers/query": {
+      "post": {
+        "summary": "GetSerialNumbers API\nRetrieves a list of serial numbers. Filters can be applied to retrieve specific results.\nRequest Body: ZtpSerialNumberRequest\nResponse Body: ZtpSerialNumberResponse",
+        "operationId": "GetSerialNumbers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cwztpsvcZtpSerialNumberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "cwztpsn"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "cwztpsvcZtpFilterData": {
+      "type": "object",
+      "properties": {
+        "SortBy": {
+          "type": "string"
+        },
+        "PageSize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PageNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Descending": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "MatchCase": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "Criteria": {
+          "type": "string"
+        },
+        "TotalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumber": {
+      "type": "object",
+      "properties": {
+        "serialNumber": {
+          "type": "string",
+          "title": "serial number of device"
+        },
+        "ovFilename": {
+          "type": "string",
+          "title": "ownership voucher file name"
+        },
+        "ovContent": {
+          "type": "string",
+          "title": "base64 enc string of ownership voucher file"
+        },
+        "isOVLinked": {
+          "type": "string",
+          "title": "either \"true\" or \"false\""
+        },
+        "isInUse": {
+          "type": "string",
+          "title": "either \"true\" or \"false\""
+        },
+        "modifiedDate": {
+          "type": "string",
+          "format": "int64",
+          "title": "last modified date in unix time format"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberImport": {
+      "type": "object",
+      "properties": {
+        "b64Content": {
+          "type": "string",
+          "title": "base64 enc string of csv/tar file containing serial-numbers/ownership-vouchers"
+        },
+        "isOverwrite": {
+          "type": "string",
+          "title": "either \"true\" or \"false\""
+        },
+        "fileName": {
+          "type": "string",
+          "title": "file name of csv/tar file"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberImportResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "duplicateRecordCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "processedRecordCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "warningRecordCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberList": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cwztpsvcZtpSerialNumber"
+          }
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberOVRequest": {
+      "type": "object",
+      "properties": {
+        "inputSerialNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberOVResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberRequest": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "$ref": "#/definitions/cwztpsvcZtpSerialNumber"
+        },
+        "filterData": {
+          "$ref": "#/definitions/cwztpsvcZtpFilterData"
+        },
+        "criteria": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cwztpsvcZtpSerialNumberResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cwztpsvcZtpSerialNumber"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/cwztpsvcZtpFilterData"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

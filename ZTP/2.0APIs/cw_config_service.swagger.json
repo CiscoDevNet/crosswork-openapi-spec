@@ -1,0 +1,1309 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Crosswork ZTP Configuration Service APIs",
+        "version": "2.0.0",
+        "contact": {
+            "name": "Crosswork Team, Cisco",
+            "email": "support@cisco.com"
+        },
+        "license": {
+            "name": "Cisco Software License Agreement",
+            "url": "http://www.cisco.com/public/sw-license-agreement.html"
+        },
+        "description": "This document details the Crosswork REST APIs that you can use to manage configuration files for Zero Touch Provisioning (ZTP) devices."
+    },
+    "basePath": "/crosswork/configsvc/",
+    "tags": [
+        {
+            "name": "health-controller",
+            "description": "Health Controller",
+        },
+        {
+            "name": "config-platform-controller",
+            "description": "Config Platform Controller"
+        },
+        {
+            "name": "config-type-controller",
+            "description": "Config Type Controller"
+        },
+        {
+            "name": "config-controller",
+            "description": "Config Controller"
+        },
+        {
+            "name": "config-download-controller",
+            "description": "Config Download Controller"
+        }
+    ],
+    "paths": {
+        "/v1/configs": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Get all configuration files.",
+                "operationId": "getAllConfigFilesUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "X-Real-IP",
+                        "in": "header",
+                        "description": "X-Real-IP",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "PageNum",
+                        "in": "query",
+                        "description": "PageNum",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "description": "PageSize",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "SortBy",
+                        "in": "query",
+                        "description": "SortBy",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Descending",
+                        "in": "query",
+                        "description": "Descending",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "confname",
+                        "in": "query",
+                        "description": "confname",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "confId",
+                        "in": "query",
+                        "description": "confId",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "osname",
+                        "in": "query",
+                        "description": "osname",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "version",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "devicefamily",
+                        "in": "query",
+                        "description": "devicefamily",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "searchType",
+                        "in": "query",
+                        "description": "searchType",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fileName",
+                        "in": "query",
+                        "description": "fileName",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "$ref": "#/definitions/ConfigResponseDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Delete multiple configuration files by ID list.",
+                "operationId": "deleteConfigsByIdListUsingDELETE",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "configIds",
+                        "description": "configIds",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content. The request was successful and there is no additional content in the response body."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    }
+                }
+            }
+        },
+        "/v1/configs/count": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Get count of config files",
+                "operationId": "getConfigsCountUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/configs/device/files/{confId}": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Download configuration file.",
+                "operationId": "downloadConfigDeviceUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "X-cisco-serial*",
+                        "in": "header",
+                        "description": "X-cisco-serial*",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "confId",
+                        "in": "path",
+                        "description": "confId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "remoteid",
+                        "in": "query",
+                        "description": "remoteid",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "circuitid",
+                        "in": "query",
+                        "description": "circuitid",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "secureztp",
+                        "in": "query",
+                        "description": "secureztp",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/file": {
+            "get": {
+                "tags": [
+                    "config-download-controller"
+                ],
+                "summary": "Download configuration file by serial number",
+                "operationId": "downloadConfigDeviceUsingSerialUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "X-cisco-serial*",
+                        "in": "header",
+                        "description": "X-cisco-serial*",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "remoteid",
+                        "in": "query",
+                        "description": "remoteid",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "circuitid",
+                        "in": "query",
+                        "description": "circuitid",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "secureztp",
+                        "in": "query",
+                        "description": "secureztp",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/configs/files/{confId}": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Download configuration files.",
+                "operationId": "downloadConfigUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "confId",
+                        "in": "path",
+                        "description": "confId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/configs/upload": {
+            "post": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Upload a configuration file.",
+                "operationId": "uploadConfigUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "X-Real-IP",
+                        "in": "header",
+                        "description": "X-Real-IP",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "configFile",
+                        "in": "formData",
+                        "description": "configFile",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "confname",
+                        "in": "query",
+                        "description": "confname",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "osname",
+                        "in": "query",
+                        "description": "osname",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "version",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "devicefamily",
+                        "in": "query",
+                        "description": "devicefamily",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "type": "string",
+                        "default": "Day0-config"
+                    },
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "description": "user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "$ref": "#/definitions/ConfigDto"
+                        }
+                    },
+                    "201": {
+                        "description": "Created. The request was successful. One or more new resources were created.. The request was successful. One or more new resources were Created. The request was successful. One or more new resources were created.."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/configs/{confId}": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Get configuration file metadata.",
+                "operationId": "getConfigFileUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "confId",
+                        "in": "path",
+                        "description": "confId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "X-Real-IP",
+                        "in": "header",
+                        "description": "X-Real-IP",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "$ref": "#/definitions/ConfigDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Update config",
+                "operationId": "updateConfigUsingPUT",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "configFile",
+                        "in": "formData",
+                        "description": "configFile",
+                        "required": false,
+                        "type": "file"
+                    },
+                    {
+                        "name": "confId",
+                        "in": "path",
+                        "description": "confId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "confname",
+                        "in": "query",
+                        "description": "confname",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "osname",
+                        "in": "query",
+                        "description": "osname",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "version",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "devicefamily",
+                        "in": "query",
+                        "description": "devicefamily",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "description": "user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "$ref": "#/definitions/ConfigDto"
+                        }
+                    },
+                    "201": {
+                        "description": "Created. The request was successful. One or more new resources were created."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "Delete configuration files by configuration ID.",
+                "operationId": "deleteConfigByNameUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "confId",
+                        "in": "path",
+                        "description": "confId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content. The request was successful and there is no additional content in the response body."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    }
+                }
+            }
+        },
+        "/v1/health": {
+            "get": {
+                "tags": [
+                    "health-controller"
+                ],
+                "summary": "/v1/health",
+                "operationId": "healthcheckUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/platforms": {
+            "get": {
+                "tags": [
+                    "config-platform-controller"
+                ],
+                "summary": "Retrieves all supported platforms",
+                "operationId": "getPlatformsUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "fetchCustomData",
+                        "in": "query",
+                        "description": "fetchCustomData",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/platforms/{platform}/families": {
+            "get": {
+                "tags": [
+                    "config-platform-controller"
+                ],
+                "summary": "Retrieves all supported families, on a specific platform",
+                "operationId": "getFamiliesByPlatformUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "platform",
+                        "in": "path",
+                        "description": "platform",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fetchCustomData",
+                        "in": "query",
+                        "description": "Retrieve all custom configured third party device family for given OS platform",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/platforms/{platform}/versions": {
+            "get": {
+                "tags": [
+                    "config-platform-controller"
+                ],
+                "summary": "Retrieves all supported versions, on a specific platform",
+                "operationId": "getVersionsByPlatformUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "platform",
+                        "in": "path",
+                        "description": "platform",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fetchCustomData",
+                        "in": "query",
+                        "description": "Retrieve all custom configured third party device software versions by platform",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "secured",
+                        "in": "query",
+                        "description": "secured",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/types": {
+            "get": {
+                "tags": [
+                    "config-type-controller"
+                ],
+                "summary": "Retrieves all supported types",
+                "operationId": "getTypesUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/types/{type}/platforms": {
+            "get": {
+                "tags": [
+                    "config-type-controller"
+                ],
+                "summary": "Retrieves all supported platforms, for a specific type",
+                "operationId": "getPlatformsByTypeUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fetchCustomData",
+                        "in": "query",
+                        "description": "fetchCustomData",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                }
+            }
+        },
+        "/v1/types/{type}/platforms/{platform}/versions": {
+            "get": {
+                "tags": [
+                    "config-type-controller"
+                ],
+                "summary": "Retrieves all supported versions, for a specific type and platform",
+                "operationId": "getVersionsByTypeAndPlatformUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "platform",
+                        "in": "path",
+                        "description": "platform",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fetchCustomData",
+                        "in": "query",
+                        "description": "Retrieve all custom configured third party device software versions by type, platform",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "secured",
+                        "in": "query",
+                        "description": "secured",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK. The request was successful. The result is contained in the response body.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+                    },
+                    "403": {
+                        "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+                    },
+                    "404": {
+                        "description": "Not Found. The client made a request for a resource that does not exist."
+                    }
+                    }
+                }
+            }
+    },
+    "securityDefinitions": {
+        "bearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "security": [{
+        "bearerAuth": []
+    }],
+    "definitions": {
+        "ConfigDto": {
+            "type": "object",
+            "properties": {
+                "childIds": {
+                    "type": "string"
+                },
+                "confId": {
+                    "type": "string"
+                },
+                "confName": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deviceFamily": {
+                    "type": "string"
+                },
+                "downloadurl": {
+                    "type": "string"
+                },
+                "extraPlaceHolders": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "modifiedBy": {
+                    "type": "string"
+                },
+                "modifiedTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "osName": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "title": "ConfigDto"
+        },
+        "ConfigResponseDto": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "pageNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pageSize": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "ConfigResponseDto"
+        },
+        "File": {
+            "type": "object",
+            "properties": {
+                "absolute": {
+                    "type": "boolean"
+                },
+                "absoluteFile": {
+                    "$ref": "#/definitions/File"
+                },
+                "absolutePath": {
+                    "type": "string"
+                },
+                "canonicalFile": {
+                    "$ref": "#/definitions/File"
+                },
+                "canonicalPath": {
+                    "type": "string"
+                },
+                "directory": {
+                    "type": "boolean"
+                },
+                "executable": {
+                    "type": "boolean"
+                },
+                "file": {
+                    "type": "boolean"
+                },
+                "freeSpace": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "lastModified": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent": {
+                    "type": "string"
+                },
+                "parentFile": {
+                    "$ref": "#/definitions/File"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "readable": {
+                    "type": "boolean"
+                },
+                "totalSpace": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "usableSpace": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "writable": {
+                    "type": "boolean"
+                }
+            },
+            "title": "File"
+        },
+        "InputStream": {
+            "type": "object",
+            "title": "InputStream"
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "file": {
+                    "$ref": "#/definitions/File"
+                },
+                "filename": {
+                    "type": "string"
+                },
+                "inputStream": {
+                    "$ref": "#/definitions/InputStream"
+                },
+                "open": {
+                    "type": "boolean"
+                },
+                "readable": {
+                    "type": "boolean"
+                },
+                "uri": {
+                    "$ref": "#/definitions/URI"
+                },
+                "url": {
+                    "$ref": "#/definitions/URL"
+                }
+            },
+            "title": "Resource"
+        },
+        "Status": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "title": "Status"
+        },
+        "URI": {
+            "type": "object",
+            "properties": {
+                "absolute": {
+                    "type": "boolean"
+                },
+                "authority": {
+                    "type": "string"
+                },
+                "fragment": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "opaque": {
+                    "type": "boolean"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "rawAuthority": {
+                    "type": "string"
+                },
+                "rawFragment": {
+                    "type": "string"
+                },
+                "rawPath": {
+                    "type": "string"
+                },
+                "rawQuery": {
+                    "type": "string"
+                },
+                "rawSchemeSpecificPart": {
+                    "type": "string"
+                },
+                "rawUserInfo": {
+                    "type": "string"
+                },
+                "scheme": {
+                    "type": "string"
+                },
+                "schemeSpecificPart": {
+                    "type": "string"
+                },
+                "userInfo": {
+                    "type": "string"
+                }
+            },
+            "title": "URI"
+        },
+        "URL": {
+            "type": "object",
+            "properties": {
+                "authority": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "object"
+                },
+                "defaultPort": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "deserializedFields": {
+                    "$ref": "#/definitions/URLStreamHandler"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "ref": {
+                    "type": "string"
+                },
+                "serializedHashCode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "userInfo": {
+                    "type": "string"
+                }
+            },
+            "title": "URL"
+        },
+        "URLStreamHandler": {
+            "type": "object",
+            "title": "URLStreamHandler"
+        }
+    }
+}
