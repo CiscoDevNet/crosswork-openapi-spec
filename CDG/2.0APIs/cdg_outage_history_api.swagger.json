@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Crosswork Data Gateway Maanager OutageHistory APIs",
+    "title": "Crosswork Data Gateway Manager Outage History APIs",
     "description": "APIs to support Data Gateway Outage History",
     "contact": {
       "name": "Crosswork Team, Cisco",
