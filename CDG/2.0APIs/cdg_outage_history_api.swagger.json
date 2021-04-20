@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Crosswork Data Gateway Maanager OutageHistory APIs",
+    "title": "Crosswork Data Gateway Manager Outage History APIs",
     "description": "APIs to support Data Gateway Outage History",
     "contact": {
       "name": "Crosswork Team, Cisco",
@@ -40,8 +40,7 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "name": "Authorization",
             "in": "header",
             "required": true,
@@ -79,8 +78,7 @@
     "GetOutageHistoryForVDGRequest": {
       "title": "GetOutageHistoryForVDGRequest",
       "example": {
-        "queryParams": [
-          {
+        "queryParams": [{
             "field": "DGID",
             "value": {
               "valueStr": ""
@@ -153,8 +151,7 @@
     "GetOutageHistoryForPDGRequest": {
       "title": "GetOutageHistoryForPDGRequest",
       "example": {
-        "queryParams": [
-          {
+        "queryParams": [{
             "field": "DGID",
             "value": {
               "valueStr": "b7fa0480-e421-42cf-868d-94ecd660116c"
@@ -188,10 +185,8 @@
       ]
     }
   },
-  "tags": [
-    {
-      "name": "Misc",
-      "description": ""
-    }
-  ]
+  "tags": [{
+    "name": "Misc",
+    "description": ""
+  }]
 }
