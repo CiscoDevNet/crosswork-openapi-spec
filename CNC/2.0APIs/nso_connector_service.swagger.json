@@ -1,18 +1,16 @@
 {
 	"swagger": "2.0",
 	"info": {
-		"description": "APIs exposed by nso-connector service",
-		"version": "2.0.33",
-		"title": "nso-connector service APIs",
-		"termsOfService": "http://www.cisco.com/web/siteassets/legal/terms_condition.html",
+		"description": "This document contains details of the Crosswork Network Controller nso-connector APIs",
+		"version": "2.0",
+		"title": "Crosswork Network Controller CAT NSO Connector APIs",
 		"contact": {
-			"name": "Cisco Crosswork Team",
-			"url": "https://www.cisco.com",
-			"email": "support@cisco.com"
+		  "name": "Crosswork Team, Cisco",
+		  "email": "support@cisco.com"
 		},
 		"license": {
-			"name": "Cisco Software License Agreement",
-			"url": "http://www.cisco.com/public/sw-license-agreement.html"
+		  "name": "Cisco Software License Agreement",
+		  "url": "http://www.cisco.com/public/sw-license-agreement.html"
 		}
 	},
 	"host": "localhost:8080",

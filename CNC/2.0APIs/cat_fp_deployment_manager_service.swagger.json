@@ -1,13 +1,11 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "APIs exposed by cat-fp-deployment-manager service",
-        "version": "2.0.95",
-        "title": "cat-fp-deployment-manager service APIs",
-        "termsOfService": "http://www.cisco.com/web/siteassets/legal/terms_condition.html",
+        "description": "This document contains details of the cat-fp-deployment-manager service APIs",
+        "version": "2.0",
+        "title": "Crosswork Network Controller CAT FP Deployment Manager APIs",
         "contact": {
-            "name": "Cisco Crosswork Team",
-            "url": "https://www.cisco.com",
+            "name": "Crosswork Team, Cisco",
             "email": "support@cisco.com"
         },
         "license": {
