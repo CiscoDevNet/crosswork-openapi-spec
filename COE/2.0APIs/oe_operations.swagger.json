@@ -3,7 +3,15 @@
   "info": {
     "title": "Optimization Engine Operations",
     "description": "Various operations to retrieve SR Policies based on the nodes and interfaces used in their paths.",
-    "version": "2019-08-30"
+    "version": "2019-08-30",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
   },
   "basePath": "/crosswork/nbi/optima/v1/restconf",
   "tags": [
