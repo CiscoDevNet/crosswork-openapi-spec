@@ -3,7 +3,15 @@
   "info": {
     "title": "Layer 3 Topology Details",
     "description": "This module defines a common base data model for a collection\nof nodes in a network.  Node definitions are further used\nin network topologies and inventories.  It represents\ninformation that either (1) is learned and automatically\npopulated or (2) results from applying network information\nthat has been configured per the 'ietf-network' data model,\nmirroring the corresponding data nodes in this data model.\nThe data model mirrors 'ietf-network' but contains only\nread-only state data.  The data model is not needed when the\nunderlying implementation infrastructure supports the Network\nManagement Datastore Architecture (NMDA).\nCopyright (c) 2018 IETF Trust and the persons identified as\nauthors of the code.  All rights reserved.\nRedistribution and use in source and binary forms, with or\nwithout modification, is permitted pursuant to, and subject\nto the license terms contained in, the Simplified BSD License\nset forth in Section 4.c of the IETF Trust's Legal Provisions\nRelating to IETF Documents\n(https://trustee.ietf.org/license-info).\nThis version of this YANG module is part of RFC 8345;\nsee the RFC itself for full legal notices.",
-    "version": "2018-02-26"
+    "version": "2018-02-26",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
   },
   "basePath": "/crosswork/nbi/optima/v1/restconf",
   "tags": [
@@ -27,7 +35,7 @@
         "tags": [
           "Topology"
         ],
-        "description": "Serves as a top-level container for a list of networks. Optima currently only supports the concept of a single network.",
+        "description": "Serves as a top-level container for a list of networks. Crosswork Optimization Engine currently only supports the concept of a single network.",
         "operationId": "data_ietf_network_state_networks_get",
         "produces": [
           "application/yang-data+json"
