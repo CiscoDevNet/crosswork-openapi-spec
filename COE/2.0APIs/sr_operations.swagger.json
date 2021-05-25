@@ -1,16 +1,14 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "title": "Segment Routing Policy Operations",
     "description": "Operations to Create, Update, Preview and Delete SR Policies in Optima.",
     "version": "2019-08-30T00:00:00.000Z"
   },
-  "tags": [
-    {
-      "name": "operations",
-      "description": "Create, Update, Preview and Delete operations for SR Policies"
-    }
-  ],
+  "tags": [{
+    "name": "operations",
+    "description": "Create, Update, Preview and Delete operations for SR Policies"
+  }],
   "paths": {
     "/operations/cisco-crosswork-optimization-engine-sr-policy-operations:sr-policy-create": {
       "post": {
@@ -60,11 +58,9 @@
             "$ref": "#/components/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     },
     "/operations/cisco-crosswork-optimization-engine-sr-policy-operations:sr-policy-modify": {
@@ -115,11 +111,9 @@
             "$ref": "#/components/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     },
     "/operations/cisco-crosswork-optimization-engine-sr-policy-operations:sr-policy-delete": {
@@ -170,11 +164,9 @@
             "$ref": "#/components/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     },
     "/operations/cisco-crosswork-optimization-engine-sr-policy-operations:sr-policy-dryrun": {
@@ -225,19 +217,15 @@
             "$ref": "#/components/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     }
   },
-  "servers": [
-    {
-      "url": "/crosswork/nbi/optima/v1/restconf"
-    }
-  ],
+  "servers": [{
+    "url": "/crosswork/nbi/optima/v1/restconf"
+  }],
   "components": {
     "responses": {
       "200": {
@@ -372,8 +360,7 @@
                     "sr-policy-path": {
                       "description": "(non-presence)",
                       "type": "object",
-                      "oneOf": [
-                        {
+                      "oneOf": [{
                           "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
                         },
                         {
@@ -492,8 +479,7 @@
               "sr-policy-path": {
                 "description": "(non-presence)",
                 "type": "object",
-                "oneOf": [
-                  {
+                "oneOf": [{
                     "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
                   },
                   {
@@ -692,8 +678,7 @@
                     "sr-policy-path": {
                       "description": "(non-presence)",
                       "type": "object",
-                      "oneOf": [
-                        {
+                      "oneOf": [{
                           "$ref": "#/components/schemas/operations_cisco-crosswork-optimization-engine-sr-policy-operations_sr-policy-path_explicit"
                         },
                         {
