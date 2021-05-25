@@ -1,9 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "ietf-network-state",
+    "title": "Layer 3 Topology Details",
     "description": "This module defines a common base data model for a collection\nof nodes in a network.  Node definitions are further used\nin network topologies and inventories.  It represents\ninformation that either (1) is learned and automatically\npopulated or (2) results from applying network information\nthat has been configured per the 'ietf-network' data model,\nmirroring the corresponding data nodes in this data model.\nThe data model mirrors 'ietf-network' but contains only\nread-only state data.  The data model is not needed when the\nunderlying implementation infrastructure supports the Network\nManagement Datastore Architecture (NMDA).\nCopyright (c) 2018 IETF Trust and the persons identified as\nauthors of the code.  All rights reserved.\nRedistribution and use in source and binary forms, with or\nwithout modification, is permitted pursuant to, and subject\nto the license terms contained in, the Simplified BSD License\nset forth in Section 4.c of the IETF Trust's Legal Provisions\nRelating to IETF Documents\n(https://trustee.ietf.org/license-info).\nThis version of this YANG module is part of RFC 8345;\nsee the RFC itself for full legal notices.",
-    "version": "2018-02-26"
+    "version": "2018-02-26",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
   },
   "basePath": "/crosswork/nbi/optima/v1/restconf",
   "tags": [
@@ -27,7 +35,7 @@
         "tags": [
           "Topology"
         ],
-        "description": "Serves as a top-level container for a list of networks.",
+        "description": "Serves as a top-level container for a list of networks. Crosswork Optimization Engine currently only supports the concept of a single network.",
         "operationId": "data_ietf_network_state_networks_get",
         "produces": [
           "application/yang-data+json"
@@ -342,63 +350,36 @@
         "ietf-network-state:networks": {
           "description": "Serves as a top-level container for a list of networks. (non-presence)",
           "type": "object",
-          "x-yang": {
-            "type": "container",
-            "is_presence": "false"
-          },
           "properties": {
             "network": {
               "type": "array",
               "description": "Describes a network.\nA network typically contains an inventory of nodes,\ntopological information (augmented through the\nnetwork-topology data model), and layering information. (list)",
-              "x-yang": {
-                "type": "list"
-              },
               "items": {
                 "type": "object",
                 "properties": {
                   "network-types": {
                     "description": "Serves as an augmentation target.\nThe network type is indicated through corresponding\npresence containers augmented into this container. (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "ietf-l3-unicast-topology-state:l3-unicast-topology": {
                         "description": "The presence of the container node indicates L3 Unicast\ntopology (presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "true"
-                        },
                         "properties": {
                           "cisco-crosswork-isis-topology:isis": {
                             "description": "Presence of this node identifies the ISIS topology type. (presence)",
                             "type": "object",
-                            "x-yang": {
-                              "type": "container",
-                              "is_presence": "true"
-                            },
                             "properties": {
                             }
                           },
                           "cisco-crosswork-ospf-topology:ospf": {
                             "description": "Presence of this node identifies the OSPF topology type. (presence)",
                             "type": "object",
-                            "x-yang": {
-                              "type": "container",
-                              "is_presence": "true"
-                            },
                             "properties": {
                             }
                           },
                           "ietf-sr-topology-state:sr-mpls": {
                             "description": "Its presence identifies the SR topology type. (presence)",
                             "type": "object",
-                            "x-yang": {
-                              "type": "container",
-                              "is_presence": "true"
-                            },
                             "properties": {
                             }
                           }
@@ -408,59 +389,37 @@
                   },
                   "network-id": {
                     "description": "Identifies a network. (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "string"
                   },
                   "node": {
                     "type": "array",
                     "description": "The inventory of nodes of this network. (list)",
-                    "x-yang": {
-                      "type": "list"
-                    },
                     "items": {
                       "type": "object",
                       "properties": {
                         "node-id": {
                           "description": "Uniquely identifies a node within the containing\nnetwork. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "string"
                         },
                         "ietf-network-topology-state:termination-point": {
                           "type": "array",
                           "description": "A termination point can terminate a link.\nDepending on the type of topology, a termination point\ncould, for example, refer to a port or an interface. (list)",
-                          "x-yang": {
-                            "type": "list"
-                          },
                           "items": {
                             "type": "object",
                             "properties": {
                               "ietf-network-topology-state:tp-id": {
                                 "description": "Termination point identifier. (leaf)",
-                                "x-yang": {
-                                  "type": "leaf"
-                                },
                                 "type": "string",
                                 "format": "string"
                               },
                               "ietf-l3-unicast-topology-state:l3-termination-point-attributes": {
                                 "description": "Contains termination point attributes (non-presence)",
                                 "type": "object",
-                                "x-yang": {
-                                  "type": "container",
-                                  "is_presence": "false"
-                                },
                                 "properties": {
                                   "ietf-l3-unicast-topology-state:ip-address": {
                                     "type": "array",
-                                    "x-yang": {
-                                      "type": "leaf-list"
-                                    },
                                     "items": {
                                       "description": "IPv4 or IPv6 address. (leaf-list)",
                                       "type": "string",
@@ -475,24 +434,14 @@
                         "ietf-l3-unicast-topology-state:l3-node-attributes": {
                           "description": "Contains node attributes (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "ietf-l3-unicast-topology-state:name": {
                               "description": "Node name (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "ietf-l3-unicast-topology-state:flag": {
                               "type": "array",
-                              "x-yang": {
-                                "type": "leaf-list"
-                              },
                               "items": {
                                 "description": "Node flags (leaf-list)",
                                 "type": "string",
@@ -501,9 +450,6 @@
                             },
                             "ietf-l3-unicast-topology-state:router-id": {
                               "type": "array",
-                              "x-yang": {
-                                "type": "leaf-list"
-                              },
                               "items": {
                                 "description": "Router-id for the node (leaf-list)",
                                 "type": "string",
@@ -513,33 +459,21 @@
                             "ietf-l3-unicast-topology-state:prefix": {
                               "type": "array",
                               "description": "A list of prefixes along with their attributes (list)",
-                              "x-yang": {
-                                "type": "list"
-                              },
                               "items": {
                                 "type": "object",
                                 "properties": {
                                   "ietf-l3-unicast-topology-state:prefix": {
                                     "description": "IP prefix value (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "union"
                                   },
                                   "ietf-l3-unicast-topology-state:metric": {
                                     "description": "Prefix metric (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   },
                                   "ietf-l3-unicast-topology-state:flag": {
                                     "type": "array",
-                                    "x-yang": {
-                                      "type": "leaf-list"
-                                    },
                                     "items": {
                                       "description": "Prefix flags (leaf-list)",
                                       "type": "string",
@@ -549,16 +483,9 @@
                                   "ietf-sr-topology-state:sr": {
                                     "description": "Containing SR attributes for a prefix. (presence)",
                                     "type": "object",
-                                    "x-yang": {
-                                      "type": "container",
-                                      "is_presence": "true"
-                                    },
                                     "properties": {
                                       "ietf-sr-topology-state:value-type": {
                                         "description": "This leaf defines how value must be interpreted. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "enumeration",
                                         "default": "index",
@@ -569,33 +496,21 @@
                                       },
                                       "ietf-sr-topology-state:start-sid": {
                                         "description": "Value associated with prefix. The value must be\ninterpreted in the context of value-type. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       },
                                       "ietf-sr-topology-state:range": {
                                         "description": "Indicates how many SIDs can be allocated. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       },
                                       "ietf-sr-topology-state:algorithm": {
                                         "description": "Prefix-sid algorithm. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "identityref"
                                       },
                                       "ietf-sr-topology-state:last-hop-behavior": {
                                         "description": "Configure last hop behavior. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "enumeration",
                                         "default": "explicit-null",
@@ -607,25 +522,16 @@
                                       },
                                       "ietf-sr-topology-state:is-local": {
                                         "description": "'true' if the SID is local. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "boolean"
                                       },
                                       "ietf-sr-topology-state:is-node": {
                                         "description": "'true' if the Prefix-SID refers to the router identified\n by the prefix.  Typically, the leaf 'is-node' (N-Flag)\n is set on Prefix-SIDs attached to a router loopback\n address. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "boolean"
                                       },
                                       "ietf-sr-topology-state:is-readvertisment": {
                                         "description": "'true' if the prefix to which this Prefix-SID is attached,\n has been propagated by the router from another\n topology by redistribution. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "boolean"
                                       }
@@ -637,24 +543,14 @@
                             "cisco-crosswork-isis-topology:isis-node-attributes": {
                               "description": "ISIS attributes for a specific node (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "cisco-crosswork-isis-topology:system-id": {
                                   "description": "ISIS System ID, a 6 octet numerical value (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "cisco-crosswork-isis-topology:area": {
                                   "type": "array",
-                                  "x-yang": {
-                                    "type": "leaf-list"
-                                  },
                                   "items": {
                                     "description": "List of Area addresses.\n*** Should we return only a single Area address corresponding\nto the current network?? (leaf-list)",
                                     "type": "string",
@@ -663,9 +559,6 @@
                                 },
                                 "cisco-crosswork-isis-topology:level": {
                                   "description": "Level 1, Level 2 or Level 1 & 2 (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "level-1",
@@ -680,24 +573,14 @@
                             "cisco-crosswork-ospf-topology:ospf-node-attributes": {
                               "description": "Contains node's OSPF attributes (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "cisco-crosswork-ospf-topology:ospf-router-id": {
                                   "description": "OSPF router ID, which is an IPv4 address.\n*** Note, only one router-ID is reported, corresponwing\nto the IGP domain of the current network (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "cisco-crosswork-ospf-topology:area-id": {
                                   "type": "array",
-                                  "x-yang": {
-                                    "type": "leaf-list"
-                                  },
                                   "items": {
                                     "description": "List of OSPF area IDs, each represented as an IPv4 address value\n*** Should we report all Areas or just the one corresponwing to\nthe network?? (leaf-list)",
                                     "type": "string",
@@ -709,33 +592,20 @@
                             "ietf-sr-topology-state:sr": {
                               "description": "Containing SR attributes. (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "ietf-sr-topology-state:srgb": {
                                   "type": "array",
                                   "description": "List of global blocks to be advertised. (list)",
-                                  "x-yang": {
-                                    "type": "list"
-                                  },
                                   "items": {
                                     "type": "object",
                                     "properties": {
                                       "ietf-sr-topology-state:lower-bound": {
                                         "description": "Lower value in the label range. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       },
                                       "ietf-sr-topology-state:upper-bound": {
                                         "description": "Upper value in the label range. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       }
@@ -745,25 +615,16 @@
                                 "ietf-sr-topology-state:srlb": {
                                   "type": "array",
                                   "description": "List of SRLBs. (list)",
-                                  "x-yang": {
-                                    "type": "list"
-                                  },
                                   "items": {
                                     "type": "object",
                                     "properties": {
                                       "ietf-sr-topology-state:lower-bound": {
                                         "description": "Lower value in the label range. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       },
                                       "ietf-sr-topology-state:upper-bound": {
                                         "description": "Upper value in the label range. (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "integer",
                                         "format": "uint32"
                                       }
@@ -773,25 +634,15 @@
                                 "ietf-sr-topology-state:node-capabilities": {
                                   "description": "Shows the SR capability of the node. (non-presence)",
                                   "type": "object",
-                                  "x-yang": {
-                                    "type": "container",
-                                    "is_presence": "false"
-                                  },
                                   "properties": {
                                     "ietf-sr-topology-state:transport-planes": {
                                       "type": "array",
                                       "description": "List of supported transport planes. (list)",
-                                      "x-yang": {
-                                        "type": "list"
-                                      },
                                       "items": {
                                         "type": "object",
                                         "properties": {
                                           "ietf-sr-topology-state:transport-plane": {
                                             "description": "Transport plane supported (leaf)",
-                                            "x-yang": {
-                                              "type": "leaf"
-                                            },
                                             "type": "string",
                                             "format": "identityref"
                                           }
@@ -800,9 +651,6 @@
                                     },
                                     "ietf-sr-topology-state:entropy-readable-label-depth": {
                                       "description": "Maximum label stack depth that a router can read. (leaf)",
-                                      "x-yang": {
-                                        "type": "leaf"
-                                      },
                                       "type": "integer",
                                       "format": "byte"
                                     }
@@ -810,17 +658,11 @@
                                 },
                                 "ietf-sr-topology-state:msd": {
                                   "description": "Node MSD is the lowest MSD supported by the node. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "byte"
                                 },
                                 "ietf-sr-topology-state:information-source": {
                                   "description": "Indicates the type of the information source. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "unknown",
@@ -837,25 +679,15 @@
                                 },
                                 "ietf-sr-topology-state:information-source-instance": {
                                   "description": "The name indicating the instance of the information\nsource. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "ietf-sr-topology-state:information-source-state": {
                                   "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                                   "type": "object",
-                                  "x-yang": {
-                                    "type": "container",
-                                    "is_presence": "false"
-                                  },
                                   "properties": {
                                     "ietf-sr-topology-state:credibility-preference": {
                                       "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                                      "x-yang": {
-                                        "type": "leaf"
-                                      },
                                       "type": "integer",
                                       "format": "uint16"
                                     }
@@ -871,33 +703,20 @@
                   "ietf-network-topology-state:link": {
                     "type": "array",
                     "description": "A network link connects a local (source) node and\na remote (destination) node via a set of the respective\nnode's termination points.  It is possible to have several\nlinks between the same source and destination nodes.\nLikewise, a link could potentially be re-homed between\ntermination points.  Therefore, in order to ensure that we\nwould always know to distinguish between links, every link\nis identified by a dedicated link identifier.  Note that a\nlink models a point-to-point link, not a multipoint link. (list)",
-                    "x-yang": {
-                      "type": "list"
-                    },
                     "items": {
                       "type": "object",
                       "properties": {
                         "ietf-network-topology-state:source": {
                           "description": "This container holds the logical source of a particular\nlink. (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "ietf-network-topology-state:source-node": {
                               "description": "Source node identifier.  Must be in the same topology. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "leafref"
                             },
                             "ietf-network-topology-state:source-tp": {
                               "description": "This termination point is located within the source node\nand terminates the link. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "leafref"
                             }
@@ -906,24 +725,14 @@
                         "ietf-network-topology-state:destination": {
                           "description": "This container holds the logical destination of a\nparticular link. (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "ietf-network-topology-state:dest-node": {
                               "description": "Destination node identifier.  Must be in the same\nnetwork. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "leafref"
                             },
                             "ietf-network-topology-state:dest-tp": {
                               "description": "This termination point is located within the\ndestination node and terminates the link. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "leafref"
                             }
@@ -931,33 +740,20 @@
                         },
                         "ietf-network-topology-state:link-id": {
                           "description": "The identifier of a link in the topology.\nA link is specific to a topology to which it belongs. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "string"
                         },
                         "ietf-l3-unicast-topology-state:l3-link-attributes": {
                           "description": "Contains link attributes (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "ietf-l3-unicast-topology-state:name": {
                               "description": "Link Name (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "ietf-l3-unicast-topology-state:flag": {
                               "type": "array",
-                              "x-yang": {
-                                "type": "leaf-list"
-                              },
                               "items": {
                                 "description": "Link flags (leaf-list)",
                                 "type": "string",
@@ -966,49 +762,29 @@
                             },
                             "ietf-l3-unicast-topology-state:metric1": {
                               "description": "Link Metric 1 (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint64"
                             },
                             "ietf-l3-unicast-topology-state:metric2": {
                               "description": "Link Metric 2 (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint64"
                             },
                             "cisco-crosswork-isis-topology:isis-link-attributes": {
                               "description": "ISIS link/ adjacency attributes (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "cisco-crosswork-isis-topology:net": {
                                   "description": "ISIS Network Entity Title which identifies an instance of ISIS (non-presence)",
                                   "type": "object",
-                                  "x-yang": {
-                                    "type": "container",
-                                    "is_presence": "false"
-                                  },
                                   "properties": {
                                     "cisco-crosswork-isis-topology:system-id": {
                                       "description": "ISIS System ID which is a 6 octet numerical value (leaf)",
-                                      "x-yang": {
-                                        "type": "leaf"
-                                      },
                                       "type": "string",
                                       "format": "string"
                                     },
                                     "cisco-crosswork-isis-topology:area": {
                                       "description": "ISIS Area address. Numerical value of 1 to 13 octets (leaf)",
-                                      "x-yang": {
-                                        "type": "leaf"
-                                      },
                                       "type": "string",
                                       "format": "string"
                                     }
@@ -1016,9 +792,6 @@
                                 },
                                 "cisco-crosswork-isis-topology:level": {
                                   "description": "ISIS level of the link/ adjacency (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "byte"
                                 }
@@ -1027,24 +800,14 @@
                             "cisco-crosswork-ospf-topology:ospf-link-attributes": {
                               "description": "Containing OSPF link attributes (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "cisco-crosswork-ospf-topology:ospf-router-id": {
                                   "description": "OSPF router ID, which is an IPv4 address,\nof the local host (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "cisco-crosswork-ospf-topology:area-id": {
                                   "description": "OSPF area ID, represented as an IPv4 address value (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 }
@@ -1053,16 +816,9 @@
                             "ietf-sr-topology-state:sr": {
                               "description": "Containing SR attributes. (presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "true"
-                              },
                               "properties": {
                                 "ietf-sr-topology-state:value-type": {
                                   "description": "This leaf defines how value must be interpreted. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "index",
@@ -1073,17 +829,11 @@
                                 },
                                 "ietf-sr-topology-state:sid": {
                                   "description": "Adjacency SID, which can be either IGP-Adjacency SID\nor BGP PeerAdj SID, depending on the context. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "uint32"
                                 },
                                 "ietf-sr-topology-state:advertise-protection": {
                                   "description": "If set, the Adj-SID refers to an\nadjacency being protected. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "single",
@@ -1094,25 +844,16 @@
                                 },
                                 "ietf-sr-topology-state:is-local": {
                                   "description": "'true' if the SID is local. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "boolean"
                                 },
                                 "ietf-sr-topology-state:msd": {
                                   "description": "SID depth of the interface associated with the link. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "byte"
                                 },
                                 "ietf-sr-topology-state:address-family": {
                                   "description": "This leaf defines the F-Flag (Address-Family flag) of the\nSID. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "ipv4",
@@ -1123,41 +864,26 @@
                                 },
                                 "ietf-sr-topology-state:is-backup": {
                                   "description": "'true' if the SID is a backup. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "boolean"
                                 },
                                 "ietf-sr-topology-state:is-part-of-set": {
                                   "description": "'true' if the SID is part of a set. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "boolean"
                                 },
                                 "ietf-sr-topology-state:is-persistent": {
                                   "description": "'true' if the SID is persistently allocated. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "boolean"
                                 },
                                 "ietf-sr-topology-state:is-on-lan": {
                                   "description": "'true' if on a lan. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "boolean"
                                 },
                                 "ietf-sr-topology-state:information-source": {
                                   "description": "Indicates the type of the information source. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "enumeration",
                                   "default": "unknown",
@@ -1174,25 +900,15 @@
                                 },
                                 "ietf-sr-topology-state:information-source-instance": {
                                   "description": "The name indicating the instance of the information\nsource. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "ietf-sr-topology-state:information-source-state": {
                                   "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                                   "type": "object",
-                                  "x-yang": {
-                                    "type": "container",
-                                    "is_presence": "false"
-                                  },
                                   "properties": {
                                     "ietf-sr-topology-state:credibility-preference": {
                                       "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                                      "x-yang": {
-                                        "type": "leaf"
-                                      },
                                       "type": "integer",
                                       "format": "uint16"
                                     }
@@ -1208,24 +924,14 @@
                   "ietf-l3-unicast-topology-state:l3-topology-attributes": {
                     "description": "Contains topology attributes (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "ietf-l3-unicast-topology-state:name": {
                         "description": "Name of the topology (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "ietf-l3-unicast-topology-state:flag": {
                         "type": "array",
-                        "x-yang": {
-                          "type": "leaf-list"
-                        },
                         "items": {
                           "description": "Topology flags (leaf-list)",
                           "type": "string",
@@ -1235,16 +941,9 @@
                       "cisco-crosswork-isis-topology:isis-topology-attributes": {
                         "description": "Contains ISIS topology attributes.\n*** Contains a single Area address, which means each nw:ietf-network\nmust contain a single ISIS Area. is this what we want??\n*** How do we identify areas from different ISIS domains??\n*** What would the behavior be for a query asking for all ietf-networks?? (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "cisco-crosswork-isis-topology:area": {
                             "description": "ISIS Area address. Numerical value of 1 to 13 octets (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "string",
                             "format": "string"
                           }
@@ -1253,16 +952,9 @@
                       "cisco-crosswork-ospf-topology:ospf-topology-attributes": {
                         "description": "OSPF topology attributes (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "cisco-crosswork-ospf-topology:area-id": {
                             "description": "OSPF area ID, represented as an IPv4 address value.\n*** Contains a single Area ID, which means each ietf-network\nmust contain a single OSPF Area. is this what we want??\n*** How do we identify areas from different OSPF domains?? (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "string",
                             "format": "string"
                           }
@@ -1271,33 +963,20 @@
                       "ietf-sr-topology-state:sr": {
                         "description": "Containing SR attributes. (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "ietf-sr-topology-state:srgb": {
                             "type": "array",
                             "description": "List of global blocks to be advertised. (list)",
-                            "x-yang": {
-                              "type": "list"
-                            },
                             "items": {
                               "type": "object",
                               "properties": {
                                 "ietf-sr-topology-state:lower-bound": {
                                   "description": "Lower value in the label range. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "uint32"
                                 },
                                 "ietf-sr-topology-state:upper-bound": {
                                   "description": "Upper value in the label range. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "uint32"
                                 }
@@ -1321,55 +1000,32 @@
         "ietf-network-state:network": {
           "type": "array",
           "description": "Describes a network.\nA network typically contains an inventory of nodes,\ntopological information (augmented through the\nnetwork-topology data model), and layering information. (list)",
-          "x-yang": {
-            "type": "list"
-          },
           "items": {
             "type": "object",
             "properties": {
               "network-types": {
                 "description": "Serves as an augmentation target.\nThe network type is indicated through corresponding\npresence containers augmented into this container. (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-l3-unicast-topology-state:l3-unicast-topology": {
                     "description": "The presence of the container node indicates L3 Unicast\ntopology (presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "true"
-                    },
                     "properties": {
                       "cisco-crosswork-isis-topology:isis": {
                         "description": "Presence of this node identifies the ISIS topology type. (presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "true"
-                        },
                         "properties": {
                         }
                       },
                       "cisco-crosswork-ospf-topology:ospf": {
                         "description": "Presence of this node identifies the OSPF topology type. (presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "true"
-                        },
                         "properties": {
                         }
                       },
                       "ietf-sr-topology-state:sr-mpls": {
                         "description": "Its presence identifies the SR topology type. (presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "true"
-                        },
                         "properties": {
                         }
                       }
@@ -1379,59 +1035,37 @@
               },
               "network-id": {
                 "description": "Identifies a network. (leaf)",
-                "x-yang": {
-                  "type": "leaf"
-                },
                 "type": "string",
                 "format": "string"
               },
               "node": {
                 "type": "array",
                 "description": "The inventory of nodes of this network. (list)",
-                "x-yang": {
-                  "type": "list"
-                },
                 "items": {
                   "type": "object",
                   "properties": {
                     "node-id": {
                       "description": "Uniquely identifies a node within the containing\nnetwork. (leaf)",
-                      "x-yang": {
-                        "type": "leaf"
-                      },
                       "type": "string",
                       "format": "string"
                     },
                     "ietf-network-topology-state:termination-point": {
                       "type": "array",
                       "description": "A termination point can terminate a link.\nDepending on the type of topology, a termination point\ncould, for example, refer to a port or an interface. (list)",
-                      "x-yang": {
-                        "type": "list"
-                      },
                       "items": {
                         "type": "object",
                         "properties": {
                           "ietf-network-topology-state:tp-id": {
                             "description": "Termination point identifier. (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "string",
                             "format": "string"
                           },
                           "ietf-l3-unicast-topology-state:l3-termination-point-attributes": {
                             "description": "Contains termination point attributes (non-presence)",
                             "type": "object",
-                            "x-yang": {
-                              "type": "container",
-                              "is_presence": "false"
-                            },
                             "properties": {
                               "ietf-l3-unicast-topology-state:ip-address": {
                                 "type": "array",
-                                "x-yang": {
-                                  "type": "leaf-list"
-                                },
                                 "items": {
                                   "description": "IPv4 or IPv6 address. (leaf-list)",
                                   "type": "string",
@@ -1446,24 +1080,14 @@
                     "ietf-l3-unicast-topology-state:l3-node-attributes": {
                       "description": "Contains node attributes (non-presence)",
                       "type": "object",
-                      "x-yang": {
-                        "type": "container",
-                        "is_presence": "false"
-                      },
                       "properties": {
                         "ietf-l3-unicast-topology-state:name": {
                           "description": "Node name (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "string"
                         },
                         "ietf-l3-unicast-topology-state:flag": {
                           "type": "array",
-                          "x-yang": {
-                            "type": "leaf-list"
-                          },
                           "items": {
                             "description": "Node flags (leaf-list)",
                             "type": "string",
@@ -1472,9 +1096,6 @@
                         },
                         "ietf-l3-unicast-topology-state:router-id": {
                           "type": "array",
-                          "x-yang": {
-                            "type": "leaf-list"
-                          },
                           "items": {
                             "description": "Router-id for the node (leaf-list)",
                             "type": "string",
@@ -1484,33 +1105,21 @@
                         "ietf-l3-unicast-topology-state:prefix": {
                           "type": "array",
                           "description": "A list of prefixes along with their attributes (list)",
-                          "x-yang": {
-                            "type": "list"
-                          },
                           "items": {
                             "type": "object",
                             "properties": {
                               "ietf-l3-unicast-topology-state:prefix": {
                                 "description": "IP prefix value (leaf)",
-                                "x-yang": {
-                                  "type": "leaf"
-                                },
                                 "type": "string",
                                 "format": "union"
                               },
                               "ietf-l3-unicast-topology-state:metric": {
                                 "description": "Prefix metric (leaf)",
-                                "x-yang": {
-                                  "type": "leaf"
-                                },
                                 "type": "integer",
                                 "format": "uint32"
                               },
                               "ietf-l3-unicast-topology-state:flag": {
                                 "type": "array",
-                                "x-yang": {
-                                  "type": "leaf-list"
-                                },
                                 "items": {
                                   "description": "Prefix flags (leaf-list)",
                                   "type": "string",
@@ -1520,16 +1129,9 @@
                               "ietf-sr-topology-state:sr": {
                                 "description": "Containing SR attributes for a prefix. (presence)",
                                 "type": "object",
-                                "x-yang": {
-                                  "type": "container",
-                                  "is_presence": "true"
-                                },
                                 "properties": {
                                   "ietf-sr-topology-state:value-type": {
                                     "description": "This leaf defines how value must be interpreted. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "enumeration",
                                     "default": "index",
@@ -1540,33 +1142,21 @@
                                   },
                                   "ietf-sr-topology-state:start-sid": {
                                     "description": "Value associated with prefix. The value must be\ninterpreted in the context of value-type. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   },
                                   "ietf-sr-topology-state:range": {
                                     "description": "Indicates how many SIDs can be allocated. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   },
                                   "ietf-sr-topology-state:algorithm": {
                                     "description": "Prefix-sid algorithm. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "identityref"
                                   },
                                   "ietf-sr-topology-state:last-hop-behavior": {
                                     "description": "Configure last hop behavior. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "enumeration",
                                     "default": "explicit-null",
@@ -1578,25 +1168,16 @@
                                   },
                                   "ietf-sr-topology-state:is-local": {
                                     "description": "'true' if the SID is local. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "boolean"
                                   },
                                   "ietf-sr-topology-state:is-node": {
                                     "description": "'true' if the Prefix-SID refers to the router identified\n by the prefix.  Typically, the leaf 'is-node' (N-Flag)\n is set on Prefix-SIDs attached to a router loopback\n address. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "boolean"
                                   },
                                   "ietf-sr-topology-state:is-readvertisment": {
                                     "description": "'true' if the prefix to which this Prefix-SID is attached,\n has been propagated by the router from another\n topology by redistribution. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "string",
                                     "format": "boolean"
                                   }
@@ -1608,24 +1189,14 @@
                         "cisco-crosswork-isis-topology:isis-node-attributes": {
                           "description": "ISIS attributes for a specific node (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "cisco-crosswork-isis-topology:system-id": {
                               "description": "ISIS System ID, a 6 octet numerical value (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "cisco-crosswork-isis-topology:area": {
                               "type": "array",
-                              "x-yang": {
-                                "type": "leaf-list"
-                              },
                               "items": {
                                 "description": "List of Area addresses.\n*** Should we return only a single Area address corresponding\nto the current network?? (leaf-list)",
                                 "type": "string",
@@ -1634,9 +1205,6 @@
                             },
                             "cisco-crosswork-isis-topology:level": {
                               "description": "Level 1, Level 2 or Level 1 & 2 (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "level-1",
@@ -1651,24 +1219,14 @@
                         "cisco-crosswork-ospf-topology:ospf-node-attributes": {
                           "description": "Contains node's OSPF attributes (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "cisco-crosswork-ospf-topology:ospf-router-id": {
                               "description": "OSPF router ID, which is an IPv4 address.\n*** Note, only one router-ID is reported, corresponwing\nto the IGP domain of the current network (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "cisco-crosswork-ospf-topology:area-id": {
                               "type": "array",
-                              "x-yang": {
-                                "type": "leaf-list"
-                              },
                               "items": {
                                 "description": "List of OSPF area IDs, each represented as an IPv4 address value\n*** Should we report all Areas or just the one corresponwing to\nthe network?? (leaf-list)",
                                 "type": "string",
@@ -1680,33 +1238,20 @@
                         "ietf-sr-topology-state:sr": {
                           "description": "Containing SR attributes. (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "ietf-sr-topology-state:srgb": {
                               "type": "array",
                               "description": "List of global blocks to be advertised. (list)",
-                              "x-yang": {
-                                "type": "list"
-                              },
                               "items": {
                                 "type": "object",
                                 "properties": {
                                   "ietf-sr-topology-state:lower-bound": {
                                     "description": "Lower value in the label range. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   },
                                   "ietf-sr-topology-state:upper-bound": {
                                     "description": "Upper value in the label range. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   }
@@ -1716,25 +1261,16 @@
                             "ietf-sr-topology-state:srlb": {
                               "type": "array",
                               "description": "List of SRLBs. (list)",
-                              "x-yang": {
-                                "type": "list"
-                              },
                               "items": {
                                 "type": "object",
                                 "properties": {
                                   "ietf-sr-topology-state:lower-bound": {
                                     "description": "Lower value in the label range. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   },
                                   "ietf-sr-topology-state:upper-bound": {
                                     "description": "Upper value in the label range. (leaf)",
-                                    "x-yang": {
-                                      "type": "leaf"
-                                    },
                                     "type": "integer",
                                     "format": "uint32"
                                   }
@@ -1744,25 +1280,15 @@
                             "ietf-sr-topology-state:node-capabilities": {
                               "description": "Shows the SR capability of the node. (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "ietf-sr-topology-state:transport-planes": {
                                   "type": "array",
                                   "description": "List of supported transport planes. (list)",
-                                  "x-yang": {
-                                    "type": "list"
-                                  },
                                   "items": {
                                     "type": "object",
                                     "properties": {
                                       "ietf-sr-topology-state:transport-plane": {
                                         "description": "Transport plane supported (leaf)",
-                                        "x-yang": {
-                                          "type": "leaf"
-                                        },
                                         "type": "string",
                                         "format": "identityref"
                                       }
@@ -1771,9 +1297,6 @@
                                 },
                                 "ietf-sr-topology-state:entropy-readable-label-depth": {
                                   "description": "Maximum label stack depth that a router can read. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "byte"
                                 }
@@ -1781,17 +1304,11 @@
                             },
                             "ietf-sr-topology-state:msd": {
                               "description": "Node MSD is the lowest MSD supported by the node. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "byte"
                             },
                             "ietf-sr-topology-state:information-source": {
                               "description": "Indicates the type of the information source. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "unknown",
@@ -1808,25 +1325,15 @@
                             },
                             "ietf-sr-topology-state:information-source-instance": {
                               "description": "The name indicating the instance of the information\nsource. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "ietf-sr-topology-state:information-source-state": {
                               "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "ietf-sr-topology-state:credibility-preference": {
                                   "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "uint16"
                                 }
@@ -1842,33 +1349,20 @@
               "ietf-network-topology-state:link": {
                 "type": "array",
                 "description": "A network link connects a local (source) node and\na remote (destination) node via a set of the respective\nnode's termination points.  It is possible to have several\nlinks between the same source and destination nodes.\nLikewise, a link could potentially be re-homed between\ntermination points.  Therefore, in order to ensure that we\nwould always know to distinguish between links, every link\nis identified by a dedicated link identifier.  Note that a\nlink models a point-to-point link, not a multipoint link. (list)",
-                "x-yang": {
-                  "type": "list"
-                },
                 "items": {
                   "type": "object",
                   "properties": {
                     "ietf-network-topology-state:source": {
                       "description": "This container holds the logical source of a particular\nlink. (non-presence)",
                       "type": "object",
-                      "x-yang": {
-                        "type": "container",
-                        "is_presence": "false"
-                      },
                       "properties": {
                         "ietf-network-topology-state:source-node": {
                           "description": "Source node identifier.  Must be in the same topology. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "leafref"
                         },
                         "ietf-network-topology-state:source-tp": {
                           "description": "This termination point is located within the source node\nand terminates the link. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "leafref"
                         }
@@ -1877,24 +1371,14 @@
                     "ietf-network-topology-state:destination": {
                       "description": "This container holds the logical destination of a\nparticular link. (non-presence)",
                       "type": "object",
-                      "x-yang": {
-                        "type": "container",
-                        "is_presence": "false"
-                      },
                       "properties": {
                         "ietf-network-topology-state:dest-node": {
                           "description": "Destination node identifier.  Must be in the same\nnetwork. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "leafref"
                         },
                         "ietf-network-topology-state:dest-tp": {
                           "description": "This termination point is located within the\ndestination node and terminates the link. (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "leafref"
                         }
@@ -1902,33 +1386,20 @@
                     },
                     "ietf-network-topology-state:link-id": {
                       "description": "The identifier of a link in the topology.\nA link is specific to a topology to which it belongs. (leaf)",
-                      "x-yang": {
-                        "type": "leaf"
-                      },
                       "type": "string",
                       "format": "string"
                     },
                     "ietf-l3-unicast-topology-state:l3-link-attributes": {
                       "description": "Contains link attributes (non-presence)",
                       "type": "object",
-                      "x-yang": {
-                        "type": "container",
-                        "is_presence": "false"
-                      },
                       "properties": {
                         "ietf-l3-unicast-topology-state:name": {
                           "description": "Link Name (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "string"
                         },
                         "ietf-l3-unicast-topology-state:flag": {
                           "type": "array",
-                          "x-yang": {
-                            "type": "leaf-list"
-                          },
                           "items": {
                             "description": "Link flags (leaf-list)",
                             "type": "string",
@@ -1937,49 +1408,29 @@
                         },
                         "ietf-l3-unicast-topology-state:metric1": {
                           "description": "Link Metric 1 (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "integer",
                           "format": "uint64"
                         },
                         "ietf-l3-unicast-topology-state:metric2": {
                           "description": "Link Metric 2 (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "integer",
                           "format": "uint64"
                         },
                         "cisco-crosswork-isis-topology:isis-link-attributes": {
                           "description": "ISIS link/ adjacency attributes (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "cisco-crosswork-isis-topology:net": {
                               "description": "ISIS Network Entity Title which identifies an instance of ISIS (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "cisco-crosswork-isis-topology:system-id": {
                                   "description": "ISIS System ID which is a 6 octet numerical value (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 },
                                 "cisco-crosswork-isis-topology:area": {
                                   "description": "ISIS Area address. Numerical value of 1 to 13 octets (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "string"
                                 }
@@ -1987,9 +1438,6 @@
                             },
                             "cisco-crosswork-isis-topology:level": {
                               "description": "ISIS level of the link/ adjacency (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "byte"
                             }
@@ -1998,24 +1446,14 @@
                         "cisco-crosswork-ospf-topology:ospf-link-attributes": {
                           "description": "Containing OSPF link attributes (non-presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "false"
-                          },
                           "properties": {
                             "cisco-crosswork-ospf-topology:ospf-router-id": {
                               "description": "OSPF router ID, which is an IPv4 address,\nof the local host (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "cisco-crosswork-ospf-topology:area-id": {
                               "description": "OSPF area ID, represented as an IPv4 address value (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             }
@@ -2024,16 +1462,9 @@
                         "ietf-sr-topology-state:sr": {
                           "description": "Containing SR attributes. (presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "true"
-                          },
                           "properties": {
                             "ietf-sr-topology-state:value-type": {
                               "description": "This leaf defines how value must be interpreted. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "index",
@@ -2044,17 +1475,11 @@
                             },
                             "ietf-sr-topology-state:sid": {
                               "description": "Adjacency SID, which can be either IGP-Adjacency SID\nor BGP PeerAdj SID, depending on the context. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:advertise-protection": {
                               "description": "If set, the Adj-SID refers to an\nadjacency being protected. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "single",
@@ -2065,25 +1490,16 @@
                             },
                             "ietf-sr-topology-state:is-local": {
                               "description": "'true' if the SID is local. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:msd": {
                               "description": "SID depth of the interface associated with the link. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "byte"
                             },
                             "ietf-sr-topology-state:address-family": {
                               "description": "This leaf defines the F-Flag (Address-Family flag) of the\nSID. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "ipv4",
@@ -2094,41 +1510,26 @@
                             },
                             "ietf-sr-topology-state:is-backup": {
                               "description": "'true' if the SID is a backup. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:is-part-of-set": {
                               "description": "'true' if the SID is part of a set. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:is-persistent": {
                               "description": "'true' if the SID is persistently allocated. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:is-on-lan": {
                               "description": "'true' if on a lan. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:information-source": {
                               "description": "Indicates the type of the information source. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "unknown",
@@ -2145,25 +1546,15 @@
                             },
                             "ietf-sr-topology-state:information-source-instance": {
                               "description": "The name indicating the instance of the information\nsource. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "string"
                             },
                             "ietf-sr-topology-state:information-source-state": {
                               "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                               "type": "object",
-                              "x-yang": {
-                                "type": "container",
-                                "is_presence": "false"
-                              },
                               "properties": {
                                 "ietf-sr-topology-state:credibility-preference": {
                                   "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "integer",
                                   "format": "uint16"
                                 }
@@ -2179,24 +1570,14 @@
               "ietf-l3-unicast-topology-state:l3-topology-attributes": {
                 "description": "Contains topology attributes (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-l3-unicast-topology-state:name": {
                     "description": "Name of the topology (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "string"
                   },
                   "ietf-l3-unicast-topology-state:flag": {
                     "type": "array",
-                    "x-yang": {
-                      "type": "leaf-list"
-                    },
                     "items": {
                       "description": "Topology flags (leaf-list)",
                       "type": "string",
@@ -2206,16 +1587,9 @@
                   "cisco-crosswork-isis-topology:isis-topology-attributes": {
                     "description": "Contains ISIS topology attributes.\n*** Contains a single Area address, which means each nw:ietf-network\nmust contain a single ISIS Area. is this what we want??\n*** How do we identify areas from different ISIS domains??\n*** What would the behavior be for a query asking for all ietf-networks?? (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-isis-topology:area": {
                         "description": "ISIS Area address. Numerical value of 1 to 13 octets (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       }
@@ -2224,16 +1598,9 @@
                   "cisco-crosswork-ospf-topology:ospf-topology-attributes": {
                     "description": "OSPF topology attributes (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-ospf-topology:area-id": {
                         "description": "OSPF area ID, represented as an IPv4 address value.\n*** Contains a single Area ID, which means each ietf-network\nmust contain a single OSPF Area. is this what we want??\n*** How do we identify areas from different OSPF domains?? (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       }
@@ -2242,33 +1609,20 @@
                   "ietf-sr-topology-state:sr": {
                     "description": "Containing SR attributes. (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "ietf-sr-topology-state:srgb": {
                         "type": "array",
                         "description": "List of global blocks to be advertised. (list)",
-                        "x-yang": {
-                          "type": "list"
-                        },
                         "items": {
                           "type": "object",
                           "properties": {
                             "ietf-sr-topology-state:lower-bound": {
                               "description": "Lower value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:upper-bound": {
                               "description": "Upper value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             }
@@ -2290,50 +1644,31 @@
         "ietf-network-state:node": {
           "type": "array",
           "description": "The inventory of nodes of this network. (list)",
-          "x-yang": {
-            "type": "list"
-          },
           "items": {
             "type": "object",
             "properties": {
               "node-id": {
                 "description": "Uniquely identifies a node within the containing\nnetwork. (leaf)",
-                "x-yang": {
-                  "type": "leaf"
-                },
                 "type": "string",
                 "format": "string"
               },
               "ietf-network-topology-state:termination-point": {
                 "type": "array",
                 "description": "A termination point can terminate a link.\nDepending on the type of topology, a termination point\ncould, for example, refer to a port or an interface. (list)",
-                "x-yang": {
-                  "type": "list"
-                },
                 "items": {
                   "type": "object",
                   "properties": {
                     "ietf-network-topology-state:tp-id": {
                       "description": "Termination point identifier. (leaf)",
-                      "x-yang": {
-                        "type": "leaf"
-                      },
                       "type": "string",
                       "format": "string"
                     },
                     "ietf-l3-unicast-topology-state:l3-termination-point-attributes": {
                       "description": "Contains termination point attributes (non-presence)",
                       "type": "object",
-                      "x-yang": {
-                        "type": "container",
-                        "is_presence": "false"
-                      },
                       "properties": {
                         "ietf-l3-unicast-topology-state:ip-address": {
                           "type": "array",
-                          "x-yang": {
-                            "type": "leaf-list"
-                          },
                           "items": {
                             "description": "IPv4 or IPv6 address. (leaf-list)",
                             "type": "string",
@@ -2348,24 +1683,14 @@
               "ietf-l3-unicast-topology-state:l3-node-attributes": {
                 "description": "Contains node attributes (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-l3-unicast-topology-state:name": {
                     "description": "Node name (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "string"
                   },
                   "ietf-l3-unicast-topology-state:flag": {
                     "type": "array",
-                    "x-yang": {
-                      "type": "leaf-list"
-                    },
                     "items": {
                       "description": "Node flags (leaf-list)",
                       "type": "string",
@@ -2374,9 +1699,6 @@
                   },
                   "ietf-l3-unicast-topology-state:router-id": {
                     "type": "array",
-                    "x-yang": {
-                      "type": "leaf-list"
-                    },
                     "items": {
                       "description": "Router-id for the node (leaf-list)",
                       "type": "string",
@@ -2386,33 +1708,21 @@
                   "ietf-l3-unicast-topology-state:prefix": {
                     "type": "array",
                     "description": "A list of prefixes along with their attributes (list)",
-                    "x-yang": {
-                      "type": "list"
-                    },
                     "items": {
                       "type": "object",
                       "properties": {
                         "ietf-l3-unicast-topology-state:prefix": {
                           "description": "IP prefix value (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "string",
                           "format": "union"
                         },
                         "ietf-l3-unicast-topology-state:metric": {
                           "description": "Prefix metric (leaf)",
-                          "x-yang": {
-                            "type": "leaf"
-                          },
                           "type": "integer",
                           "format": "uint32"
                         },
                         "ietf-l3-unicast-topology-state:flag": {
                           "type": "array",
-                          "x-yang": {
-                            "type": "leaf-list"
-                          },
                           "items": {
                             "description": "Prefix flags (leaf-list)",
                             "type": "string",
@@ -2422,16 +1732,9 @@
                         "ietf-sr-topology-state:sr": {
                           "description": "Containing SR attributes for a prefix. (presence)",
                           "type": "object",
-                          "x-yang": {
-                            "type": "container",
-                            "is_presence": "true"
-                          },
                           "properties": {
                             "ietf-sr-topology-state:value-type": {
                               "description": "This leaf defines how value must be interpreted. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "index",
@@ -2442,33 +1745,21 @@
                             },
                             "ietf-sr-topology-state:start-sid": {
                               "description": "Value associated with prefix. The value must be\ninterpreted in the context of value-type. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:range": {
                               "description": "Indicates how many SIDs can be allocated. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:algorithm": {
                               "description": "Prefix-sid algorithm. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "identityref"
                             },
                             "ietf-sr-topology-state:last-hop-behavior": {
                               "description": "Configure last hop behavior. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "enumeration",
                               "default": "explicit-null",
@@ -2480,25 +1771,16 @@
                             },
                             "ietf-sr-topology-state:is-local": {
                               "description": "'true' if the SID is local. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:is-node": {
                               "description": "'true' if the Prefix-SID refers to the router identified\n by the prefix.  Typically, the leaf 'is-node' (N-Flag)\n is set on Prefix-SIDs attached to a router loopback\n address. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             },
                             "ietf-sr-topology-state:is-readvertisment": {
                               "description": "'true' if the prefix to which this Prefix-SID is attached,\n has been propagated by the router from another\n topology by redistribution. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "string",
                               "format": "boolean"
                             }
@@ -2510,24 +1792,14 @@
                   "cisco-crosswork-isis-topology:isis-node-attributes": {
                     "description": "ISIS attributes for a specific node (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-isis-topology:system-id": {
                         "description": "ISIS System ID, a 6 octet numerical value (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "cisco-crosswork-isis-topology:area": {
                         "type": "array",
-                        "x-yang": {
-                          "type": "leaf-list"
-                        },
                         "items": {
                           "description": "List of Area addresses.\n*** Should we return only a single Area address corresponding\nto the current network?? (leaf-list)",
                           "type": "string",
@@ -2536,9 +1808,6 @@
                       },
                       "cisco-crosswork-isis-topology:level": {
                         "description": "Level 1, Level 2 or Level 1 & 2 (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "level-1",
@@ -2553,24 +1822,14 @@
                   "cisco-crosswork-ospf-topology:ospf-node-attributes": {
                     "description": "Contains node's OSPF attributes (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-ospf-topology:ospf-router-id": {
                         "description": "OSPF router ID, which is an IPv4 address.\n*** Note, only one router-ID is reported, corresponwing\nto the IGP domain of the current network (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "cisco-crosswork-ospf-topology:area-id": {
                         "type": "array",
-                        "x-yang": {
-                          "type": "leaf-list"
-                        },
                         "items": {
                           "description": "List of OSPF area IDs, each represented as an IPv4 address value\n*** Should we report all Areas or just the one corresponwing to\nthe network?? (leaf-list)",
                           "type": "string",
@@ -2582,33 +1841,20 @@
                   "ietf-sr-topology-state:sr": {
                     "description": "Containing SR attributes. (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "ietf-sr-topology-state:srgb": {
                         "type": "array",
                         "description": "List of global blocks to be advertised. (list)",
-                        "x-yang": {
-                          "type": "list"
-                        },
                         "items": {
                           "type": "object",
                           "properties": {
                             "ietf-sr-topology-state:lower-bound": {
                               "description": "Lower value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:upper-bound": {
                               "description": "Upper value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             }
@@ -2618,25 +1864,16 @@
                       "ietf-sr-topology-state:srlb": {
                         "type": "array",
                         "description": "List of SRLBs. (list)",
-                        "x-yang": {
-                          "type": "list"
-                        },
                         "items": {
                           "type": "object",
                           "properties": {
                             "ietf-sr-topology-state:lower-bound": {
                               "description": "Lower value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             },
                             "ietf-sr-topology-state:upper-bound": {
                               "description": "Upper value in the label range. (leaf)",
-                              "x-yang": {
-                                "type": "leaf"
-                              },
                               "type": "integer",
                               "format": "uint32"
                             }
@@ -2646,25 +1883,15 @@
                       "ietf-sr-topology-state:node-capabilities": {
                         "description": "Shows the SR capability of the node. (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "ietf-sr-topology-state:transport-planes": {
                             "type": "array",
                             "description": "List of supported transport planes. (list)",
-                            "x-yang": {
-                              "type": "list"
-                            },
                             "items": {
                               "type": "object",
                               "properties": {
                                 "ietf-sr-topology-state:transport-plane": {
                                   "description": "Transport plane supported (leaf)",
-                                  "x-yang": {
-                                    "type": "leaf"
-                                  },
                                   "type": "string",
                                   "format": "identityref"
                                 }
@@ -2673,9 +1900,6 @@
                           },
                           "ietf-sr-topology-state:entropy-readable-label-depth": {
                             "description": "Maximum label stack depth that a router can read. (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "integer",
                             "format": "byte"
                           }
@@ -2683,17 +1907,11 @@
                       },
                       "ietf-sr-topology-state:msd": {
                         "description": "Node MSD is the lowest MSD supported by the node. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "integer",
                         "format": "byte"
                       },
                       "ietf-sr-topology-state:information-source": {
                         "description": "Indicates the type of the information source. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "unknown",
@@ -2710,25 +1928,15 @@
                       },
                       "ietf-sr-topology-state:information-source-instance": {
                         "description": "The name indicating the instance of the information\nsource. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "ietf-sr-topology-state:information-source-state": {
                         "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "ietf-sr-topology-state:credibility-preference": {
                             "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "integer",
                             "format": "uint16"
                           }
@@ -2749,33 +1957,20 @@
         "ietf-network-topology-state:termination-point": {
           "type": "array",
           "description": "A termination point can terminate a link.\nDepending on the type of topology, a termination point\ncould, for example, refer to a port or an interface. (list)",
-          "x-yang": {
-            "type": "list"
-          },
           "items": {
             "type": "object",
             "properties": {
               "ietf-network-topology-state:tp-id": {
                 "description": "Termination point identifier. (leaf)",
-                "x-yang": {
-                  "type": "leaf"
-                },
                 "type": "string",
                 "format": "string"
               },
               "ietf-l3-unicast-topology-state:l3-termination-point-attributes": {
                 "description": "Contains termination point attributes (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-l3-unicast-topology-state:ip-address": {
                     "type": "array",
-                    "x-yang": {
-                      "type": "leaf-list"
-                    },
                     "items": {
                       "description": "IPv4 or IPv6 address. (leaf-list)",
                       "type": "string",
@@ -2795,33 +1990,20 @@
         "ietf-network-topology-state:link": {
           "type": "array",
           "description": "A network link connects a local (source) node and\na remote (destination) node via a set of the respective\nnode's termination points.  It is possible to have several\nlinks between the same source and destination nodes.\nLikewise, a link could potentially be re-homed between\ntermination points.  Therefore, in order to ensure that we\nwould always know to distinguish between links, every link\nis identified by a dedicated link identifier.  Note that a\nlink models a point-to-point link, not a multipoint link. (list)",
-          "x-yang": {
-            "type": "list"
-          },
           "items": {
             "type": "object",
             "properties": {
               "ietf-network-topology-state:source": {
                 "description": "This container holds the logical source of a particular\nlink. (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-network-topology-state:source-node": {
                     "description": "Source node identifier.  Must be in the same topology. (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "leafref"
                   },
                   "ietf-network-topology-state:source-tp": {
                     "description": "This termination point is located within the source node\nand terminates the link. (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "leafref"
                   }
@@ -2830,24 +2012,14 @@
               "ietf-network-topology-state:destination": {
                 "description": "This container holds the logical destination of a\nparticular link. (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-network-topology-state:dest-node": {
                     "description": "Destination node identifier.  Must be in the same\nnetwork. (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "leafref"
                   },
                   "ietf-network-topology-state:dest-tp": {
                     "description": "This termination point is located within the\ndestination node and terminates the link. (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "leafref"
                   }
@@ -2855,33 +2027,20 @@
               },
               "ietf-network-topology-state:link-id": {
                 "description": "The identifier of a link in the topology.\nA link is specific to a topology to which it belongs. (leaf)",
-                "x-yang": {
-                  "type": "leaf"
-                },
                 "type": "string",
                 "format": "string"
               },
               "ietf-l3-unicast-topology-state:l3-link-attributes": {
                 "description": "Contains link attributes (non-presence)",
                 "type": "object",
-                "x-yang": {
-                  "type": "container",
-                  "is_presence": "false"
-                },
                 "properties": {
                   "ietf-l3-unicast-topology-state:name": {
                     "description": "Link Name (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "string",
                     "format": "string"
                   },
                   "ietf-l3-unicast-topology-state:flag": {
                     "type": "array",
-                    "x-yang": {
-                      "type": "leaf-list"
-                    },
                     "items": {
                       "description": "Link flags (leaf-list)",
                       "type": "string",
@@ -2890,49 +2049,29 @@
                   },
                   "ietf-l3-unicast-topology-state:metric1": {
                     "description": "Link Metric 1 (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "integer",
                     "format": "uint64"
                   },
                   "ietf-l3-unicast-topology-state:metric2": {
                     "description": "Link Metric 2 (leaf)",
-                    "x-yang": {
-                      "type": "leaf"
-                    },
                     "type": "integer",
                     "format": "uint64"
                   },
                   "cisco-crosswork-isis-topology:isis-link-attributes": {
                     "description": "ISIS link/ adjacency attributes (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-isis-topology:net": {
                         "description": "ISIS Network Entity Title which identifies an instance of ISIS (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "cisco-crosswork-isis-topology:system-id": {
                             "description": "ISIS System ID which is a 6 octet numerical value (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "string",
                             "format": "string"
                           },
                           "cisco-crosswork-isis-topology:area": {
                             "description": "ISIS Area address. Numerical value of 1 to 13 octets (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "string",
                             "format": "string"
                           }
@@ -2940,9 +2079,6 @@
                       },
                       "cisco-crosswork-isis-topology:level": {
                         "description": "ISIS level of the link/ adjacency (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "integer",
                         "format": "byte"
                       }
@@ -2951,24 +2087,14 @@
                   "cisco-crosswork-ospf-topology:ospf-link-attributes": {
                     "description": "Containing OSPF link attributes (non-presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "false"
-                    },
                     "properties": {
                       "cisco-crosswork-ospf-topology:ospf-router-id": {
                         "description": "OSPF router ID, which is an IPv4 address,\nof the local host (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "cisco-crosswork-ospf-topology:area-id": {
                         "description": "OSPF area ID, represented as an IPv4 address value (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       }
@@ -2977,16 +2103,9 @@
                   "ietf-sr-topology-state:sr": {
                     "description": "Containing SR attributes. (presence)",
                     "type": "object",
-                    "x-yang": {
-                      "type": "container",
-                      "is_presence": "true"
-                    },
                     "properties": {
                       "ietf-sr-topology-state:value-type": {
                         "description": "This leaf defines how value must be interpreted. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "index",
@@ -2997,17 +2116,11 @@
                       },
                       "ietf-sr-topology-state:sid": {
                         "description": "Adjacency SID, which can be either IGP-Adjacency SID\nor BGP PeerAdj SID, depending on the context. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "integer",
                         "format": "uint32"
                       },
                       "ietf-sr-topology-state:advertise-protection": {
                         "description": "If set, the Adj-SID refers to an\nadjacency being protected. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "single",
@@ -3018,25 +2131,16 @@
                       },
                       "ietf-sr-topology-state:is-local": {
                         "description": "'true' if the SID is local. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "boolean"
                       },
                       "ietf-sr-topology-state:msd": {
                         "description": "SID depth of the interface associated with the link. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "integer",
                         "format": "byte"
                       },
                       "ietf-sr-topology-state:address-family": {
                         "description": "This leaf defines the F-Flag (Address-Family flag) of the\nSID. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "ipv4",
@@ -3047,41 +2151,26 @@
                       },
                       "ietf-sr-topology-state:is-backup": {
                         "description": "'true' if the SID is a backup. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "boolean"
                       },
                       "ietf-sr-topology-state:is-part-of-set": {
                         "description": "'true' if the SID is part of a set. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "boolean"
                       },
                       "ietf-sr-topology-state:is-persistent": {
                         "description": "'true' if the SID is persistently allocated. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "boolean"
                       },
                       "ietf-sr-topology-state:is-on-lan": {
                         "description": "'true' if on a lan. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "boolean"
                       },
                       "ietf-sr-topology-state:information-source": {
                         "description": "Indicates the type of the information source. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "enumeration",
                         "default": "unknown",
@@ -3098,25 +2187,15 @@
                       },
                       "ietf-sr-topology-state:information-source-instance": {
                         "description": "The name indicating the instance of the information\nsource. (leaf)",
-                        "x-yang": {
-                          "type": "leaf"
-                        },
                         "type": "string",
                         "format": "string"
                       },
                       "ietf-sr-topology-state:information-source-state": {
                         "description": "The container contains state attributes related to\nthe information source. (non-presence)",
                         "type": "object",
-                        "x-yang": {
-                          "type": "container",
-                          "is_presence": "false"
-                        },
                         "properties": {
                           "ietf-sr-topology-state:credibility-preference": {
                             "description": "The preference value to calculate the traffic\nengineering database credibility value used for\ntie-break selection between different\ninformation-source values.\nHigher value is more preferable. (leaf)",
-                            "x-yang": {
-                              "type": "leaf"
-                            },
                             "type": "integer",
                             "format": "uint16"
                           }

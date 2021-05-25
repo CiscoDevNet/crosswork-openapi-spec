@@ -1,9 +1,22 @@
+<<<<<<< HEAD
 {
   "swagger": "2.0",
+=======
+
+  "openapi": "3.0.0",
+>>>>>>> b77f74c0783d8b5e50dd0df3c014222fef2a2459
   "info": {
     "title": "Segment Routing Policy Operations",
-    "description": "Operations to Create, Update, Preview and Delete SR Policies in Optima.",
-    "version": "2019-08-30T00:00:00.000Z"
+    "description": "Operations to Create, Update, Preview and Delete SR Policies in Crosswork Optimization Engine.",
+    "version": "2019-08-30T00:00:00.000Z",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    }
   },
   "tags": [{
     "name": "operations",
