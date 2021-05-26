@@ -14,12 +14,10 @@
     }
   },
   "basePath": "/crosswork/nbi/optima/v1/restconf",
-  "tags": [
-    {
-      "name": "data",
-      "description": "data resources"
-    }
-  ],
+  "tags": [{
+    "name": "data",
+    "description": "data resources"
+  }],
   "schemes": [
     "https"
   ],
@@ -67,11 +65,9 @@
             "$ref": "#/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     },
     "/data/cisco-crosswork-segment-routing-policy:sr-policies/policy={policy-headend},{policy-endpoint},{policy-color}": {
@@ -85,8 +81,7 @@
         "produces": [
           "application/yang-data+json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "$ref": "#/parameters/policy-headend"
           },
           {
@@ -122,11 +117,9 @@
             "$ref": "#/responses/409"
           }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
+        "security": [{
+          "basicAuth": []
+        }]
       }
     }
   },
@@ -895,4 +888,4 @@
       }
     }
   }
-}k
+}
