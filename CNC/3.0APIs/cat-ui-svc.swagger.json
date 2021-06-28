@@ -1,0 +1,2390 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://cat-ui-service:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/getNsoCredentials": {
+      "get": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get NSO Credentials",
+        "description": "Get NSO Credentials",
+        "operationId": "getNsoCredentials",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get NSO Credentials": {
+                    "description": "Get NSO Credentials",
+                    "value": {
+                      "port": 8080,
+                      "ip": "10.22.179.179",
+                      "pw": "Ovatest123@",
+                      "user": "root"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/ronml": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Provision RON ML Service",
+        "description": "Provision RON ML Service",
+        "operationId": "provisionRONMLService",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision RON ML Service": {
+                    "description": "Provision RON ML Service",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Delete RonMl ",
+        "description": "Delete RonMl",
+        "operationId": "deleteRonMl",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/getServicePoints": {
+      "get": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Service Points",
+        "description": "Get Service Points",
+        "operationId": "getServicePoints",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Service Points": {
+                    "description": "Get Service Points",
+                    "value": {
+                      "port": 8080,
+                      "ip": "10.22.179.179",
+                      "pw": "Ovatest123@",
+                      "user": "root"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/defaultController": {
+      "get": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Default controller",
+        "description": "Get Default controller",
+        "operationId": "getDefaultController",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get NSO Credentials": {
+                    "description": "Get NSO Credentials",
+                    "value": {
+                      "port": 8080,
+                      "ip": "10.22.179.179",
+                      "pw": "Ovatest123@",
+                      "user": "root"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Set Default controller ",
+        "description": "Set Default controller",
+        "operationId": "setDefaultController",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/fetchInterLayer": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Fetch InterLayer ",
+        "description": "Fetch InterLayer",
+        "operationId": "fetchInterLayer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/getErrorInfo": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Service Points",
+        "description": "Get Error Info",
+        "operationId": "getServicePoints_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Error Info": {
+                    "description": "Get Error Info",
+                    "value": {
+                      "port": 8080,
+                      "ip": "10.22.179.179",
+                      "pw": "Ovatest123@",
+                      "user": "root"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/ports": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Optical Port Details",
+        "description": "Get Optical Port Details",
+        "operationId": "getOpticalPorts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Optical Port Details": {
+                    "description": "Get Optical Port Details",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/serviceTypes": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Service Types",
+        "description": "Get service types",
+        "operationId": "getServiceTypes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Service types": {
+                    "description": "Service types",
+                    "value": {
+                      "serviceTypes": [
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "servicePath": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service"
+                        },
+                        {
+                          "serviceType": "L3VPN-SERVICE",
+                          "servicePath": "ietf-l3vpn-ntw:l3vpn-ntw/vpn-services/vpn-service"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/interlayerInfo": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Provision InterLayer link ",
+        "description": "Provision InterLayer link",
+        "operationId": "getInterLayerLinkInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/interlayer": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Provision InterLayer link ",
+        "description": "Provision InterLayer link",
+        "operationId": "createInterLayerLink",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Delete InterLayer link ",
+        "description": "Delete InterLayer link",
+        "operationId": "deleteInterLayer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Delete InterLayer link": {
+                    "description": "Delete InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/interlayerTableExport": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "operationId": "exportInterLinkLayersNew",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamingResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/aa/commitToNso": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Commit Assurance Info to NSO",
+        "description": "Commit Assurance Info to NSO",
+        "operationId": "commitToNso",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Commit Assurance Info to NSO": {
+                    "description": "Commit Assurance Info to NSO",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/serviceMetrics": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Gives the number of services grouped by status",
+        "description": "Gives the number of services grouped by status",
+        "operationId": "getServiceMetrics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Service metrics": {
+                    "description": "Service metrics",
+                    "value": {
+                      "success": 14,
+                      "provisioning": 0,
+                      "failed": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/nso/action": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "NSO Error Actions",
+        "description": "NSO Error Actions",
+        "operationId": "nsoErrorActions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "NSO Error Actions": {
+                    "description": "NSO Error Actions",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/serviceConfig": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Service Configuration",
+        "description": "Get service configuration",
+        "operationId": "getServiceConfiguration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get service configuration": {
+                    "description": "Get service configuration",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/fetchRonMl": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Fetch RonMl ",
+        "description": "Fetch RonMl",
+        "operationId": "fetchRonMl",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Provision InterLayer link": {
+                    "description": "Provision InterLayer link",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/services": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Services",
+        "description": "Get services",
+        "operationId": "getServices",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "All services": {
+                    "description": "All services",
+                    "value": {
+                      "elements": [
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-16T06:13:42.794576+00:00",
+                          "lastUpdatedTime": "2020-11-16T06:30:38.146037+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=IETF-L2-SR-67",
+                          "serviceName": "IETF-L2-SR-67"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-16T03:06:02.239574+00:00",
+                          "lastUpdatedTime": "2020-11-18T02:52:05.331363+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=IETF-MODEL-L2-NM-P2P-11-2020-2",
+                          "serviceName": "IETF-MODEL-L2-NM-P2P-11-2020-2"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-10T16:59:40.51388+00:00",
+                          "lastUpdatedTime": "2020-11-18T02:52:09.814467+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-NM-P2P-1",
+                          "serviceName": "L2-NM-P2P-1"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-14T01:28:44.136012+00:00",
+                          "lastUpdatedTime": "2020-11-16T03:19:24.722617+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-NM-P2P-2",
+                          "serviceName": "L2-NM-P2P-2"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-10T17:44:40.019408+00:00",
+                          "lastUpdatedTime": "2020-11-14T00:31:09.866618+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-NM-P2P-NODE-1",
+                          "serviceName": "L2-NM-P2P-NODE-1"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-10T17:41:02.940323+00:00",
+                          "lastUpdatedTime": "2020-11-14T00:31:13.656103+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-NM-P2P-SR-TE-1",
+                          "serviceName": "L2-NM-P2P-SR-TE-1"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Failed",
+                          "errorMessage": "External error in the NED implementation for device iosxrv-5: Tue Nov 17 19:58:34.084 UTC\r\n\r\n% Failed to commit one or more configuration items during a pseudo-atomic operation. All changes made have been reverted.\r\n !! SEMANTIC ERRORS: This configuration was rejected by \r\n!! the system due to semantic errors. The individual \r\n!! errors with each failed configuration command can be \r\n!! found below.\r\n\r\n\r\nl2vpn\r\n xconnect group 1\r\n  p2p 1\r\n   interface GigabitEthernet0/0/0/1.400\r\n!!% Invalid argument: Cross-connect already full. Can't add more segments to it\r\n   neighbor ipv4 192.168.0.4 pw-id 400\r\n!!% Invalid argument: Cross-connect already full. Can't add more segments\r\n    pw-class pw-class-1\r\n!!% Invalid argument: Cannot find segment\r\n   !\r\n  !\r\n !\r\n!\r\nend",
+                          "createdTime": "2020-11-14T06:26:28.007086+00:00",
+                          "lastUpdatedTime": "2020-11-14T06:51:22.631661+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-NM-SR-P2P-SUCCESS",
+                          "serviceName": "L2-NM-SR-P2P-SUCCESS"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-10T18:13:01.991336+00:00",
+                          "lastUpdatedTime": "2020-11-14T00:31:16.367704+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-P2P-NM-3",
+                          "serviceName": "L2-P2P-NM-3"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-16T06:29:25.720304+00:00",
+                          "lastUpdatedTime": "2020-11-16T07:11:20.633875+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-P2P-SR-TRANSPORT-1",
+                          "serviceName": "L2-P2P-SR-TRANSPORT-1"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-14T01:32:44.239515+00:00",
+                          "lastUpdatedTime": "2020-11-14T01:45:08.117207+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-VPN-P2P-SR-TE-1",
+                          "serviceName": "L2-VPN-P2P-SR-TE-1"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-16T03:01:18.623545+00:00",
+                          "lastUpdatedTime": "2020-11-18T02:52:30.63504+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=L2-Vpn0Service-11-14-2020-P2P-1",
+                          "serviceName": "L2-Vpn0Service-11-14-2020-P2P-1"
+                        },
+                        {
+                          "serviceType": "L3VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-15T23:56:02.397375+00:00",
+                          "lastUpdatedTime": "2020-11-15T23:56:02.397375+00:00",
+                          "serviceKey": "ietf-l3vpn-ntw:l3vpn-ntw/vpn-services/vpn-service=L3-NM-TEST-IETF-NO-SR-TE",
+                          "serviceName": "L3-NM-TEST-IETF-NO-SR-TE"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-17T11:40:05.010581+00:00",
+                          "lastUpdatedTime": "2020-11-17T11:40:05.010581+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=hg",
+                          "serviceName": "hg"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-17T09:30:02.550767+00:00",
+                          "lastUpdatedTime": "2020-11-17T09:30:02.550767+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=l2service",
+                          "serviceName": "l2service"
+                        },
+                        {
+                          "serviceType": "L2VPN-SERVICE",
+                          "serviceStatus": "Success",
+                          "errorMessage": "",
+                          "createdTime": "2020-11-13T06:59:56.629459+00:00",
+                          "lastUpdatedTime": "2020-11-13T06:59:56.629459+00:00",
+                          "serviceKey": "ietf-l2vpn-ntw:l2vpn-ntw/vpn-services/vpn-service=l2vpn",
+                          "serviceName": "l2vpn"
+                        }
+                      ],
+                      "totalCount": 15
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/interlayers": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Create Inter Layer links",
+        "description": "Create Inter Layer links",
+        "operationId": "createInterLayerLinks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get NSO Credentials": {
+                    "description": "Get NSO Credentials",
+                    "value": {
+                      "port": 8080,
+                      "ip": "10.22.179.179",
+                      "pw": "Ovatest123@",
+                      "user": "root"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/optical/details": {
+      "post": {
+        "tags": [
+          "cat-ui-service-rest-controller"
+        ],
+        "summary": "Get Optical Service Details",
+        "description": "Get Optical Service Details",
+        "operationId": "getOpticalDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Optical Service Details": {
+                    "description": "Get Optical Service Details",
+                    "value": {
+                      "serviceConfig": {
+                        "ietf-l2vpn-ntw:vpn-service": {
+                          "vpn-nodes": {
+                            "vpn-node": [
+                              {
+                                "vpn-node-id": "iosxrv-6",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.3",
+                                          "vc-id": "345",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 601,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "l2vpn-p2p-ac1"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-6",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "vpn-node-id": "iosxrv-7",
+                                "signaling-options": [
+                                  {
+                                    "type": "vpn-common:t-ldp",
+                                    "t-ldp-pwe": {
+                                      "ac-pw-list": [
+                                        {
+                                          "peer-addr": "192.168.0.4",
+                                          "vc-id": "34",
+                                          "mpls-label": 101
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "vpn-network-accesses": {
+                                  "vpn-network-access": [
+                                    {
+                                      "connection": {
+                                        "encapsulation-type": "vpn-common:dot1q",
+                                        "dot1q-interface": {
+                                          "l2-access-type": "vpn-common:dot1q",
+                                          "dot1q": {
+                                            "c-vlan-id": 345,
+                                            "physical-inf": "GigabitEthernet0/0/0/1",
+                                            "rewrite": {
+                                              "ingress": {
+                                                "pop": "1",
+                                                "mode": "symmetric"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "id": "234"
+                                    }
+                                  ]
+                                },
+                                "ne-id": "iosxrv-7",
+                                "te-service-mapping": {
+                                  "te-mapping": {
+                                    "sr-policy": {
+                                      "policy": "SR-PCC-INIT-67-2"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "vpn-id": "IETF-L2-SR-67",
+                          "vpn-svc-type": "vpn-common:t-ldp",
+                          "control-word": "yes"
+                        }
+                      },
+                      "transportType": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StreamingResponseBody": {
+        "type": "object"
+      }
+    }
+  }
+}
