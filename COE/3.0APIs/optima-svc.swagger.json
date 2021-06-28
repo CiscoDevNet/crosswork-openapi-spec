@@ -1,0 +1,3095 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Optima UI Service API",
+    "description": "This app provides REST APIs for Optima UI",
+    "contact": {
+      "name": "Optima UI",
+      "email": "optima-ui-dev@cisco.com"
+    },
+    "version": "v2.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://<OPTIMA_VM>/crosswork/optima/api/v1/",
+      "description": "Optima Base URL",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/api/v1/service": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get service details",
+        "description": "Get service details",
+        "operationId": "getServiceDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Get SR Policies": {
+                  "description": "Get SR Policies",
+                  "value": {
+                    "viewId": "optima",
+                    "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                    "serviceType": "LSP_TYPE_SR"
+                  }
+                },
+                "Get SRv6 Policies": {
+                  "description": "Get SRv6 Policies",
+                  "value": {
+                    "viewId": "optima",
+                    "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                    "serviceType": "LSP_TYPE_SRV6"
+                  }
+                },
+                "Get RSVP Tunnels": {
+                  "description": "Get RSVP Tunnels",
+                  "value": {
+                    "viewId": "optima",
+                    "uuid": "8eb4f7ff-aedf-4ef6-bedc-c4998edc131f",
+                    "serviceType": "LSP_TYPE_RSVP"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "SR Details": {
+                    "description": "SR Details",
+                    "value": {
+                      "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                      "attributes": {
+                        "optimaPceComputedTime": 1596160564,
+                        "optimaPceInitiated": false,
+                        "optimaPolicyType": "Unknown",
+                        "optimaBandwidth": 0.0,
+                        "optimaDisjointGroupId": 200,
+                        "optimaHeadEndIp": "192.168.0.7",
+                        "optimaDisjointGroupAssociationSource": "0.0.0.0",
+                        "optimaAccumulatedMetric": 1,
+                        "optimaDisjointAssociationSource": "0.0.0.0",
+                        "sourceNode-name": "XRV9k_6",
+                        "optimaAffinityInclAny": [],
+                        "optimaDisjointGroup": {
+                          "subId": "0.0.0.0",
+                          "groupId": 200,
+                          "type": "Node-disjoint"
+                        },
+                        "adminStatus": "Up",
+                        "targetNode-name": "XRV9k_3",
+                        "optimaDelay": 10,
+                        "optimaSource": "XRV9k_6",
+                        "optimaPccAddress": "192.168.0.7",
+                        "optimaDestAddr": "192.168.0.4",
+                        "optimaAffinityInclAll": [],
+                        "optimaProtectedSegment": "Unprotected",
+                        "optimaMetricType": "IGP",
+                        "_color": 303,
+                        "optimaAffinityExclAny": [],
+                        "optimaLastUpdate": "2020-Jul-31, 02:22:42 (GMT Z)",
+                        "optimaName": "cfg_disjoint-7-200_discr_10",
+                        "optimaPreference": 0,
+                        "optimaBindingSid": 24027,
+                        "optimaTailEndIp": "192.168.0.4",
+                        "optimaDelegatedPCE": "172.16.1.111",
+                        "optimaTarget": "XRV9k_3",
+                        "optimaNonDelegatedPCE": [],
+                        "name": "cfg_disjoint-7-200_discr_10",
+                        "optimaHoldPriority": 7,
+                        "linkType": "LSP_TYPE_SR",
+                        "optimaSetupPriority": 7,
+                        "optimaPathName": "cfg_disjoint-7-200_discr_10",
+                        "status": "Up",
+                        "optimaDisjointType": "Node-disjoint",
+                        "lastUpdateTime": "2020-Jul-31, 02:22:42 (GMT Z)"
+                      },
+                      "edgeSidesItemsDTO": {
+                        "items": {
+                          "nodeName": {
+                            "source": "XRV9k_6",
+                            "target": "XRV9k_3"
+                          },
+                          "teRouterId": {
+                            "source": "192.168.0.7",
+                            "target": "192.168.0.4"
+                          },
+                          "interfaceName": {
+                            "source": "XRV9k_6",
+                            "target": "XRV9k_3"
+                          },
+                          "nodeUuid": {
+                            "source": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                            "target": "d9dcedf6-90e7-42de-984f-4001166d8998"
+                          }
+                        }
+                      },
+                      "tabs": {
+                        "hops": [
+                          {
+                            "hostName": "XRV9k_3",
+                            "ipAddress": "192.168.0.4",
+                            "sidType": "SID_TYPE_PREFIX_REG",
+                            "label": 18114,
+                            "type": "HOP_IPV4_NODE_SID",
+                            "uuid": "d9dcedf6-90e7-42de-984f-4001166d8998"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "SRv6 Details": {
+                    "description": "SRv6 Details",
+                    "value": {
+                      "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                      "attributes": {
+                        "optimaPceComputedTime": 1596160564,
+                        "optimaPceInitiated": false,
+                        "optimaPolicyType": "Unknown",
+                        "optimaBandwidth": 0.0,
+                        "optimaDisjointGroupId": 200,
+                        "optimaHeadEndIp": "192.168.0.7",
+                        "optimaDisjointGroupAssociationSource": "0.0.0.0",
+                        "optimaAccumulatedMetric": 1,
+                        "optimaDisjointAssociationSource": "0.0.0.0",
+                        "sourceNode-name": "XRV9k_6",
+                        "optimaAffinityInclAny": [],
+                        "optimaDisjointGroup": {
+                          "subId": "0.0.0.0",
+                          "groupId": 200,
+                          "type": "Node-disjoint"
+                        },
+                        "adminStatus": "Up",
+                        "targetNode-name": "XRV9k_3",
+                        "optimaDelay": 10,
+                        "optimaSource": "XRV9k_6",
+                        "optimaPccAddress": "192.168.0.7",
+                        "optimaDestAddr": "192.168.0.4",
+                        "optimaAffinityInclAll": [],
+                        "optimaProtectedSegment": "Unprotected",
+                        "optimaMetricType": "IGP",
+                        "_color": 303,
+                        "optimaAffinityExclAny": [],
+                        "optimaLastUpdate": "2020-Jul-31, 02:22:42 (GMT Z)",
+                        "optimaName": "cfg_disjoint-7-200_discr_10",
+                        "optimaPreference": 0,
+                        "optimaBindingSid": 24027,
+                        "optimaTailEndIp": "192.168.0.4",
+                        "optimaDelegatedPCE": "172.16.1.111",
+                        "optimaTarget": "XRV9k_3",
+                        "optimaNonDelegatedPCE": [],
+                        "name": "cfg_disjoint-7-200_discr_10",
+                        "optimaHoldPriority": 7,
+                        "linkType": "LSP_TYPE_SR",
+                        "optimaSetupPriority": 7,
+                        "optimaPathName": "cfg_disjoint-7-200_discr_10",
+                        "status": "Up",
+                        "optimaDisjointType": "Node-disjoint",
+                        "lastUpdateTime": "2020-Jul-31, 02:22:42 (GMT Z)"
+                      },
+                      "edgeSidesItemsDTO": {
+                        "items": {
+                          "nodeName": {
+                            "source": "XRV9k_6",
+                            "target": "XRV9k_3"
+                          },
+                          "teRouterId": {
+                            "source": "192.168.0.7",
+                            "target": "192.168.0.4"
+                          },
+                          "interfaceName": {
+                            "source": "XRV9k_6",
+                            "target": "XRV9k_3"
+                          },
+                          "nodeUuid": {
+                            "source": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                            "target": "d9dcedf6-90e7-42de-984f-4001166d8998"
+                          }
+                        }
+                      },
+                      "tabs": {
+                        "hops": [
+                          {
+                            "hostName": "XRV9k_3",
+                            "ipAddress": "192.168.0.4",
+                            "sidType": "SID_TYPE_PREFIX_REG",
+                            "label": 18114,
+                            "type": "HOP_IPV4_NODE_SID",
+                            "uuid": "d9dcedf6-90e7-42de-984f-4001166d8998"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RSVP Details": {
+                    "description": "RSVP Details",
+                    "value": {
+                      "uuid": "8eb4f7ff-aedf-4ef6-bedc-c4998edc131f",
+                      "attributes": {
+                        "_tunnel_id": 1000,
+                        "optimaPceComputedTime": 0,
+                        "optimaPceInitiated": false,
+                        "optimaBandwidth": 0.0,
+                        "optimaHeadEndIp": "192.168.0.2",
+                        "optimaAccumulatedMetric": 20,
+                        "optimaDisjointAssociationSource": null,
+                        "optimaExtTunnelId": "3232235526",
+                        "sourceNode-name": "XRV9k_1",
+                        "optimaAffinityInclAny": [],
+                        "optimaDisjointGroup": {
+                          "subId": null,
+                          "groupId": null,
+                          "type": null
+                        },
+                        "adminStatus": "Up",
+                        "targetNode-name": "XRV9k_5",
+                        "optimaDelay": 20,
+                        "optimaSource": "XRV9k_1",
+                        "optimaPccAddress": "192.168.1.2",
+                        "optimaAffinityInclAll": [],
+                        "optimaLspId": 2,
+                        "optimaPathType": "Unknown",
+                        "optimaTunnelId": 1000,
+                        "optimaMetricType": "TE",
+                        "_color": 0,
+                        "optimaAffinityExclAny": [],
+                        "optimaLastUpdate": "2020-Jul-31, 02:22:43 (GMT Z)",
+                        "optimaName": "XRV9k_1_t1000",
+                        "optimaPreference": 0,
+                        "optimaBindingSid": 24009,
+                        "optimaTailEndIp": "192.168.0.6",
+                        "optimaDelegatedPCE": "",
+                        "optimaTarget": "XRV9k_5",
+                        "optimaNonDelegatedPCE": [
+                          "172.16.1.111"
+                        ],
+                        "optimaFastReRoute": false,
+                        "name": "XRV9k_1_t1000",
+                        "optimaHoldPriority": 7,
+                        "linkType": "LSP_TYPE_RSVP",
+                        "optimaSetupPriority": 7,
+                        "optimaPathName": "XRV9k_1_t1000",
+                        "status": "Up",
+                        "lastUpdateTime": "2020-Jul-31, 02:22:43 (GMT Z)"
+                      },
+                      "edgeSidesItemsDTO": {
+                        "items": {
+                          "nodeName": {
+                            "source": "XRV9k_1",
+                            "target": "XRV9k_5"
+                          },
+                          "teRouterId": {
+                            "source": "192.168.0.2",
+                            "target": "192.168.0.6"
+                          },
+                          "interfaceName": {
+                            "source": "XRV9k_1",
+                            "target": "XRV9k_5"
+                          },
+                          "nodeUuid": {
+                            "source": "85c66724-49be-4d64-899d-406c7a62c3bf",
+                            "target": "93361b85-8b9e-4148-a2d1-ab1b97f5d965"
+                          }
+                        }
+                      },
+                      "tabs": {
+                        "ero": [
+                          {
+                            "nodeName": "XRV9k_3",
+                            "intfUuid": "5f2db8ef-5a56-48c5-a003-f83c0b146755",
+                            "ipAddress": "10.0.0.14",
+                            "nodeUuid": "d9dcedf6-90e7-42de-984f-4001166d8998",
+                            "strict": true,
+                            "intfName": "GigabitEthernet0/0/0/1"
+                          },
+                          {
+                            "nodeName": "XRV9k_5",
+                            "intfUuid": "24dfa45d-0e14-42db-9e35-4a1f3378e1f9",
+                            "ipAddress": "10.0.0.42",
+                            "nodeUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                            "strict": true,
+                            "intfName": "GigabitEthernet0/0/0/1"
+                          },
+                          {
+                            "nodeName": "XRV9k_5",
+                            "intfUuid": "",
+                            "ipAddress": "192.168.0.6",
+                            "nodeUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                            "strict": true,
+                            "intfName": ""
+                          }
+                        ],
+                        "rro": [
+                          {
+                            "nodeName": "XRV9k_3",
+                            "intfUuid": "5f2db8ef-5a56-48c5-a003-f83c0b146755",
+                            "ipAddress": "10.0.0.14",
+                            "label": 0,
+                            "nodeUuid": "d9dcedf6-90e7-42de-984f-4001166d8998",
+                            "intfName": "GigabitEthernet0/0/0/1"
+                          },
+                          {
+                            "nodeName": "XRV9k_5",
+                            "intfUuid": "24dfa45d-0e14-42db-9e35-4a1f3378e1f9",
+                            "ipAddress": "10.0.0.42",
+                            "label": 0,
+                            "nodeUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                            "intfName": "GigabitEthernet0/0/0/1"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/services": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all SR Policies, Or SRv6 Policies, or RSVP Tunnels",
+        "description": "Get all SR Policies, or SRv6 Policies, or RSVP Tunnels",
+        "operationId": "getAllServices",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Get SR Policies": {
+                  "description": "Get SR Policies",
+                  "value": {
+                    "filterCriteria": {
+                      "type": "and",
+                      "conditionList": [
+                        {
+                          "type": "equals",
+                          "name": "linkType",
+                          "value": "LSP_TYPE_SR"
+                        }
+                      ]
+                    },
+                    "startRow": 0,
+                    "endRow": 50,
+                    "sortColumn": "name",
+                    "sortAscending": true,
+                    "params": {
+                      "fullView": false
+                    },
+                    "serviceType": "LSP_TYPE_SR"
+                  }
+                },
+                "Get SRv6 Policies": {
+                  "description": "Get SRv6 Policies",
+                  "value": {
+                    "filterCriteria": {
+                      "type": "and",
+                      "conditionList": [
+                        {
+                          "type": "equals",
+                          "name": "linkType",
+                          "value": "LSP_TYPE_SRV6"
+                        }
+                      ]
+                    },
+                    "startRow": 0,
+                    "endRow": 50,
+                    "sortColumn": "name",
+                    "sortAscending": true,
+                    "params": {
+                      "fullView": false
+                    },
+                    "serviceType": "LSP_TYPE_SRV6"
+                  }
+                },
+                "Get RSVP Tunnels": {
+                  "description": "Get RSVP Tunnels",
+                  "value": {
+                    "filterCriteria": {
+                      "type": "and",
+                      "conditionList": [
+                        {
+                          "type": "equals",
+                          "name": "linkType",
+                          "value": "LSP_TYPE_RSVP"
+                        }
+                      ]
+                    },
+                    "startRow": 0,
+                    "endRow": 50,
+                    "sortColumn": "name",
+                    "sortAscending": true,
+                    "params": {
+                      "fullView": false
+                    },
+                    "serviceType": "LSP_TYPE_RSVP",
+                    "viewId": "optima"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "totalCount": 1,
+                      "elements": [
+                        {
+                          "attributes": {
+                            "sourceNode-teRouterId": "192.168.0.7",
+                            "optimaPceComputedTime": 1596160564,
+                            "optimaPolicyType": "Unknown",
+                            "optimaProfileId": 0,
+                            "optimaPceInitiated": false,
+                            "optimaBandwidth": 0.0,
+                            "optimaAccumulatedMetric": 1,
+                            "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                            "sourceNode-name": "XRV9k_6",
+                            "optimaLspTraffic": 0.0,
+                            "optimaDisjointGroup": 200,
+                            "adminStatus": "Up",
+                            "targetNode-name": "XRV9k_3",
+                            "optimaDestAddr": "192.168.0.4",
+                            "optimaSourceAppId": null,
+                            "optimaDisjointSubId": "0.0.0.0",
+                            "optimaProtectedSegment": null,
+                            "optimaPathType": null,
+                            "optimaDescription": null,
+                            "_color": 303,
+                            "optimaMetricType": "IGP",
+                            "optimaLastUpdate": 1596162162174,
+                            "optimaTailEndUuid": "d9dcedf6-90e7-42de-984f-4001166d8998",
+                            "targetNode-teRouterId": "192.168.0.4",
+                            "optimaBindingSid": 24027,
+                            "optimaDelegatedPCE": "172.16.1.111",
+                            "optimaNonDelegatedPCE": "[]",
+                            "name": "cfg_disjoint-7-200_discr_10",
+                            "optimaHeadEndUuid": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                            "status": "Up",
+                            "optimaDisjointType": "PCE_DISJ_TYPE_NODE"
+                          },
+                          "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf"
+                        }
+                      ]
+                    }
+                  },
+                  "Get SRv6 Policies": {
+                    "description": "Get SRv6 Policies",
+                    "value": {
+                      "totalCount": 1,
+                      "elements": [
+                        {
+                          "attributes": {
+                            "sourceNode-teRouterId": "192.168.0.7",
+                            "optimaPceComputedTime": 1596160564,
+                            "optimaPolicyType": "Unknown",
+                            "optimaProfileId": 0,
+                            "optimaPceInitiated": false,
+                            "optimaBandwidth": 0.0,
+                            "optimaAccumulatedMetric": 1,
+                            "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf",
+                            "sourceNode-name": "XRV9k_6",
+                            "optimaLspTraffic": 0.0,
+                            "optimaDisjointGroup": 200,
+                            "adminStatus": "Up",
+                            "targetNode-name": "XRV9k_3",
+                            "optimaDestAddr": "192.168.0.4",
+                            "optimaSourceAppId": null,
+                            "optimaDisjointSubId": "0.0.0.0",
+                            "optimaProtectedSegment": null,
+                            "optimaPathType": null,
+                            "optimaDescription": null,
+                            "_color": 303,
+                            "optimaMetricType": "IGP",
+                            "optimaLastUpdate": 1596162162174,
+                            "optimaTailEndUuid": "d9dcedf6-90e7-42de-984f-4001166d8998",
+                            "targetNode-teRouterId": "192.168.0.4",
+                            "optimaBindingSid": 24027,
+                            "optimaDelegatedPCE": "172.16.1.111",
+                            "optimaNonDelegatedPCE": "[]",
+                            "name": "cfg_disjoint-7-200_discr_10",
+                            "optimaHeadEndUuid": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                            "status": "Up",
+                            "optimaDisjointType": "PCE_DISJ_TYPE_NODE"
+                          },
+                          "uuid": "c3a0f54d-3eb6-4bcd-b5cd-e0127317dbdf"
+                        }
+                      ]
+                    }
+                  },
+                  "Get RSVP Tunnels": {
+                    "description": "Get RSVP Tunnels",
+                    "value": {
+                      "totalCount": 1,
+                      "elements": [
+                        {
+                          "attributes": {
+                            "_tunnel_id": 1000,
+                            "sourceNode-teRouterId": "192.168.0.2",
+                            "optimaPceComputedTime": 0,
+                            "optimaPceInitiated": false,
+                            "optimaBandwidth": 0.0,
+                            "optimaAccumulatedMetric": 20,
+                            "uuid": "8eb4f7ff-aedf-4ef6-bedc-c4998edc131f",
+                            "sourceNode-name": "XRV9k_1",
+                            "optimaExtTunnelId": "3232235526",
+                            "optimaLspTraffic": 0.0,
+                            "optimaDisjointGroup": 0,
+                            "adminStatus": "Up",
+                            "targetNode-name": "XRV9k_5",
+                            "optimaSourceAppId": null,
+                            "optimaLspId": 2,
+                            "optimaDisjointSubId": null,
+                            "optimaPathType": "Unknown",
+                            "optimaDescription": null,
+                            "optimaMetricType": "TE",
+                            "optimaLastUpdate": 1596162163279,
+                            "optimaTailEndUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                            "targetNode-teRouterId": "192.168.0.6",
+                            "optimaBindingSid": 24009,
+                            "optimaDelegatedPCE": "",
+                            "optimaNonDelegatedPCE": "[172.16.1.111]",
+                            "name": "XRV9k_1_t1000",
+                            "optimaFastReRoute": false,
+                            "optimaHoldPriority": 7,
+                            "optimaSetupPriority": 7,
+                            "optimaHeadEndUuid": "85c66724-49be-4d64-899d-406c7a62c3bf",
+                            "status": "Up",
+                            "optimaDisjointType": null
+                          },
+                          "uuid": "8eb4f7ff-aedf-4ef6-bedc-c4998edc131f"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/bwopt/interfaceThresholds": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get BWOPT Intf Thresholds",
+        "description": "Get BWOPT Intf Thresholds",
+        "operationId": "getBWOPT_INTF_THRSHLDS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Get BWOPT Intf Thresholds": {
+                  "description": "Get BWOPT Intf Thresholds",
+                  "value": {
+                    "pageNumber": 0,
+                    "pageSize": 50,
+                    "sortBy": "node",
+                    "sortOrder": "ASC"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "get req successfull": {
+                    "description": "get req successfull",
+                    "value": {
+                      "data": [
+                        {
+                          "node": "XRV9k_2",
+                          "interface": "GigabitEthernet0/0/0/2",
+                          "threshold": "20.0",
+                          "errors": []
+                        },
+                        {
+                          "node": "XRV9k_3",
+                          "interface": "GigabitEthernet0/0/0/1",
+                          "threshold": "85.0",
+                          "errors": []
+                        },
+                        {
+                          "node": "XRV9k_4",
+                          "interface": "GigabitEthernet0/0/0/1",
+                          "threshold": "50.0",
+                          "errors": []
+                        },
+                        {
+                          "node": "XRV9k_5",
+                          "interface": "GigabitEthernet0/0/0/1",
+                          "threshold": "30.0",
+                          "errors": []
+                        }
+                      ],
+                      "totalElementsInFilter": 4,
+                      "totalElementsInDB": 4,
+                      "totalPages": 1,
+                      "commitId": "-1282556224",
+                      "message": "GET successfull",
+                      "status": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/dashboard": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get LCM Domain Dashboard",
+        "description": "Get LCM Domain Dashboard",
+        "operationId": "getLcmDomainDashboard",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "LCM Domain Dashboard Request": {
+                  "description": "LCM Domain Dashboard Request",
+                  "value": {
+                    "id": "2"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "LCM Dashboard Response Successfull": {
+                    "description": "LCM Dashboard Response Successfull",
+                    "value": {
+                      "table": [
+                        {
+                          "node": "NA-22",
+                          "interface_name": "GigabitEthernet0/0/0/3",
+                          "thresholdUtil": 78.7,
+                          "evaluationUtil": 45.5,
+                          "lcmState": "CONGESTED",
+                          "numPolicies": 3,
+                          "policySetStatus": "OUT_OF_SYNC",
+                          "action": "Create Set",
+                          "commitStatus": "COMMITTED",
+                          "expectedUtil": 99.5,
+                          "solutionTimestamp": "2021-03-25T03:05:36.286478Z"
+                        }
+                      ],
+                      "congestedTotal": 1,
+                      "mitigatedTotal": 0,
+                      "mitigatingTotal": 0,
+                      "enableCommit": true,
+                      "recommId": "234",
+                      "recommTimeStamp": "345"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/dashboard/preview": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get LCM Solution set Preview",
+        "description": "Get LCM Solution Set Preview",
+        "operationId": "getLcmSolutionSetPreview",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "LCM Soluttion Set Preview Request": {
+                  "description": "LCM Soluttion Set Preview Request",
+                  "value": {
+                    "node": "F3.cisco.com",
+                    "intf": "GigabitEthernet0/0/0/1",
+                    "recommId": "1647d091-feb7-421d-bda6-e83b185cf3a8",
+                    "id": "1"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "LCM Solution Set Preview Response Successful": {
+                    "description": "LCM Solution Set Preview Response Successful",
+                    "value": {
+                      "node": "F3.cisco.com",
+                      "intf": "GigabitEthernet0/0/0/1",
+                      "message": "this is the solution preview",
+                      "status": "success",
+                      "table": [
+                        {
+                          "headend": "F3.cisco.com",
+                          "endpoint": "F5.cisco.com",
+                          "color": 12000,
+                          "id": "9ed87726-9efa-4764-9335-d2771f62d31e",
+                          "action": "CREATE"
+                        },
+                        {
+                          "headend": "F3.cisco.com",
+                          "endpoint": "F5.cisco.com",
+                          "color": 12001,
+                          "id": "86094a96-5903-48a0-9f93-3803c4ec6bdc",
+                          "action": "CREATE"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/dashboard/commit": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Commit all LCM Recommendations",
+        "description": "Commit all LCM Recommendations",
+        "operationId": "commitLcmRecommendations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "LCM Commit Reommendations Request": {
+                  "description": "LCM Commit Reommendations Request",
+                  "value": {
+                    "id": "2"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Commit Lcm Recommendations Successful": {
+                    "description": "Commit Lcm Recommendations Successful",
+                    "value": {
+                      "status": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/provisionSR": {
+      "put": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Update OE managed SR Policy",
+        "description": "Update OE managed SR Policy",
+        "operationId": "provisionSRUP",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Update existing SR policy": {
+                  "description": "Update existing SR policy",
+                  "value": {
+                    "uuid": "dbf1e381-9ad0-43d6-8e27-6f435cb14d1f",
+                    "headEnd": "192.168.0.6",
+                    "headEndName": "iosxrv-6 ",
+                    "headEndIp": "192.168.0.6",
+                    "headEndUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                    "endPoint": "192.168.0.7",
+                    "endPointName": "iosxrv-7 ",
+                    "endPointIp": "192.168.0.7",
+                    "endPointUuid": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                    "color": "12345",
+                    "description": "",
+                    "profileId": "",
+                    "bindingSid": "24081",
+                    "path": {
+                      "type": "explicit",
+                      "pathName": "12345",
+                      "hops": [
+                        {
+                          "hopType": "HOP_IPV4_NODE_SID",
+                          "sid": 18113,
+                          "nodeName": "iosxrv-3",
+                          "ip": "192.168.0.3"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Provision new SR Policy",
+        "description": "Provision new SR Policy",
+        "operationId": "provisionSR",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Provision new SR policy": {
+                  "description": "Provision new SR policy",
+                  "value": {
+                    "headEnd": "192.168.0.6",
+                    "headEndName": "iosxrv-6 ",
+                    "headEndIp": "192.168.0.6",
+                    "headEndUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                    "endPoint": "192.168.0.7",
+                    "endPointName": "iosxrv-7 ",
+                    "endPointIp": "192.168.0.7",
+                    "endPointUuid": "1ae1be5e-5ab4-4c71-a131-490d2ade53b8",
+                    "color": "12345",
+                    "description": "",
+                    "profileId": "",
+                    "bindingSid": "",
+                    "path": {
+                      "type": "explicit",
+                      "pathName": "12345",
+                      "hops": [
+                        {
+                          "hopType": "HOP_IPV4_NODE_SID",
+                          "sid": 18113,
+                          "nodeName": "iosxrv-3",
+                          "ip": "192.168.0.3"
+                        },
+                        {
+                          "hopType": "HOP_IPV4_NODE_SID",
+                          "sid": 18114,
+                          "nodeName": "iosxrv-4",
+                          "ip": "192.168.0.4"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Delete OE managed SR Policy",
+        "description": "Delete OE managed SR Policy",
+        "operationId": "provisionSRDEL",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Delete existing SR policy": {
+                  "description": "Delete existing SR policy",
+                  "value": {
+                    "headEnd": "192.168.0.6",
+                    "endPoint": "192.168.0.7",
+                    "color": 12345,
+                    "path": {
+                      "pathName": "12345"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/provisionRSVP": {
+      "put": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Update OE managed RSVP Tunnel",
+        "description": "Update OE managed RSVP Tunnel",
+        "operationId": "provisionRSVPUP",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Update existing RSVP policy": {
+                  "description": "Update existing RSVP policy",
+                  "value": {
+                    "uuid": "d4fed0de-7844-4a0b-b2da-14b0f9faee50",
+                    "headEndIp": "192.168.0.4",
+                    "headEndName": "iosxrv-4 ",
+                    "headEnd": "192.168.0.4",
+                    "endPointName": "iosxrv-6 ",
+                    "endPoint": "192.168.0.6",
+                    "endPointIp": "192.168.0.6",
+                    "description": "",
+                    "bindingLabel": 24013,
+                    "path": {
+                      "type": "dynamic",
+                      "pathName": "4to62",
+                      "bandwidth": "",
+                      "setupPriority": "7",
+                      "holdPriority": "2",
+                      "fastReRoute": false,
+                      "metric": "IGP",
+                      "affinity": [],
+                      "disjointness": {
+                        "disjointType": "",
+                        "associationGroup": "",
+                        "subId": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Provision new RSVP Tunnel",
+        "description": "Provision new RSVP Tunnel",
+        "operationId": "provisionRSVP",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Provision new RSVP Tunnel": {
+                  "description": "Provision new RSVP Tunnel",
+                  "value": {
+                    "uuid": null,
+                    "headEndIp": "192.168.0.4",
+                    "headEndName": "iosxrv-4 ",
+                    "headEnd": "192.168.0.4",
+                    "headEndUuid": "d9dcedf6-90e7-42de-984f-4001166d8998",
+                    "endPointName": "iosxrv-6 ",
+                    "endPoint": "192.168.0.6",
+                    "endPointIp": "192.168.0.6",
+                    "endPointUuid": "93361b85-8b9e-4148-a2d1-ab1b97f5d965",
+                    "description": "",
+                    "bindingLabel": "",
+                    "path": {
+                      "type": "explicit",
+                      "pathName": "4to6",
+                      "bandwidth": "",
+                      "setupPriority": "",
+                      "holdPriority": "",
+                      "fastReRoute": false,
+                      "hops": [
+                        {
+                          "hopType": "Strict",
+                          "intfName": "",
+                          "nodeName": "iosxrv-3 (192.168.0.3)",
+                          "ip": "192.168.0.3",
+                          "uuid": ""
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Delete OE managed RSVP Tunnel",
+        "description": "Delete OE managed RSVP Tunnel",
+        "operationId": "provisionRSVPDEL",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Delete existing SR policy": {
+                  "description": "Delete existing SR policy",
+                  "value": {
+                    "headEnd": "192.168.0.4",
+                    "path": {
+                      "pathName": "4to6"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "provisioning successfull": {
+                    "description": "provisioning successfull",
+                    "value": {
+                      "status": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/affinityMap/{affMappingType}": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get Affinity Mappings",
+        "description": "Get Affinity Mappings",
+        "operationId": "getAffinityMappings",
+        "parameters": [
+          {
+            "name": "affMappingType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "GET successfull": {
+                    "description": "GET successfull",
+                    "value": "{\n   \"data\":{\n      \"count\":1,\n      \"affinityMappings\":[\n         {\n            \"id\":1,\n            \"name\":\"Mukul\",\n            \"bitPosition\":22\n\t\t\t\"affinityMappingType\":\"REGULAR\",\n         }\n      ]\n   },\n   \"attributes\":{\n\n   }\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Delete Affinity Mapping",
+        "description": "Delete Affinity Mapping",
+        "operationId": "deleteAffinity",
+        "parameters": [
+          {
+            "name": "affMappingType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Delete existing affinity mapping": {
+                  "description": "Delete existing affinity mapping",
+                  "value": [
+                    1
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "deletion successfull": {
+                    "description": "deletion successfull",
+                    "value": {
+                      "data": {
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/affinityMap": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Create Affinity Mapping",
+        "description": "Create Affinity Mapping",
+        "operationId": "createAffinity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Create new affinity mapping": {
+                  "description": "Create new affinity mapping",
+                  "value": [
+                    {
+                      "name": "Mukul",
+                      "bitPosition": 22,
+                      "affinityMappingType": "REGULAR"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "creation successfull": {
+                    "description": "creation successfull",
+                    "value": {
+                      "data": {
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/setDefaultTimeouts": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Set Default Timeouts",
+        "description": "Set Default Timeouts",
+        "operationId": "setDefaultTimeouts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Set Default Timeouts Response": {
+                    "description": "Set Default Timeouts Response",
+                    "value": {
+                      "OPTIMA_ENG_UTILIZATION_TIMEOUT": "180",
+                      "OPTIMA_ENG_IGP_PATH_TIMEOUT": "180",
+                      "PCE_DISPATCH_BWOD_TIMEOUT": "60",
+                      "PCE_DISPATCH_NON_BWOD_TIMEOUT": "60"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/setTimeouts": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "set Timeouts",
+        "description": "Set Timeouts",
+        "operationId": "setTimeouts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Set Timeouts Request": {
+                  "description": "Set Timeouts Request",
+                  "value": {
+                    "OPTIMA_ENG_UTILIZATION_TIMEOUT": "180",
+                    "OPTIMA_ENG_IGP_PATH_TIMEOUT": "180",
+                    "PCE_DISPATCH_BWOD_TIMEOUT": "60",
+                    "PCE_DISPATCH_NON_BWOD_TIMEOUT": "60"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Set Timeouts Response": {
+                    "description": "Set Timeouts Response",
+                    "value": {
+                      "OPTIMA_ENG_UTILIZATION_TIMEOUT": "180",
+                      "OPTIMA_ENG_IGP_PATH_TIMEOUT": "180",
+                      "PCE_DISPATCH_BWOD_TIMEOUT": "60",
+                      "PCE_DISPATCH_NON_BWOD_TIMEOUT": "60"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/traceroute/calculate": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get Routes For Query ID",
+        "description": "Get Routes For Query ID",
+        "operationId": "getRoutes",
+        "parameters": [
+          {
+            "name": "queryId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Routes For Query ID Response": {
+                    "description": "Get Routes For Query ID Response",
+                    "value": {
+                      "queryId": "SPQ-841794906",
+                      "serviceName": "L3VPN_NM-SRTE-70",
+                      "serviceType": "L3VPN-SERVICE",
+                      "yangPath": "ietf-l3vpn-ntw:l3vpn-ntw/vpn-services/vpn-service",
+                      "headEndNodeUuid": "8f407b30-b8e4-32f7-9d84-d19a1373b56c",
+                      "tailEndNodeUuid": "f1037a5c-30bd-3faf-98c0-7d059be295c0",
+                      "headEndNodeName": "PE-B",
+                      "tailEndNodeName": "PE-C",
+                      "transportType": 0,
+                      "status": 4,
+                      "statusMsg": "Path trace Successful",
+                      "createdTime": 1618841794906,
+                      "updatedTime": 1618841809906,
+                      "availablePath": 1,
+                      "pathInfos": {
+                        "Path 0": {
+                          "outInterface": "GigabitEthernet0/0/0/0",
+                          "source": "20.20.10.26",
+                          "destination": "127.0.0.0",
+                          "nextHop": "20.20.10.25",
+                          "pathDetails": "0 20.20.10.26 20.20.10.25 MRU 1500 [Labels: 23002 Exp: 0] multipaths 0\nL 1 20.20.10.25 20.20.10.22 MRU 1500 [Labels: 23002 Exp: 0] ret code 8 multipaths 1\nL 2 20.20.10.22 20.20.10.29 MRU 1500 [Labels: implicit-null Exp: 0] ret code 8 multipaths 1\n! 3 20.20.10.29, ret code 3 multipaths 0\nPaths (found/broken/unexplored) (1/0/0)\nEcho Request (sent/fail) (3/0)\nEcho Reply (received/timeout) (3/0)\nTotal Time Elapsed 39 ms\n",
+                          "deviceUuids": [
+                            "0ad84422-f1ba-3b27-b811-238682481184",
+                            "3f697c9d-958e-32f1-835e-63562857d490",
+                            "f1037a5c-30bd-3faf-98c0-7d059be295c0"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Calculate Routes For New Path Query",
+        "description": "Calculate Routes For New Path Query",
+        "operationId": "calculateRoutes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Calculate Routes For New Path Query Request": {
+                  "description": "Calculate Routes For New Path Query Request",
+                  "value": "{\"serviceName\":\"service1\", \n\"serviceType\":\"L3VPN-SERVICE\",\n\"headEndNodeUuid\":\"3d52bd9e-7489-377e-b7ea-8e57c1fb5eba\",\n\"tailEndNodeUuid\":\"8f407b30-b8e4-32f7-9d84-d19a1373b56c\",\n\"headEndNodeName\": \"P-BOTTOMLEFT\", \n\"tailEndNodeName\":\"P-BOTTOMRIGHT\",\n\"transportType\":0,\n\"yangPath\":\"ietf-l3vpn-ntw:l3vpn-ntw/vpn-services/vpn-service\",\n\n\n}"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Calculate Routes For New Path Query Response": {
+                    "description": "Calculate Routes For New Path Query Response",
+                    "value": {
+                      "queryId": "SPQ-171174595",
+                      "serviceName": "",
+                      "serviceType": "",
+                      "yangPath": "",
+                      "headEndNodeUuid": "3d52bd9e-7489-377e-b7ea-8e57c1fb5eba",
+                      "tailEndNodeUuid": "8f407b30-b8e4-32f7-9d84-d19a1373b56c",
+                      "headEndNodeName": "P-BOTTOMLEFT",
+                      "tailEndNodeName": "P-BOTTOMLEFT",
+                      "transportType": 0,
+                      "status": 0,
+                      "statusMsg": "Path trace registered for calculation",
+                      "createdTime": 1.617171174595E12,
+                      "updatedTime": 1.61717117461E12,
+                      "availablePath": 0,
+                      "pathInfos": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/traceroute/config/time": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get Auto Delete Configured Timing For Path Queires",
+        "description": "Get Auto Delete Configured Timing For Path Queires",
+        "operationId": "getPathQueriesAutoDeleteConfiguration",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Auto Delete Configured Timing For Path Queires Response": {
+                    "description": "Get Auto Delete Configured Timing For Path Queires Response",
+                    "value": {
+                      "status": null,
+                      "configuredTime": 48
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service/overlay": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get Service Overlay Details",
+        "description": "Get Service Overlay Details",
+        "operationId": "serviceOverlay",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "yangPath",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/licenseInfo": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "operationId": "licenseInfo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_5",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all function packs status",
+        "description": "Get all function packs status",
+        "operationId": "getAllFunctionPacks_6",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get SR Policies": {
+                    "description": "Get SR Policies",
+                    "value": {
+                      "data": {
+                        "count": 3,
+                        "functionPacks": {
+                          "bwopt": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "bwod": {
+                            "license": true,
+                            "enable": false
+                          },
+                          "lcm": {
+                            "license": true,
+                            "enable": false
+                          }
+                        }
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/{fpName}/default": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get function pack default value",
+        "description": "Get function pack default value",
+        "operationId": "getFunctionPackDefaultValue",
+        "parameters": [
+          {
+            "name": "fpName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "BWOD default response": {
+                    "description": "BWOD default response",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 80.0,
+                          "reoptInterval": 60,
+                          "metricReoptHours": 20,
+                          "metricReoptMins": 45,
+                          "priorityMode": false,
+                          "primaryObjective": "MAX_AVAIL_BW",
+                          "privateNewLsps": false,
+                          "lspTraffic": "MAX_SIMULATED_REQUESTED",
+                          "pceDispatchTimeout": 30,
+                          "modelUpdateThrottle": 0,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 30,
+                          "pceInitRequests": false,
+                          "optTimeEventThreshold": 45,
+                          "allowedPolicyViolations": "LOOSE",
+                          "optTimeLimit": 0
+                        },
+                        "tooltips": {
+                          "privateNewLsps": "If 'true', LSPs that are created by the tool are marked as Private.",
+                          "lspTraffic": "Method to determine associated BW with each SR policy when optimization is performed.",
+                          "debugOpt": "If 'true', save debug plan files to filesystem.",
+                          "priorityMode": "Run BWOD in priority-mode.  Required if Bandwidth Optimization function pack is running in parallel.",
+                          "modelUpdateThrottle": "Time in seconds to wait between updates.  Set to 0 to disable.  Range: 0 - 4294967295.",
+                          "pceInitRequests": "???",
+                          "reoptInterval": "Time in seconds before policies are available to be re-optimized since last path change.  Range: 0 - 4294967295",
+                          "utilThreshold": "Interfaces whose utilization exceeds this threshold should be optimized.  Range: 0.0 - 100.0.",
+                          "metricReoptInterval": "Time in seconds before policies are re-optimized for metric.  Range: 0 - 4294967295",
+                          "enable": "Enables the Bandwidth On Demand function pack.",
+                          "optTimeLimit": "Maximum allowed run time for the BWoD optimizer.",
+                          "primaryObjective": "Primary objective when optimizing policies.",
+                          "pceDispatchTimeout": "Time in seconds to wait for a response from pce-dispatcher.   Range: 1 - 300.",
+                          "allowedPolicyViolations": "Determines how BWoD acts when new policies are provisioned and policy violations are detected.",
+                          "optTimeEventThreshold": "If the optimizer runs longer than this value in seconds, send an event to the UI.  Range 0 - 4294967295",
+                          "debugOptMaxFiles": "The number of debug plan files to save.  Range: 0 - 1024."
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  },
+                  "BWOPT default response": {
+                    "description": "BWOPT default response",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 100.0,
+                          "utilHoldMargin": 5.0,
+                          "color": 1000,
+                          "delLsps": false,
+                          "maxGlobalReoptInterval": 0,
+                          "objective": "MIN_IGP_METRIC",
+                          "fixLspDuration": 0,
+                          "removalSuspensionInterval": 0,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 20,
+                          "pceDispatchTimeout": 30,
+                          "profileId": 0,
+                          "maxSplits": 1,
+                          "congestionCheckSuspensionInterval": 240
+                        },
+                        "tooltips": {
+                          "color": "BWopt will assign color values to tactical SR policies incrementally starting at this value. [0, 4294967295]",
+                          "debugOpt": "Save debug plan files to filesystem",
+                          "utilHoldMargin": "Interface utilization must be this amount below Utilization Threshold without a tactical SR policy to remove it from network. Dampens removals. [0, Utilization Threshold]",
+                          "maxGlobalReoptInterval": "Existing tactical SR policies are globally re-optimized at least this often (minutes). 0 means off. [0, 4294967295]",
+                          "removalSuspensionInterval": "The minimum duration in seconds after any tactical SR policy change before any existing tactical SR policies are again eligible for removal. [0, 4294967295]",
+                          "congestionCheckSuspensionInterval": "The minimum duration in seconds after any tactical SR policy addition/deletion to suspend congestion detection/mitigation to allow model convergence. [0, 4294967295]",
+                          "delLsps": "Delete all deployed tactical SR policies when BWOpt is disabled.",
+                          "objective": "Path computation objective used for tactical SR policies",
+                          "utilThreshold": "The percent utilization at which BWOpt will consider an interface to be congested. [0, 100]",
+                          "enable": "Enable BWOpt Function Pack.",
+                          "profileId": "Profile-ID to assign all tactical SR policies. Should be mapped to autoroute feature on PCCs. 0 means unset. [0, 65535]",
+                          "pceDispatchTimeout": "Max time in seconds to allow deployment of tactical SR policies to be confirmed [10, 300]",
+                          "fixLspDuration": "The minimum duration in seconds before a new tactical SR policy can be modified or removed. [0, 4294967295]",
+                          "maxSplits": "Max number of tactical policies with same source and destination. [1, 8]",
+                          "debugOptMaxFiles": "The max number of debug plan file sets to save. 0 means no max. [0, 1024]"
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  },
+                  "LCM default response": {
+                    "description": "LCM default response",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 100.0,
+                          "utilHoldMargin": 5.0,
+                          "color": 1000,
+                          "delLsps": false,
+                          "objective": "MIN_TE_METRIC",
+                          "congestionCheckInterval": 120,
+                          "congestionCheckSuspensionInterval": 240,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 20,
+                          "pceDispatchTimeout": 30,
+                          "profileId": 0,
+                          "maxTteGroup": 1,
+                          "includeAllInterfaces": false,
+                          "operationMode": "MANUAL"
+                        },
+                        "tooltips": {
+                          "color": "BWopt will assign color values to tactical SR policies incrementally starting at this value. [0, 4294967295]",
+                          "debugOpt": "Save debug plan files to filesystem",
+                          "utilHoldMargin": "Interface utilization must be this amount below Utilization Threshold without a tactical SR policy to remove it from network. Dampens removals. [0, Utilization Threshold]",
+                          "maxGlobalReoptInterval": "Existing tactical SR policies are globally re-optimized at least this often (minutes). 0 means off. [0, 4294967295]",
+                          "removalSuspensionInterval": "The minimum duration in seconds after any tactical SR policy change before any existing tactical SR policies are again eligible for removal. [0, 4294967295]",
+                          "congestionCheckSuspensionInterval": "The minimum duration in seconds after any tactical SR policy addition/deletion to suspend congestion detection/mitigation to allow model convergence. [0, 4294967295]",
+                          "delLsps": "Delete all deployed tactical SR policies when BWOpt is disabled.",
+                          "objective": "Path computation objective used for tactical SR policies",
+                          "utilThreshold": "The percent utilization at which BWOpt will consider an interface to be congested. [0, 100]",
+                          "enable": "Enable BWOpt Function Pack.",
+                          "profileId": "Profile-ID to assign all tactical SR policies. Should be mapped to autoroute feature on PCCs. 0 means unset. [0, 65535]",
+                          "pceDispatchTimeout": "Max time in seconds to allow deployment of tactical SR policies to be confirmed [10, 300]",
+                          "fixLspDuration": "The minimum duration in seconds before a new tactical SR policy can be modified or removed. [0, 4294967295]",
+                          "maxSplits": "Max number of tactical policies with same source and destination. [1, 8]",
+                          "debugOptMaxFiles": "The max number of debug plan file sets to save. 0 means no max. [0, 1024]"
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/config": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "operationId": "invLcmConfig",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryOutputDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/{fpName}/request": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get function pack current config",
+        "description": "Get function pack current config",
+        "operationId": "getFunctionPackDefaultValue_1",
+        "parameters": [
+          {
+            "name": "fpName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "BWOD current config": {
+                    "description": "BWOD current config",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 80.0,
+                          "reoptInterval": 60,
+                          "metricReoptHours": 20,
+                          "metricReoptMins": 45,
+                          "priorityMode": false,
+                          "primaryObjective": "MAX_AVAIL_BW",
+                          "privateNewLsps": false,
+                          "lspTraffic": "MAX_SIMULATED_REQUESTED",
+                          "pceDispatchTimeout": 30,
+                          "modelUpdateThrottle": 0,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 30,
+                          "pceInitRequests": false,
+                          "optTimeEventThreshold": 45,
+                          "allowedPolicyViolations": "LOOSE",
+                          "optTimeLimit": 0
+                        },
+                        "tooltips": {
+                          "privateNewLsps": "If 'true', LSPs that are created by the tool are marked as Private.",
+                          "lspTraffic": "Method to determine associated BW with each SR policy when optimization is performed.",
+                          "debugOpt": "If 'true', save debug plan files to filesystem.",
+                          "priorityMode": "Run BWOD in priority-mode.  Required if Bandwidth Optimization function pack is running in parallel.",
+                          "modelUpdateThrottle": "Time in seconds to wait between updates.  Set to 0 to disable.  Range: 0 - 4294967295.",
+                          "pceInitRequests": "???",
+                          "reoptInterval": "Time in seconds before policies are available to be re-optimized since last path change.  Range: 0 - 4294967295",
+                          "utilThreshold": "Interfaces whose utilization exceeds this threshold should be optimized.  Range: 0.0 - 100.0.",
+                          "metricReoptInterval": "Time in seconds before policies are re-optimized for metric.  Range: 0 - 4294967295",
+                          "enable": "Enables the Bandwidth On Demand function pack.",
+                          "optTimeLimit": "Maximum allowed run time for the BWoD optimizer.",
+                          "primaryObjective": "Primary objective when optimizing policies.",
+                          "pceDispatchTimeout": "Time in seconds to wait for a response from pce-dispatcher.   Range: 1 - 300.",
+                          "allowedPolicyViolations": "Determines how BWoD acts when new policies are provisioned and policy violations are detected.",
+                          "optTimeEventThreshold": "If the optimizer runs longer than this value in seconds, send an event to the UI.  Range 0 - 4294967295",
+                          "debugOptMaxFiles": "The number of debug plan files to save.  Range: 0 - 1024."
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  },
+                  "BWOPT current config": {
+                    "description": "BWOPT current config",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 100.0,
+                          "utilHoldMargin": 5.0,
+                          "color": 1000,
+                          "delLsps": false,
+                          "maxGlobalReoptInterval": 0,
+                          "objective": "MIN_IGP_METRIC",
+                          "fixLspDuration": 0,
+                          "removalSuspensionInterval": 0,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 20,
+                          "pceDispatchTimeout": 30,
+                          "profileId": 0,
+                          "maxSplits": 1,
+                          "congestionCheckSuspensionInterval": 240
+                        },
+                        "tooltips": {
+                          "color": "BWopt will assign color values to tactical SR policies incrementally starting at this value. [0, 4294967295]",
+                          "debugOpt": "Save debug plan files to filesystem",
+                          "utilHoldMargin": "Interface utilization must be this amount below Utilization Threshold without a tactical SR policy to remove it from network. Dampens removals. [0, Utilization Threshold]",
+                          "maxGlobalReoptInterval": "Existing tactical SR policies are globally re-optimized at least this often (minutes). 0 means off. [0, 4294967295]",
+                          "removalSuspensionInterval": "The minimum duration in seconds after any tactical SR policy change before any existing tactical SR policies are again eligible for removal. [0, 4294967295]",
+                          "congestionCheckSuspensionInterval": "The minimum duration in seconds after any tactical SR policy addition/deletion to suspend congestion detection/mitigation to allow model convergence. [0, 4294967295]",
+                          "delLsps": "Delete all deployed tactical SR policies when BWOpt is disabled.",
+                          "objective": "Path computation objective used for tactical SR policies",
+                          "utilThreshold": "The percent utilization at which BWOpt will consider an interface to be congested. [0, 100]",
+                          "enable": "Enable BWOpt Function Pack.",
+                          "profileId": "Profile-ID to assign all tactical SR policies. Should be mapped to autoroute feature on PCCs. 0 means unset. [0, 65535]",
+                          "pceDispatchTimeout": "Max time in seconds to allow deployment of tactical SR policies to be confirmed [10, 300]",
+                          "fixLspDuration": "The minimum duration in seconds before a new tactical SR policy can be modified or removed. [0, 4294967295]",
+                          "maxSplits": "Max number of tactical policies with same source and destination. [1, 8]",
+                          "debugOptMaxFiles": "The max number of debug plan file sets to save. 0 means no max. [0, 1024]"
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  },
+                  "LCM current config": {
+                    "description": "LCM current config",
+                    "value": {
+                      "data": {
+                        "license": true,
+                        "config": {
+                          "enable": false,
+                          "utilThreshold": 100.0,
+                          "utilHoldMargin": 5.0,
+                          "color": 1000,
+                          "delLsps": false,
+                          "objective": "MIN_TE_METRIC",
+                          "congestionCheckInterval": 120,
+                          "congestionCheckSuspensionInterval": 240,
+                          "debugOpt": false,
+                          "debugOptMaxFiles": 20,
+                          "pceDispatchTimeout": 30,
+                          "profileId": 0,
+                          "maxTteGroup": 1,
+                          "includeAllInterfaces": false,
+                          "operationMode": "MANUAL"
+                        },
+                        "tooltips": {
+                          "color": "BWopt will assign color values to tactical SR policies incrementally starting at this value. [0, 4294967295]",
+                          "debugOpt": "Save debug plan files to filesystem",
+                          "utilHoldMargin": "Interface utilization must be this amount below Utilization Threshold without a tactical SR policy to remove it from network. Dampens removals. [0, Utilization Threshold]",
+                          "maxGlobalReoptInterval": "Existing tactical SR policies are globally re-optimized at least this often (minutes). 0 means off. [0, 4294967295]",
+                          "removalSuspensionInterval": "The minimum duration in seconds after any tactical SR policy change before any existing tactical SR policies are again eligible for removal. [0, 4294967295]",
+                          "congestionCheckSuspensionInterval": "The minimum duration in seconds after any tactical SR policy addition/deletion to suspend congestion detection/mitigation to allow model convergence. [0, 4294967295]",
+                          "delLsps": "Delete all deployed tactical SR policies when BWOpt is disabled.",
+                          "objective": "Path computation objective used for tactical SR policies",
+                          "utilThreshold": "The percent utilization at which BWOpt will consider an interface to be congested. [0, 100]",
+                          "enable": "Enable BWOpt Function Pack.",
+                          "profileId": "Profile-ID to assign all tactical SR policies. Should be mapped to autoroute feature on PCCs. 0 means unset. [0, 65535]",
+                          "pceDispatchTimeout": "Max time in seconds to allow deployment of tactical SR policies to be confirmed [10, 300]",
+                          "fixLspDuration": "The minimum duration in seconds before a new tactical SR policy can be modified or removed. [0, 4294967295]",
+                          "maxSplits": "Max number of tactical policies with same source and destination. [1, 8]",
+                          "debugOptMaxFiles": "The max number of debug plan file sets to save. 0 means no max. [0, 1024]"
+                        },
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/{fpName}": {
+      "put": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Update function pack config",
+        "description": "Update function pack config",
+        "operationId": "UpdateFunctionPacks",
+        "parameters": [
+          {
+            "name": "fpName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Update BWOD": {
+                  "description": "Update BWOD",
+                  "value": {
+                    "config": {
+                      "enable": false,
+                      "utilThreshold": "90",
+                      "reoptInterval": 60,
+                      "metricReoptHours": 20,
+                      "metricReoptMins": 45,
+                      "priorityMode": false,
+                      "allowedPolicyViolations": "LOOSE",
+                      "primaryObjective": "MAX_AVAIL_BW",
+                      "privateNewLsps": false,
+                      "lspTraffic": "MAX_SIMULATED_REQUESTED",
+                      "pceDispatchTimeout": 30,
+                      "modelUpdateThrottle": 0,
+                      "optTimeEventThreshold": 45,
+                      "debugOpt": false,
+                      "debugOptMaxFiles": 30,
+                      "pceInitRequests": false
+                    }
+                  }
+                },
+                "Update BWOPT": {
+                  "description": "Update BWOPT",
+                  "value": {
+                    "config": {
+                      "enable": false,
+                      "utilThreshold": 100,
+                      "utilHoldMargin": 6,
+                      "color": 1000,
+                      "profileId": 0,
+                      "maxSplits": 1,
+                      "delLsps": false,
+                      "maxGlobalReoptInterval": 0,
+                      "pceDispatchTimeout": 30,
+                      "objective": "MIN_IGP_METRIC",
+                      "fixLspDuration": 0,
+                      "removalSuspensionInterval": 0,
+                      "congestionCheckSuspensionInterval": 240,
+                      "debugOpt": false,
+                      "debugOptMaxFiles": 20
+                    }
+                  }
+                },
+                "Update LCM": {
+                  "description": "Update LCM",
+                  "value": {
+                    "config": {
+                      "enable": true,
+                      "utilThreshold": 100.0,
+                      "utilHoldMargin": 5.0,
+                      "color": 100,
+                      "delLsps": false,
+                      "objective": "MIN_IGP_METRIC",
+                      "congestionCheckInterval": 120,
+                      "congestionCheckSuspensionInterval": 240,
+                      "debugOpt": false,
+                      "debugOptMaxFiles": 20,
+                      "pceDispatchTimeout": 30,
+                      "profileId": 0,
+                      "maxTteGroup": 1,
+                      "includeAllInterfaces": false,
+                      "operationMode": "MANUAL"
+                    },
+                    "id": "1"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Update successfull": {
+                    "description": "Update successfull",
+                    "value": {
+                      "data": {
+                        "status": "success"
+                      },
+                      "attributes": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/bwopt/csvupload": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Upload LinkManagement BWOPT",
+        "description": "Upload LinkManagement BWOPT",
+        "operationId": "csvUpload",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tableExport": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "operationId": "exportSR",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamingResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/metrics": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get dashboard metrics",
+        "description": "Get dashboard metrics",
+        "operationId": "getDashboardMetrics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Dashboard Metrics": {
+                    "description": "Get Dashboard Metrics",
+                    "value": {
+                      "SR": {
+                        "total": 31,
+                        "explicit": 0,
+                        "dynamic": 0,
+                        "bwopt": 0,
+                        "bwod": 0,
+                        "lcm": 0,
+                        "others": 31,
+                        "operUp": 31,
+                        "operDown": 0,
+                        "adminDown": 0,
+                        "adminUp": 31,
+                        "pce": 0,
+                        "pcc": 31
+                      },
+                      "SRV6": {
+                        "total": 7,
+                        "explicit": 0,
+                        "dynamic": 0,
+                        "operUp": 7,
+                        "operDown": 0,
+                        "adminDown": 0,
+                        "adminUp": 7,
+                        "pcc": 31
+                      },
+                      "RSVP": {
+                        "total": 7,
+                        "explicit": 0,
+                        "dynamic": 0,
+                        "others": 7,
+                        "operUp": 7,
+                        "operDown": 0,
+                        "adminDown": 0,
+                        "adminUp": 7,
+                        "pce": 0,
+                        "pcc": 7
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/getTimeouts": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get All Timeout Details",
+        "description": "Get All Timeout Details",
+        "operationId": "getTimeouts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get All Timeout Details": {
+                    "description": "Get All Timeout Details",
+                    "value": {
+                      "OPTIMA_ENG_UTILIZATION_TIMEOUT": "180",
+                      "OPTIMA_ENG_IGP_PATH_TIMEOUT": "180",
+                      "PCE_DISPATCH_BWOD_TIMEOUT": "60",
+                      "PCE_DISPATCH_NON_BWOD_TIMEOUT": "60"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/dashboard/solution/delete": {
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Delete a LCM Solution Set",
+        "description": "Delete a LCM Solution Set",
+        "operationId": "deleteLcmSolution",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "LCM Solution Set Deletion Request": {
+                  "description": "LCM Solution Set Deletion Request",
+                  "value": {
+                    "node": "F3.cisco.com",
+                    "intf": "GigabitEthernet0/0/0/1",
+                    "id": "1"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Solution Set Delete Sussessful Response": {
+                    "description": "Solution Set Delete Sussessful Response",
+                    "value": {
+                      "status": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/all": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get All LCM Domains Data",
+        "description": "Get All LCM Domains Data",
+        "operationId": "getLcmDomainAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get All LCM domains Response Successfull": {
+                    "description": "Get All LCM domains Response Successfull",
+                    "value": {
+                      "status": "success",
+                      "data": [
+                        {
+                          "status": "ENABLED",
+                          "id": "1",
+                          "description": "some user configurable description",
+                          "lastRecTimestamp": "2021-03-25T03:05:36.286478Z"
+                        },
+                        {
+                          "status": "DISABLED",
+                          "id": "2",
+                          "description": "some user configurable description",
+                          "lastRecTimestamp": "2021-03-25T03:05:36.286478Z"
+                        },
+                        {
+                          "status": "PENDING_REMOVAL",
+                          "id": "3",
+                          "description": "some user configurable description",
+                          "lastRecTimestamp": "2021-03-25T03:05:36.286478Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/functionPacks/lcm/domain/delete": {
+      "delete": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Delete a LCM Domain",
+        "description": "Delete a LCM Domain",
+        "operationId": "deleteLcmDomain",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "LCM Domain Deletion Request": {
+                  "description": "LCM Domain Deletion Request",
+                  "value": {
+                    "id": "2"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Delete Successful Response": {
+                    "description": "Delete Successful Response",
+                    "value": {
+                      "status": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/getFlexAlgos": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get Flex Algos",
+        "description": "Get Flex Algos",
+        "operationId": "getFlexAlgos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get Flex Algos Response": {
+                    "description": "Get Flex Algos Response",
+                    "value": [
+                      {
+                        "metricsType": "UNKNOWN",
+                        "includeAny": [],
+                        "excludeAny": [
+                          {
+                            "id": -1,
+                            "name": "UNKNOWN",
+                            "bitPosition": 2
+                          }
+                        ],
+                        "includeAll": [],
+                        "flexAlgoNumber": 131,
+                        "localPriority": 128
+                      },
+                      {
+                        "metricsType": "UNKNOWN",
+                        "includeAny": [],
+                        "excludeAny": [
+                          {
+                            "id": -1,
+                            "name": "UNKNOWN",
+                            "bitPosition": 2
+                          }
+                        ],
+                        "includeAll": [],
+                        "flexAlgoNumber": 131,
+                        "localPriority": 128
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/traceroute/query": {
+      "post": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Get all Path Queries Based On Filter Criteria",
+        "description": "Get all Path Queries Based On Filter Criteria",
+        "operationId": "getAllPathQueries",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "Get all Path Queries Based On Filter Criteria Request": {
+                  "description": "Get all Path Queries Based On Filter Criteria Request",
+                  "value": "{\"startRow\":\"1\",\"endRow\": \"2\",\"sortColumn\": \"serviceName\",\"sortAscending\": \"true\",\"filterCriteria\": \"{\"type\":\"and\", \"conditionList\": [{\"type\" : \"contains\", \"name\" : \"queryId\", \"value\": \"SPQ\"}]}\""
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Get all Path Queries Based On Filter Criteria Successfull": {
+                    "description": "Get all Path Queries Based On Filter Criteria Successfull",
+                    "value": {
+                      "totalCount": 2,
+                      "totalRunnigQueryCount": 0,
+                      "totalCompletedQueryCount": 2,
+                      "totalFailedQueryCount": 0,
+                      "routes": {
+                        "oamServiceRoutes": [
+                          {
+                            "queryId": "SPQ-740898607",
+                            "serviceName": "Service0",
+                            "serviceType": "Service Type",
+                            "yangPath": "Yangpath0",
+                            "headEndNodeUuid": "3d52bd9e-7489-377e-b7ea-8e57c1fb5eba",
+                            "tailEndNodeUuid": "8f407b30-b8e4-32f7-9d84-d19a1373b56c",
+                            "headEndNodeName": "HeadEndName0",
+                            "tailEndNodeName": "HeadEndName0",
+                            "transportType": 0,
+                            "status": 4,
+                            "statusMsg": "Path trace Successful",
+                            "createdTime": 1.616740898607E12,
+                            "updatedTime": 1.616740908583E12,
+                            "availablePath": 1,
+                            "pathInfos": {
+                              "Path 0": {
+                                "outInterface": "GigabitEthernet0/0/0/0",
+                                "source": "20.20.10.1",
+                                "destination": "127.0.0.0",
+                                "nextHop": "20.20.10.2",
+                                "pathDetails": "0 20.20.10.1 20.20.10.2 MRU 1500 [Labels: 22002 Exp: 0] multipaths 0\nL 1 20.20.10.2 20.20.10.14 MRU 1500 [Labels: 22002 Exp: 0] ret code 8 multipaths 1\nL 2 20.20.10.14 20.20.10.26 MRU 1500 [Labels: implicit-null Exp: 0] ret code 8 multipaths 1\n! 3 20.20.10.26, ret code 3 multipaths 0\n...\n",
+                                "deviceUuids": [
+                                  "c6800912-91f6-33ad-8222-df7a94fee80c",
+                                  "0ad84422-f1ba-3b27-b811-238682481184",
+                                  "8f407b30-b8e4-32f7-9d84-d19a1373b56c"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "queryId": "SPQ-741049255",
+                            "serviceName": "Service0",
+                            "serviceType": "Service Type",
+                            "yangPath": "Yangpath0",
+                            "headEndNodeUuid": "3d52bd9e-7489-377e-b7ea-8e57c1fb5eba",
+                            "tailEndNodeUuid": "8f407b30-b8e4-32f7-9d84-d19a1373b56c",
+                            "headEndNodeName": "HeadEndName0",
+                            "tailEndNodeName": "HeadEndName0",
+                            "transportType": 0,
+                            "status": 4,
+                            "statusMsg": "Path trace Successful",
+                            "createdTime": 1.616741049255E12,
+                            "updatedTime": 1.616741058627E12,
+                            "availablePath": 1,
+                            "pathInfos": {
+                              "Path 0": {
+                                "outInterface": "GigabitEthernet0/0/0/0",
+                                "source": "20.20.10.1",
+                                "destination": "127.0.0.0",
+                                "nextHop": "20.20.10.2",
+                                "pathDetails": "0 20.20.10.1 20.20.10.2 MRU 1500 [Labels: 22002 Exp: 0] multipaths 0\nL 1 20.20.10.2 20.20.10.14 MRU 1500 [Labels: 22002 Exp: 0] ret code 8 multipaths 1\nL 2 20.20.10.14 20.20.10.26 MRU 1500 [Labels: implicit-null Exp: 0] ret code 8 multipaths 1\n! 3 20.20.10.26, ret code 3 multipaths 0\n...\n",
+                                "deviceUuids": [
+                                  "c6800912-91f6-33ad-8222-df7a94fee80c",
+                                  "0ad84422-f1ba-3b27-b811-238682481184",
+                                  "8f407b30-b8e4-32f7-9d84-d19a1373b56c"
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/traceroute/config": {
+      "get": {
+        "tags": [
+          "optima-ui-service-rest-controller"
+        ],
+        "summary": "Configure Auto Delete Timing For Path Queires",
+        "description": "Configure Auto Delete Timing For Path Queires",
+        "operationId": "pathQueriesAutoDeleteConfiguration",
+        "parameters": [
+          {
+            "name": "time",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Configure Auto Delete Timing For Path Queires Response": {
+                    "description": "Configure Auto Delete Timing For Path Queires Response",
+                    "value": {
+                      "status": "Success",
+                      "configuredTime": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InventoryOutputDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "StreamingResponseBody": {
+        "type": "object"
+      }
+    }
+  }
+}
