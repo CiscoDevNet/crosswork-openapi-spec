@@ -1,1 +1,0 @@
-This directory stores versions of API documentation for all releases of the Cisco Crosswork Change Automation and Health Insights product (NCAHI). Be sure to place your files in the appropriate numbered release sub-directory.
