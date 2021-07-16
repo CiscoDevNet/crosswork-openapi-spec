@@ -1,0 +1,4467 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Health Insights API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "description": "Health Insights (HI) is a software system that provides smart KPI monitoring and remediation for service provider networks. This document details the HI RESTful APIs that can be used to manage KPIs, enable/disable KPIs on groups or devices, query KPIs and device alerts, remediate alerting KPIs, etc."
+  },
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/crosswork/hi/",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/alerts/kpi/composite/devices": {
+      "post": {
+        "summary": "Retrieve all composite alert status",
+        "operationId": "GetCompositeOutput",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertLogicOutput"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseBasicCompAssocDevice"
+            }
+          }
+        ],
+        "tags": [
+          "Composite Alerting"
+        ]
+      }
+    },
+    "/v1/kpi/composites/delete": {
+      "post": {
+        "summary": "Delete specific composite alert ",
+        "operationId": "DeleteComposite",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseCompResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseCompReqOne"
+            }
+          }
+        ],
+        "tags": [
+          "Composite Alerting"
+        ]
+      }
+    },
+    "/v1/kpi/composites/query": {
+      "post": {
+        "summary": "Retrieve all composite alerts",
+        "operationId": "GetComposites",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseCompMgmtResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseCompGetReq"
+            }
+          }
+        ],
+        "tags": [
+          "Composite Alerting"
+        ]
+      }
+    },
+    "/v1/kpi/composites/write": {
+      "post": {
+        "summary": "Create composite alerts",
+        "operationId": "CreateComposites",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseCompResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertLogic"
+            }
+          }
+        ],
+        "tags": [
+          "Composite Alerting"
+        ]
+      }
+    },
+    "/v1/kpiprofilemgmt/write": {
+      "post": {
+        "summary": "Create or update a batch of KPI profile objects. The client asks Pulse to create or update a bunch of profiles. If a profile with the same ID doesn't exist, create that profile. If a profile with the same ID exists, update the profile. In some cases, you may need to delete then update the backend.",
+        "description": "The argument passed in is the ProfileConfig. This requires passing in the whole structure of this profile. Pulse will check which parameter has been modified and perform the corresponding operations. The argument returned is the newly created ProfileResultBatch. For example: \ncurl -X POST http://localhost:8000/v1/kpiprofilemgmt/write -d '{\"ProfileConfigs\": [{\"ID\": \"memprofile_2\",\"Description\": \"cpu kpis 1\",\"Kpis\": [{\"KpiID\": \"pulse_routing_rib_ospf\",\"Cadence\": 0,\"Alerting\": true,\"AlertingDownSampleRate\": 4,\"KpiScripts\": [{\"ScriptID\": \"script_id_1\",\"Parameters\": [{\"name\": \"level2_threshold\",\"type\": \"float\",\"value\": \"70.0\"}]}]},{\"KpiID\": \"pulse_memory_utilization\",\"Cadence\": 60,\"Alerting\": false,\"AlertingDownSampleRate\": 6}]}]}'",
+        "operationId": "CreateProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseProfResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseProfileConfig"
+            }
+          }
+        ],
+        "tags": [
+          "KPI Profile Management"
+        ]
+      },
+      "put": {
+        "summary": "Create/Update a Profile.\nThe client asks pulse to create/update a Profile.\nIf Profile with the same ID doesn't exist, create Profile;\nIf Profile with the same ID exists, update Profile (may need to delete then update backend)",
+        "description": "Argument passed in is the ProfileConfig. This requires to pass in the whole structure of this profile.\n    pulse will check which parameter has been modified and take corresponding operations.\nArgument returned is the new created ProfResult.\nExample: curl -X PUT http://localhost:8000/v1/kpiprofilemgmt/write -d '{\"id\": \"cpuprofile_cc\",\"description\": \"cpu kpis 2\",\"kpis\": [ {\"kpiId\": \"pulse_cpu_utilization\",\"cadence\": 120,\"alerting\": true,\"downsample_factor\": 3}]}]}'",
+        "operationId": "CreateUpdateProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseProfResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseProfileConfig"
+            }
+          }
+        ],
+        "tags": [
+          "KPI Profile Management"
+        ]
+      }
+    },
+    "/v1/kpiprofilemgmt/delete": {
+      "post": {
+        "summary": "Delete a specific Profile.\nThe client requires pulse to delete specified *Profile* object.\nArgument passed in is the ProfileDeleteArg.\nArgument returned indicates whether deletion request was accepted or not.\nExample: curl -X POST http://localhost:8000/v1/kpiprofilemgmt/delete -d '{\"profile_id\": \"cpuprofile_1\"}'",
+        "operationId": "DeleteProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/pulseProfResult"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseProfileDeleteArg"
+            }
+          }
+        ],
+        "tags": [
+          "KPI Profile Management"
+        ]
+      }
+    },
+    "/v1/kpiprofilemgmt/query": {
+      "post": {
+        "summary": "Retrieve specific Profiles.\nThis pulse endpoint returns an *Profile* object as registered by the client with kpi profile ID\nArgument passed in includes wild patterns and limit/offset. If no pattern is specified, it means all profiles.\nArgument returned is Profiles\nExample: curl -x Post http://localhost:8000/v1/kpiprofilemgmt/query -d '{\"profile_id_pattern\": \"cpuprofile_\", \"limit\": 10, \"offset\": 0}'",
+        "operationId": "GetProfiles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseProfileControlBatch"
+            }
+          },
+          "400": {
+            "description": "Bad Request: parameters are not correct",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseProfileQueryArg"
+            }
+          }
+        ],
+        "tags": [
+          "KPI Profile Management"
+        ]
+      }
+    },
+    "/v1/kpimgmt/query": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "description": "Specify filters to query KPIs",
+          "required": false,
+          "schema": {
+              "$ref": "#/definitions/query_kpis"
+            }
+        }
+      ],
+      "post": {
+        "summary": "To get the definition of KPIs defined in the system",
+        "tags": [
+          "KPI Management"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpis"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/kpimgmt/write": {
+      "post": {
+        "summary": "To create new custom KPIs. Note that HI supports Custom KPIs having only 1 Sensor Path in the current release.",
+        "tags": [
+          "KPI Management"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "A set of KPIs definition.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/kpis_post"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created: Success, no response message-body."
+          },
+          "400": {
+            "description": "Bad Request: E.g. Empty KPI list passed."
+          },
+          "409": {
+            "description": "Conflict: KPI already exists."
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+        },
+        "patch": {
+          "summary": "To patch certain properties of an existing user defined KPI. If KPI is associated with a device, update is not allowed.",
+          "tags": [
+            "KPI Management"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "A set of KPIs definition.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/kpis_patch"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK: Success, no response message-body."
+            },
+            "400": {
+              "description": "Bad Request: E.g. Specified KPI in request does not exist (not defined)."
+            },
+            "404": {
+              "description": "Not Found e.g. specified KPI not found"
+            },
+            "409": {
+              "description": "Conflict: KPI already applied to device(s), cannot patch."
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/error"
+              }
+            }
+          }
+         }
+    },
+    "/v1/kpimgmt/delete": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user defined KPIs(kpi_id) to be deleted.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/delete_kpis"
+            }
+          }
+        ],
+      "post": {
+        "summary": "To delete specified KPIs. If KPI is associated with a device, delete is not allowed.",
+        "tags": [
+          "KPI Management"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content: Success."
+          },
+          "400": {
+            "description": "Bad Request: E.g. Specified KPI is not user defined."
+          },
+          "409": {
+            "description": "Conflict: KPI already applied to device(s), cannot delete."
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+       }
+     },
+    "/v1/kpimgmt/import": {
+      "post": {
+        "summary": "Post the tarball through multipart/form-data http",
+        "consumes": [
+	  "multipart/form-data"
+	],
+        "tags": [
+          "KPI Import/Export"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "description": "A multipart HTTP form containing a tgz/tar.gz (a gzipped tarball) of kpis and their tick and dashboard files",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: Success, no response message-body."
+          },
+          "400": {
+            "description": "Bad Request: E.g.Malformed tarball, not zipped"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/kpimgmt/export": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "A multi-part HTTP form containing a tgz/tar.gz (a gzipped tarball) ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/export_kpis"
+            }
+          }
+        ],
+      "post": {
+        "summary": "To export KPIs installed on the HI system",
+	"produces": ["application/gzip"],
+        "tags": [
+          "KPI Import/Export"
+        ],
+        "responses": {
+          "200": {
+            "description": "Base64 encoded string containing zipped tarball with kpi definitions and associated files"
+          },
+          "400": {
+            "description": "Bad Request: No kpis requested"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/alerts/device/deviceTags": {
+      "post": {
+        "summary": "Retrieve a device centric view of alerts for device tags.",
+	"description": "Response is returned as an array of DeviceAlerts. The API currently supports retrieving all alerts for specified device tag(s) and can be filtered by alert level(s), kpi(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. The api can be used to return a sorted list of devices by number of alerts in the specified duration by passing top_devices request parameter as true. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsDeviceTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsDevViewResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsDevTagsReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/device/devices": {
+      "post": {
+        "summary": "KPI Alerts related API endpoints\nRetrieve a device centric view of alerts for device(s).",
+	"description": "Response is returned as an array of DeviceAlerts. The API currently supports retrieving all alerts for specified device(s) and can be filtered by alert level(s), kpi(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. The api can be used to return a sorted list of devices by number of alerts in the specified duration by passing top_devices request parameter as true. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsDevViewResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsDevReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/kpi/deviceTags": {
+      "post": {
+        "summary": "Retrieve a kpi centric view of alerts for kpis and device tags. Response is returned as an array of KpiAlerts.",
+	"description": "The API currently supports retrieving all alerts for specified kpis and device tags and can be filtered by alert level(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. The api can be used to return a sorted list of devices by number of alerts in the specified duration by passing top_devices request parameter as true. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsKpiDeviceTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsKpiViewResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsKpiDevTagsReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/kpi/devices": {
+      "post": {
+        "summary": "Retrieve a kpi centric view of alerts for kpis and devices. Response is returned as an array of KpiAlerts.",
+	"description": "The API currently supports retrieving all alerts for specified kpis and devices and can be filtered by alert level(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. The api can be used to return a sorted list of devices by number of alerts in the specified duration by passing top_devices request parameter as true. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsKpiDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsKpiViewResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsKpiDevReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/alerts/deviceTags": {
+      "post": {
+        "summary": "Retrieve raw time series of Raw alerts for device tags in descending order.",
+	"description": "Response is returned in a time series format. The API currently supports retrieving all alerts for specified kpis and device tags  and can be filtered by alert level(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsRawDeviceTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsTimeSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesDtlTagsReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/alerts/devices": {
+      "post": {
+        "summary": "Retrieve raw time series of Raw alerts for devices in descending order.",
+	"description": "Response is returned in a time series format. The API currently supports retrieving all alerts for specified kpis and devices and can be filtered by alert level(s) and time duration. Pagination is supported by specifying limit and offset in the POST request arguments. If no filter parameters are passed in to the query endpoints, the API will return alerts by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsRawDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsTimeSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesDtlReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/device": {
+      "post": {
+        "summary": "Retrieve raw time series of a summary view of Impacted devices (Crosswork UI landing page).",
+	"description": "Response is returned in a time series format. The API retrieves a time series of the count of any new Devices that received alerts in Critical and Major severity in the past minute during past 1hour only. A maximum total of 60 time series data points can be retreived from this api. Pagination is supported by specifying limit and offset in the POST request arguments. If no filter parameters are passed in to the query endpoints, the API will return data by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsDeviceSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsTimeSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesSummaryReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/kpi": {
+      "post": {
+        "summary": "Retrieve raw time series of a summary view of Impacted KPIs (Crosswork UI landing page).",
+	"description": "Response is returned in a time series format. The API retrieves a time series of the count of any new KPIs that received alerts in Critical and Major severity in the past minute during past 1hour only.  A maximum total of 60 time series data points can be retreived from this api. Pagination is supported by specifying limit and offset in the POST request arguments.If no filter parameters are passed in to the query endpoints, the API will return data by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsKpiSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsTimeSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesSummaryReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/levels/deviceTags": {
+      "post": {
+        "summary": "Retrieve a time series of count of alerts by levels for each specified time interval for device tags.",
+	"description": "Used by bar charts on pulse UI. Response is returned as an array of AlertSummaryTS format. The API currently supports retrieving all alerts for specified kpis and device tags and can be filtered by alert level(s) and time duration. If no device tags or kpis are passed in, the api will aggregate all alerts in the time interval irrespective of specific devices or kpis. The api also accepts a groupby argument where the grouping time interval should be specified as required. Pagination is supported by specifying limit and offset in the POST request arguments. If no filter parameters are passed in to the query endpoints, the API will return alert count by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsSeriesLevelsDeviceTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesLevelsDevTagsReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/alerts/series/levels/devices": {
+      "post": {
+        "summary": "Retrieve a time series of count of alerts by levels for each specified time interval for devices.",
+	"description": "Used by bar charts on pulse UI. Response is returned as an array of AlertSummaryTS format. The API currently supports retrieving all alerts for specified kpis and devices and can be filtered by alert level(s) and time duration. If no devices or kpis are passed in, the api will aggregate all alerts in the time interval irrespective of specific devices or kpis. The api also accepts a groupby argument where the grouping time interval should be specified as required. Pagination is supported by specifying limit and offset in the POST request arguments. If no filter parameters are passed in to the query endpoints, the API will return alert count by applying the default limit of 50 and default time interval of 1h.",
+        "operationId": "GetAlertsSeriesLevelsDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseAlertsSeriesLevelsDevReq"
+            }
+          }
+        ],
+        "tags": [
+          "Alerts"
+        ]
+      }
+    },
+    "/v1/recommendation/kpi/devices/{device_id}": {
+      "parameters": [
+        {
+          "name": "device_id",
+          "in": "path",
+          "description": "Device identifier",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "summary": "To get recommended KPIs of the specified device based on the device type, and device hardware and software configurations. A KPI is recommended if the value of property 'recommend' is true.",
+        "tags": [
+          "RecommendKPIs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kpis": {
+                  "type": "object",
+                  "properties": {
+                    "kpi": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "kpi_id": {
+                            "type": "string",
+                            "description": "KPI identifier"
+                          },
+                          "kpi_name": {
+                            "type": "string",
+                            "description": "KPI display name"
+                          },
+                          "category": {
+                            "type": "string",
+                            "description": "KPI category"
+                          },
+                          "summary": {
+                            "type": "string",
+                            "description": "Brief one-liner description of the KPI"
+                          },
+                          "details": {
+                            "type": "string",
+                            "description": "Detailed description of the KPI"
+                          },
+                          "formula": {
+                            "type": "string",
+                            "description": "(Optional) KPI formula encoded in base64"
+                          },
+                          "recommend": {
+                            "type": "boolean",
+                            "description": "A value of 'true' indicates that this KPI is recommended"
+                          },
+                          "paths": {
+                            "type": "object",
+                            "properties": {
+                              "path": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/path"
+                                }
+                              }
+                            }
+                          },
+                          "scripts": {
+                            "type": "object",
+                            "properties": {
+                              "script": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/script"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kpi_id",
+                          "kpi_name",
+                          "category",
+                          "summary",
+                          "details",
+                          "paths"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: specified device not found."
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/alerts/remediation": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "description": "Specify parameters to remediate an alerting KPI",
+          "required": false,
+          "schema": {
+              "$ref": "#/definitions/remediation"
+            }
+        }
+      ],
+      "post": {
+        "summary": "To remediate an alerting KPI",
+        "tags": [
+          "Remediation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/remediate"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+   "/v1/kpimgmt/link": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "description": "Associate Remediation with a KPI",
+          "required": false,
+          "schema": {
+              "$ref": "#/definitions/link"
+            }
+        }
+      ],
+      "post": {
+        "summary": "To associate remediation with a KPI",
+        "tags": [
+          "Remediation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/link"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/link"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+   "/v1/kpimgmt/unlink": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "description": "Remove Remediation associated with a KPI",
+          "required": false,
+          "schema": {
+              "$ref": "#/definitions/link"
+            }
+        }
+      ],
+      "post": {
+        "summary": "To remove Remediation associated with a KPI",
+        "tags": [
+          "Remediation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/link"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/link"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/kpiprofileassoc/delete": {
+      "post": {
+        "summary": "Disable KPI Profiles on devices",
+        "tags": [
+          "KPI Profile / Device(s) Enable/Disable/Jobs"
+        ],
+        "operationId": "DeleteKpiProfilesDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocDeleteResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request: E.g. Please provide Devices or Groups and/or KPIProfiles for disabling KPI Profiles on devices."
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocDeleteWriteReq"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/kpiprofileassoc/query": {
+      "post": {
+        "summary": "Query KPI Profiles on devices",
+        "tags": [
+          "KPI Profile / Device(s) Enable/Disable/Jobs"
+        ],
+        "operationId": "QueryKpiProfilesDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocReq"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/kpiprofileassoc/write": {
+      "post": {
+        "summary": "Enable KPI Profiles on devices",
+        "tags": [
+          "KPI Profile / Device(s) Enable/Disable/Jobs"
+        ],
+        "operationId": "EnableKpiProfilesDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocWriteResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request: E.g. KPIProfiles is required to enable KPI Profiles on devices."
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseKpiProfileAssocDeleteWriteReq"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/kpiprofile/jobDetails": {
+      "post": {
+        "summary": "This pulse endpoint returns TxnResult objects matched with filter params in the request object\nArgument passed in includes txid,profile_id,kpi_id and limit/offset. If no filter params matches returns all TxnResult for the txid\nArgument returned is TxnResultQueryResp\nExample: curl -x Post http://localhost:8000/v1/kpiprofile/jobDetails -d '{\"tx_id\": \"10\", \"Limit\": 10, \"Offset\": 0}'",
+        "tags": [
+          "KPI Profile / Device(s) Enable/Disable/Jobs"
+        ],
+        "operationId": "GetTxnResult",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseTxnResultQueryResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request: E.g. Invalid request format for querying  KPI Profiles Transactions. Please resend in a valid format"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseTxnResultQueryReq"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/kpiprofile/jobs": {
+      "post": {
+        "summary": "This pulse endpoint returns Txn objects matched with filter params in the request object\nArgument passed in includes txid,origin and limit/offset. If no filter params matches returns all Txn\nArgument returned is TxnQueryResp\nExample: curl -x Post /v1/kpiprofile/jobs -d '{\"tx_id\": \"10\", \"Limit\": 10, \"Offset\": 0}'",
+        "tags": [
+          "KPI Profile / Device(s) Enable/Disable/Jobs"
+        ],
+        "operationId": "GetTxn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pulseTxnQueryResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request: E.g. Invalid request format for querying  KPI Profiles Transactions. Please resend in a valid format"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pulseTxnQueryReq"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [{
+    "bearerAuth": []
+  }],
+  "definitions": {
+     "ProfileControlProfileState": {
+      "type": "string",
+      "enum": [
+        "INPROGRESS",
+        "READY",
+        "FAILED",
+        "DELETING"
+      ],
+      "default": "INPROGRESS",
+      "title": "- INPROGRESS: Not used yet.\n - READY: Alerting configured successfully.\n - FAILED: Alerting config failed or config parameters are wrong\n - DELETING: Being deleted"
+    },
+    "ResultResultValue": {
+      "type": "string",
+      "enum": [
+        "ACCEPTED",
+        "REJECTED",
+        "FAILED"
+      ],
+      "default": "ACCEPTED",
+      "description": "- ACCEPTED: ACCEPTED indicates that pulse accepts a request to do work.\n - REJECTED: REJECTED indicates rejection to perform requested operation, and is accompanied by a Message.\n - FAILED: FAILED indicates that pulse failed to serve the request. Need a delete request to continue."
+    },
+    "pulseResult": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "$ref": "#/definitions/ResultResultValue",
+          "description": "ResultValue indicated accept/reject for a request, not the outcome of the work itself."
+        },
+        "Message": {
+          "type": "string",
+          "description": "Message is a textual description of reason for rejection, and can be safely passed on to operator through logs or UI."
+        }
+      }
+    },
+    "kpis_post":  {
+      "type": "object",
+      "properties": {
+         "kpiPost":  {
+          "type": "object",
+          "description": "Contains A set of KPI definitions",
+           "properties": {
+           "kpis": {
+           "type": "object",
+           "properties": {
+            "kpi": {
+              "type": "array",
+              "items": {
+      	      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI identifier. A maximum length of 64 characters. Upper or lowercase characters, underscores and numbers. Must not contain \"cisco\" and \"pulse\" prefixes."
+        },
+        "kpi_name": {
+          "type": "string",
+          "description": "KPI display name. A maximum length of 64 characters."
+        },
+        "state": {
+          "type": "string",
+          "description": "KPI state. Values of 'pending' and 'complete'. To set to state 'complete', all fields must be specified. Only in state 'complete' that the KPI can be associated to a device."
+        },
+        "category": {
+          "type": "string",
+          "description": "KPI category. A maximum length of 64 characters."
+        },
+        "summary": {
+          "type": "string",
+          "description": "A brief one-liner description of the KPI. A maximum length of 256 characters."
+        },
+        "details": {
+          "type": "string",
+          "description": "A detailed description of the KPI. A maximum length of 1024 characters."
+        },
+        "sensor_groups": {
+          "type": "object",
+          "properties": {
+            "sensor_group": {
+              "type": "array",
+              "description": "Support only one sensor group.",
+              "items": {
+                "$ref": "#/definitions/define_sensor_group"
+              }
+            }
+          }
+        },
+        "scripts": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_script"
+              }
+            }
+          }
+        },
+        "dashboards": {
+          "type": "object",
+          "properties": {
+            "dashboard": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_dashboard"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "state": "complete",
+        "kpi_id": "wizard_test_cpu_utilization",
+        "kpi_name": "Wizard Test Cpu Utilization",
+        "category": "User Created",
+        "summary": "Monitor CPU usage across RP and Linecards on Routers",
+        "details": "Monitor CPU usage across RP and Linecards on Routers. Alert will be generated when CPU utilization exceeds thresholds",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                  "default":   5,
+                  "min":       1,
+                  "max":       30,
+                  "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-five-minute"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "Wizard_Test_Cpu_Utilizatione336023b_5efada29e05d_template.tick",
+              "script": "//-----------------------------------------------------------------------------\n// This TickScript detects spikes and drops in measured values by alerting when\n// values deviate some number of standard deviations away from normal values.\n// Threshold for number of standard deviations can be set in the var\n// 'alert_threshold'.\n//\n// References:\n// - https://docs.influxdata.com/influxdb/v1.3/\n// - https://docs.influxdata.com/kapacitor/v1.3/\n//\n// Copyright (c) 2017 by Cisco\n// All rights reserved.\n//-----------------------------------------------------------------------------\n\n// PULSE_RUN_TIME InfluxDB DB to write alerts to.\nvar alerts_db = 'robot_alertdb'\n\n// PULSE_RUN_TIME InfluxDB measurement.\nvar alerts_measurement = 'alerts'\n\n// PULSE_RUN_TIME InfluxDB retention policy.\nvar alerts_rp = 'rp1h_1'\n\n// PULSE_RUN_TIME Data producer.\nvar producer string\n\n// KPI_INTERNAL ID of KPI that this TICKScript corresponds to.\nvar kpi_id = 'pulse_custom_KPI'\n\n// KPI_INTERNAL ID of the alert.\nvar alert_id = 'pulse_custom_KPI'\n\n// KPI_INTERNAL Alert message.\nvar alert_message = '{{ .Level }} : data {{ index .Fields \"kpi_stream\" | printf \"%0.2f\" }} % is Unusual, Threshold: {{ index .Fields \"alert_threshold\" | printf \"%0.2f\" }} SD. It is {{ index .Fields \"sigma\" | printf \"%0.2f\"}} std. dev away from Average.'\n\n// KPI_INTERNAL ID of alert clear events.\nvar clear_id = 'pulse_custom_KPI'\n\n// KPI_INTERNAL Clear message.\nvar clear_message = '{{ .Level }} : data {{ index .Fields \"kpi_stream\" | printf \"%0.2f\" }} % has returned to Usual range, Threshold: {{ index .Fields \"clear_threshold\" | printf \"%0.2f\" }} SD. It is {{ index .Fields \"sigma\" | printf \"%0.2f\"}} std. dev away from Average.'\n\n// KPI_INTERNAL InfluxDB measurement to retrieve data from.\nvar measurement = 'pulse_customer_measurement'\n\n// KPI_INTERNAL Filter expression that filters on data stream.\nvar where_filter = lambda: TRUE\n\n// KPI_INTERNAL Producer filter.\nvar where_producer = lambda: \"Producer\" == producer\n\n// KPI_INTERNAL Group by.\nvar groups = [*]\n\n// KPI_INTERNAL Lambda expression to reduce raw data to KPI.\nvar stream_eval_lambda = lambda: float(\"field\")\n\n// KPI_THRESHOLDS Alert threshold in term of number of standard deviations from the mean.\nvar alert_threshold = 2.00\n\n// KPI_THRESHOLDS Time in seconds after entering alert state to begin sending CRITICAL alerts.\nvar alert_crit_time = 0.00\n\n// KPI_THRESHOLDS Time in seconds after entering alert state to begin sending WARNING alerts.\nvar alert_warn_time = 0.00\n\n// KPI_THRESHOLDS Clear threshold in term of number of standard deviations from the mean.\nvar clear_threshold = 2.00\n\n// KPI_THRESHOLDS Time in seconds after entering clear state to begin sending CLEAR alerts.\nvar clear_time = 0.00\n\n// KPI_INTERNAL Unit of time for alerts.\nvar time_unit = 1s\n\n// KPI_INTERNAL Three times the cadence of measurement data.\nvar three_times_cadence = 1m30s\n\nvar data = stream\n    |from()\n        .measurement(measurement)\n        .where(where_producer)\n        .where(where_filter)\n        .groupBy(groups)\n    |httpOut('data')\n\n// Log and alert if sample rate is not above minimum threshold.\nvar deadman_data = data\n    |deadman(1.0, three_times_cadence)\n        .log('/var/log/robot/alert.log')\n    |httpOut('deadman_data')\n\n// kpi_stream that is result of stream_eval_lambda applied to raw data.\nvar transform = data\n    |eval(stream_eval_lambda)\n        .as('kpi_stream')\n    |httpOut('transform')\n\nvar deadman_transform = transform\n    |deadman(1.0, three_times_cadence)\n        .log('/var/log/robot/alert.log')\n    |httpOut('deadman_transform')\n\n// Identify how many standard deviations away the sample is from the mean and\n// keep track of how long is in alert or clear condition.\nvar stream_sd = transform\n    |eval(lambda: sigma(\"kpi_stream\"))\n        .as('sigma')\n        .keep('kpi_stream', 'sigma')\n    |httpOut('stream_sd')\n    |stateDuration(lambda: \"sigma\" >= alert_threshold)\n                    .unit(time_unit)\n                    .as('alert_duration')\n    |stateDuration(lambda: \"sigma\" < clear_threshold)\n                    .unit(time_unit)\n                    .as('clear_duration')\n    |default()\n        .field('alert_threshold', alert_threshold)\n        .field('clear_threshold', clear_threshold)\n        .tag('kpi_id', kpi_id)\n        .field('alert_src', 'TICK')\n    |httpOut('final_alert_data')\n\n// Critical and warning alerts.\nstream_sd\n    |alert()\n         .warn(lambda: \"alert_duration\" >= alert_warn_time)\n         .crit(lambda: \"alert_duration\" >= alert_crit_time)\n         .stateChangesOnly()\n         //.critReset(lambda: \"clear_duration\" >= clear_time)\n         .log('/var/log/robot/alert.log')\n         .levelTag('level')\n         .id(alert_id)\n         .idField('id')\n         .message(alert_message)\n         .messageField('msg')\n    |where(lambda: \"level\" != 'OK')\n    |influxDBOut()\n        .database(alerts_db)\n        .retentionPolicy(alerts_rp)\n        .measurement(alerts_measurement)\n        .tag('state', 'alert')\n\n// Clear alerts.\nstream_sd\n    |alert()\n         .info(lambda: \"clear_duration\" >= clear_time)\n         .stateChangesOnly()\n         .levelTag('level')\n         .id(clear_id)\n         .idField('id')\n         .message(clear_message)\n         .messageField('msg')\n    |where(lambda: \"level\" != 'OK')\n    |influxDBOut()\n         .database(alerts_db)\n         .retentionPolicy(alerts_rp)\n         .measurement(alerts_measurement)\n         .tag('state', 'clear')\n"
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "body": {
+                "dashboard": {
+                  "annotations": {
+                    "enable": false,
+                    "list": null
+                  },
+                  "editable": true,
+                  "refresh": "",
+                  "rows": null,
+                  "style": "",
+                  "tags": null,
+                  "templating": {
+                    "list": null
+                  },
+                  "time": {
+                    "from": "",
+                    "now": false,
+                    "to": ""
+                  },
+                  "timezone": "",
+                  "title": "Wizard_Test_Cpu_Utilizatione336023b_5efada29e05d",
+                  "version": 0
+                }
+              }
+            }
+          ]
+        }
+          }
+       }
+       }
+       }
+            }
+            }
+            }
+            }
+        },
+    "kpis_patch": {
+      "type": "object",
+      "properties": {
+         "kpiPatch":  {
+          "type": "object",
+          "description": "Contains set of user defined KPIs to be partially patched",
+          "properties": {
+            "kpi": {
+              "type": "array",
+              "items": {
+      	      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI identifier. A maximum length of 64 characters. Upper or lowercase characters, underscores and numbers. Must not contain \"cisco\" and \"pulse\" prefixes."
+        },
+        "kpi_name": {
+          "type": "string",
+          "description": "KPI display name. A maximum length of 64 characters."
+        },
+        "state": {
+          "type": "string",
+          "description": "KPI state. Values of 'pending' and 'complete'. To set to state 'complete', all fields must be specified. Only in state 'complete' that the KPI can be associated to a device."
+        },
+        "category": {
+          "type": "string",
+          "description": "KPI category. A maximum length of 64 characters."
+        },
+        "summary": {
+          "type": "string",
+          "description": "A brief one-liner description of the KPI. A maximum length of 256 characters."
+        },
+        "details": {
+          "type": "string",
+          "description": "A detailed description of the KPI. A maximum length of 1024 characters."
+        },
+        "sensor_groups": {
+          "type": "object",
+          "properties": {
+            "sensor_group": {
+              "type": "array",
+              "description": "Support only one sensor group.",
+              "items": {
+                "$ref": "#/definitions/define_sensor_group"
+              }
+            }
+          }
+        },
+        "scripts": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_script"
+              }
+            }
+          }
+        },
+        "dashboards": {
+          "type": "object",
+          "properties": {
+            "dashboard": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_dashboard"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+                "kpi_id": "wizard_test_cpu_utilization",
+                "kpi_name": "CPU threshold Patch",
+                "summary": "Monitor CPU usage across RP and Linecards on Routers test patch",
+                "details": "Patch Monitor CPU usage across RP and Linecards on Routers. Alert will be generated when CPU utilization exceeds thresholds",
+                "sensor_groups": {
+                  "sensor_group": [
+                    {
+                      "cadence": {
+                          "default":   5,
+                          "min":       1,
+                          "max":       30,
+                          "increment": 1
+                      },
+                      "sensor_paths": {
+                        "sensor_path": [
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-one-minute"
+                          },
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-five-minute"
+                          },
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-fifteen-minute"
+                          },
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-one-minute"
+                          },
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-five-minute"
+                          },
+                          {
+                            "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-fifteen-minute"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "dashboards": {
+                  "dashboard": [
+                    {
+                      "body": {
+                        "dashboard": {
+                          "annotations": {
+                            "enable": true,
+                            "list": null
+                          },
+                          "editable": true,
+                          "refresh": "",
+                          "rows": null,
+                          "style": "",
+                          "tags": null,
+                          "templating": {
+                            "list": null
+                          },
+                          "time": {
+                            "from": "",
+                            "now": false,
+                            "to": ""
+                          },
+                          "timezone": "",
+                          "title": "Test_Cpu_Utilization",
+                          "version": 0
+                        }
+                      }
+                    }
+                  ]
+                }
+          }
+       }
+       }
+            }
+            }
+            }
+        },
+    "query_kpis":  {
+      "type": "object",
+      "properties": {
+        "kpis": {
+          "type": "array",
+          "description": "Array of strings that specify kpi ids to be queried",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Specifies number of records to be fetched in each API call"
+        },
+        "offset": {
+          "type": "integer",
+          "description": "For pagination, specify the offset while fetching records. e.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "example": {
+        "kpis": ["pulse_cpu_utilization"],
+	"limit": 1,
+	"offset": 0
+      }
+    },
+    "delete_kpis":  {
+      "type": "object",
+      "properties": {
+        "kpis": {
+          "type": "array",
+          "description": "Array of strings that specify kpi ids to be deleted",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "kpis": ["wizard_test_cpu_utilization"]
+      }
+    },
+    "query_kpi_devices": {
+      "type": "object",
+      "properties": {
+        "kpis": {
+          "type": "array",
+          "description": "Array of strings that specify kpi names to be queried",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devices": {
+          "type": "array",
+          "description": "Array of strings that specify devices to be queried",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Array of strings that specify tags(groups) to be queried",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Specifies number of records to be fetched in each API call. Default limit is 1"
+        },
+        "offset": {
+          "type": "integer",
+          "description": "For pagination, specify the offset while fetching records. e.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "example": {
+        "kpis": ["pulse_cpu_utilization","pulse_cpu_threshold"],
+        "tags": ["cli","demo"],
+        "limit": 5,
+        "offset": 0
+      }
+    },
+    "post_kpi_devices": {
+      "type": "object",
+      "properties": {
+        "kpiDevices": {
+          "type": "object",
+          "description": "Contains set of devices and KPIs to be applied. NOTE: Either kpiDevices OR kpiGroups should be passed at any given time. The example below shows data in both kpiDevices and kpiGroups in order to depict how to pass values to the api. However, only one of these need to be populated.",
+          "properties": {
+            "devices": {
+              "type": "object",
+              "properties": {
+                "device": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "kpiGroups": {
+          "type": "object",
+          "description": "Contains set of groups and KPIs to be applied. NOTE: Either kpiDevices OR kpiGroups should be passed at any given time",
+          "properties": {
+            "groups": {
+              "type": "object",
+              "properties": {
+                "group": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/group"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": {
+         "kpiGroups": {
+           "groups": {
+             "group": [
+               {
+                 "group_id": "cli",
+                 "kpis": {
+                   "kpi": [
+                      {
+                       "kpi_id": "pulse_cpu_threshold",
+                       "scripts": {
+                         "script": [
+                           {
+                             "script_id": "pulse_cpu_threshold_template.tick",
+                             "script": "",
+                                 "parameters": {
+                                        "parameter": [
+                                 {
+                                   "name": "level2_severity",
+                                   "type": "string",
+                                   "value": "MAJOR",
+                                   "display_name": "Level 2 Alert Severity",
+                                   "possible_values": [
+                                     "MINOR",
+                                     "MAJOR",
+                                     "WARNING",
+                                     "CRITICAL"
+                                   ]
+                                 },
+                                 {
+                                   "name": "level2_threshold",
+                                   "type": "float",
+                                   "value": "70.0",
+                                   "display_name": "Level 2 Alert Threshold",
+                                   "possible_values": []
+                                 },
+                                 {
+                                   "name": "level2_time",
+                                   "type": "float",
+                                   "value": "0.0",
+                                   "display_name": "Level 2 Alert Time",
+                                   "possible_values": []
+                                 },
+                                 {
+                                   "name": "level1_severity",
+                                   "type": "string",
+                                   "value": "WARNING",
+                                   "display_name": "Level 1 Alert Severity",
+                                   "possible_values": [
+                                     "MINOR",
+                                     "MAJOR",
+                                     "WARNING",
+                                     "CRITICAL"
+                                   ]
+                                 },
+                                 {
+                                   "name": "level1_threshold",
+                                   "type": "float",
+                                   "value": "48.0",
+                                   "display_name": "Level 1 Alert Threshold",
+                                   "possible_values": []
+                                 },
+                                 {
+                                   "name": "level1_time",
+                                   "type": "float",
+                                   "value": "0.0",
+                                   "display_name": "Level 1 Alert Time",
+                                   "possible_values": []
+                                 },
+                                 {
+                                   "name": "clear_time",
+                                   "type": "float",
+                                   "value": "0.0",
+                                   "display_name": "Clear Time",
+                                   "possible_values": []
+                                 }
+                               ]
+                             }
+                           }
+                         ]
+                       },
+                       "cadence": 5
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       }
+    },
+    "delete_kpi_devices": {
+      "type": "object",
+      "properties": {
+        "kpis": {
+          "type": "array",
+          "description": "Array of strings that specify kpi ids to be removed from devices or groups",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devices": {
+          "type": "array",
+          "description": "Array of strings that specify devices where KPIs need to be removed. NOTE: Either devices OR tags should be passed at any given time",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Array of strings that specify tags(groups) where KPIs need to be removed. NOTE: Either devices OR tags should be passed at any given time",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "kpis": ["pulse_cpu_utilization","pulse_cpu_threshold"],
+        "tags": ["cli"]
+      }
+    },
+    "export_kpis": {
+      "type": "object",
+      "properties": {
+        "kpis": {
+          "type": "array",
+          "description": "Array of strings that specify kpi ids to be exported",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "kpis": ["pulse_cpu_utilization","pulse_cpu_threshold"]
+      }
+    },
+    "devices": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "object",
+          "properties": {
+            "device": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/device"
+              }
+            }
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "description": "Group identifier"
+        },
+        "kpis": {
+          "type": "object",
+          "properties": {
+            "kpi": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/kpi"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "group_id",
+        "kpis"
+      ],
+      "example": {
+        "group_id": "cli",
+        "kpis": {
+          "kpi": [
+            {
+              "kpi_id": "pulse_cpu_utilization",
+              "scripts": {
+                "script": [
+                  {
+                    "script_id": "cpu_util_alert_template.tick",
+                    "parameters": {
+                      "parameter": [
+                        {
+                          "name": "threshold",
+                          "type": "int",
+                          "value": "20"
+                        },
+                        {
+                          "name": "alertDB",
+                          "type": "string",
+                          "value": "robot_alertdb"
+                        },
+                        {
+                          "name": "alertMeasurement",
+                          "type": "string",
+                          "value": "alerts"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "cadence": 5
+            }
+          ]
+        }
+      }
+    },
+    "device": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "Device identifier"
+        },
+        "kpis": {
+          "type": "object",
+          "properties": {
+            "kpi": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/kpi"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "device_id",
+        "kpis"
+      ],
+      "example": {
+        "device_id": "RouterSFO",
+        "kpis": {
+          "kpi": [
+            {
+              "kpi_id": "pulse_cpu_utilization",
+              "scripts": {
+                "script": [
+                  {
+                    "script_id": "cpu_util_alert_template.tick",
+                    "parameters": {
+                      "parameter": [
+                        {
+                          "name": "threshold",
+                          "type": "int",
+                          "value": "20"
+                        },
+                        {
+                          "name": "alertDB",
+                          "type": "string",
+                          "value": "robot_alertdb"
+                        },
+                        {
+                          "name": "alertMeasurement",
+                          "type": "string",
+                          "value": "alerts"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "cadence": 5
+            }
+          ]
+        }
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI identifier"
+        },
+        "kpi_name": {
+          "type": "string",
+          "description": "KPI display name"
+        },
+        "category": {
+          "type": "string",
+          "description": "KPI category"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Brief one-liner description of the KPI"
+        },
+        "details": {
+          "type": "string",
+          "description": "Detailed description of the KPI"
+        },
+        "sensor_groups": {
+          "type": "object",
+          "properties": {
+            "sensor_group": {
+              "type": "array",
+              "description": "Support only one sensor group.",
+              "items": {
+                "$ref": "#/definitions/define_sensor_group"
+              }
+            }
+          }
+        },
+        "paths": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/path"
+              }
+            }
+          }
+        },
+        "scripts": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/script"
+              }
+            }
+          }
+        },
+        "dashboards": {
+          "type": "object",
+          "properties": {
+            "dashboard": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dashboard"
+              }
+            }
+          }
+        },
+        "cadence": {
+          "type": "integer",
+          "description": "Cadence for telemetry data collection in minutes."
+        }
+      },
+      "required": [
+        "kpi_id",
+        "kpi_name",
+        "category",
+        "summary",
+        "details",
+        "paths"
+      ],
+      "example": {
+        "kpi_id": "cpu-util",
+        "kpi_name": "CPU utilization",
+        "category": "CPU",
+        "summary": "Monitor CPU usage across RP and linecards on routers",
+        "details": "Monitor CPU usage across RP and linecards on routers. Alert will be generated when CPU utilization exceeds thresholds.",
+        "paths": {
+          "path": [
+            {
+              "path": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization",
+              "cadence": {
+                  "default":   5,
+                  "min":       1,
+                  "max":       30,
+                  "increment": 1
+              },
+              "spec": {
+                "fields": [
+                  {
+                    "name": "node-name",
+                    "tag": true
+                  },
+                  {
+                    "name": "total-cpu-one-minute"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "cpu_util_alert_template.tick",
+              "script": "script_string",
+              "parameters": {
+                "parameter": [
+                  {
+                    "name": "alert_threshold",
+                    "type": "float",
+                    "value": "2.0",
+                    "display_name": "Alert Threshold"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "Pulse-cpu-utilization-summary.json"
+            },
+            {
+              "type": "jsonfile",
+              "value": "Pulse-cpu-utilization-raw.json"
+            }
+          ]
+        },
+        "cadence": 5
+      }
+    },
+    "kpis": {
+      "type": "object",
+      "properties": {
+        "kpi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/kpi"
+          }
+        }
+      }
+    },
+    "patch_kpi": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI identifier. A maximum length of 64 characters. Upper or lowercase characters, underscores and numbers. Must not contain \"cisco\" and \"pulse\" prefixes."
+        },
+        "kpi_name": {
+          "type": "string",
+          "description": "KPI display name. A maximum length of 64 characters."
+        },
+        "state": {
+          "type": "string",
+          "description": "KPI state. Values of 'pending' and 'complete'. To set to state 'complete', all fields must be specified. Only in state 'complete' that the KPI can be associated to a device."
+        },
+        "category": {
+          "type": "string",
+          "description": "KPI category. A maximum length of 64 characters."
+        },
+        "summary": {
+          "type": "string",
+          "description": "A brief one-liner description of the KPI. A maximum length of 256 characters."
+        },
+        "details": {
+          "type": "string",
+          "description": "A detailed description of the KPI. A maximum length of 1024 characters."
+        },
+        "sensor_groups": {
+          "type": "object",
+          "properties": {
+            "sensor_group": {
+              "type": "array",
+              "description": "Support only one sensor group.",
+              "items": {
+                "$ref": "#/definitions/define_sensor_group"
+              }
+            }
+          }
+        },
+        "scripts": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_script"
+              }
+            }
+          }
+        },
+        "dashboards": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/define_dashboard"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+          "kpiPatch": {
+            "kpi": [
+              {
+        "kpi_id": "wizard_test_cpu_utilization",
+        "kpi_name": "CPU threshold Patch",
+        "summary": "Monitor CPU usage across RP and Linecards on Routers test patch",
+        "details": "Patch Monitor CPU usage across RP and Linecards on Routers. Alert will be generated when CPU utilization exceeds thresholds",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                  "default":   5,
+                  "min":       1,
+                  "max":       30,
+                  "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-one-minute"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-five-minute"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-fifteen-minute"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-one-minute"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-five-minute"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/process-cpu/process-cpu-fifteen-minute"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "body": {
+                "dashboard": {
+                  "annotations": {
+                    "enable": true,
+                    "list": null
+                  },
+                  "editable": true,
+                  "refresh": "",
+                  "rows": null,
+                  "style": "",
+                  "tags": null,
+                  "templating": {
+                    "list": null
+                  },
+                  "time": {
+                    "from": "",
+                    "now": false,
+                    "to": ""
+                  },
+                  "timezone": "",
+                  "title": "Wizard_Test_Cpu_Utilizatione336023b_5efada29e05d",
+                  "version": 0
+                }
+              }
+            }
+          ]
+        }
+       }
+      ]
+     }
+    }
+    },
+    "define_script": {
+      "type": "object",
+      "properties": {
+        "script_id": {
+          "type": "string",
+          "description": "Script identifier. A maximum length of 64 characters. Upper or lowercase characters, underscores and numbers. Must not contain \"cisco\" and \"pulse\" prefixes. Must contain suffix \"template\" for template based script and must not contain suffix \"template\" for non-template based script."
+        },
+        "script": {
+          "type": "string",
+          "description": "Kapacitor TICKScript."
+        }
+      }
+    },
+    "define_dashboard": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "Grafana dashboard definition in JSON format."
+        }
+      }
+    },
+    "define_sensor_group": {
+      "type": "object",
+      "properties": {
+        "cadence": {
+          "type": "integer",
+	  "$ref": "#/definitions/cadence"
+        },
+        "sensor_paths": {
+          "type": "object",
+          "properties": {
+            "sensor_path": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "path_id": {
+                    "type": "string",
+                    "description": "Path identifier."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of a sensor path field"
+        },
+        "tag": {
+          "type": "boolean",
+          "description": "To indicate if field 'name' is a tag. Default is false."
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "path": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "KPI sensor path"
+        },
+        "cadence": {
+          "type": "object",
+          "$ref": "#/definitions/cadence"
+        },
+        "spec": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/field"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cadence": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "type": "integer",
+          "$ref": "#/definitions/cadence"
+        },
+        "min": {
+          "type": "integer",
+          "description": "Minimum cadence, expect to always be defined."
+        },
+        "max": {
+          "type": "integer",
+          "description": "Maximum cadence for telemetry. Expect to always be defined."
+        },
+        "increment": {
+          "type": "integer",
+          "description": "Increment between cadences to use. If 0, can be ignored."
+        }
+      },
+      "required": [
+        "default",
+        "min",
+        "max"
+      ],
+      "example": {
+        "default":   5,
+        "min":       1,
+        "max":       30,
+        "increment": 1
+      }
+    },
+    "script": {
+      "type": "object",
+      "properties": {
+        "script_id": {
+          "type": "string",
+          "description": "TICKscript ID in the form of <script name>.tick"
+        },
+        "script": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Script"
+        },
+        "parameters": {
+          "type": "object",
+          "$ref": "#/definitions/parameters"
+        }
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Internal name of the KPI parameter used in the backend, used in other REST calls"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of parameter, e.g. string, int, float"
+        },
+        "value": {
+          "type": "string",
+          "description": "Value of the parameter"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Readable name of the KPI parameter to be displayed to the user"
+        },
+        "possible_values": {
+          "type": "array",
+          "description": "Array of strings that define the possible vaues for this parameter. If this array is not empty, it should be used as the list of options to the user for this parameter",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "name": "alert_threshold",
+        "type": "float",
+        "value": "2.0",
+        "display_name": "Alert Threshold",
+        "possible_values": ["MINOR", "MAJOR", "WARNING", "CRITICAL"]
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "parameter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/parameter"
+          }
+        }
+      },
+      "example": {
+        "parameter": [
+          {
+            "name": "alert_threshold",
+            "type": "float",
+            "value": "40.0",
+            "display_name": "Alert Threshold"
+          },
+          {
+            "name": "alert_crit_time",
+            "type": "float",
+            "value": "0.0",
+            "display_name": "Alert Critical Time"
+          }
+        ]
+      }
+    },
+    "dashboard": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of reference to Grafana dashboard"
+        },
+        "value": {
+          "type": "string",
+          "description": "Reference to Grafana Dashboard"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "example": {
+        "type": "jsonfile",
+        "value": "Pulse-cpu-utilization-summary.json"
+      }
+    },
+    "dashboards": {
+      "type": "object",
+      "properties": {
+        "dashboards": {
+          "type": "object",
+          "properties": {
+            "dashboard": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dashboard"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "dashboard": [
+          {
+            "type": "jsonfile",
+            "value": "Pulse-cpu-utilization-summary.json"
+          },
+          {
+            "type": "jsonfile",
+            "value": "Pulse-cpu-utilization-raw.json"
+          }
+        ]
+      }
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Error message"
+        }
+      }
+    },
+    "pulseAlertGateElem": {
+      "type": "object",
+      "properties": {
+        "alert_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertInputElem"
+          }
+        },
+        "operation": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseAlertInputElem": {
+      "type": "object",
+      "properties": {
+        "wire": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "input_type": {
+          "type": "string"
+        },
+        "alert_gate": {
+          "$ref": "#/definitions/pulseAlertGateElem"
+        },
+        "alert_primitive": {
+          "$ref": "#/definitions/pulseAlertPrimitive"
+        }
+      }
+    },
+    "pulseAlertLevelElem": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseAlertLogic": {
+      "type": "object",
+      "properties": {
+        "kpi_profile_id": {
+          "type": "string"
+        },
+        "composite_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "alert_gate": {
+          "$ref": "#/definitions/pulseAlertGateElem"
+        }
+      }
+    },
+    "pulseAlertPrimitive": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertLevelElem"
+          }
+        }
+      }
+    },
+    "pulseAlertSummaryGroup": {
+      "type": "object",
+      "properties": {
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertView"
+          }
+        }
+      }
+    },
+    "pulseAlertSummaryTS": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "title": "level is the level of an alert"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseTimeCount"
+          },
+          "title": "alerts is a count of alerts by time"
+        }
+      },
+      "title": "AlertSummaryTS is a time series that contains count of alerts by time for each alert level"
+    },
+    "pulseAlertView": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "title": "Valid alert level e.g. CRITICAL,WARNING,INFO,OK"
+        },
+        "alert": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of alerts"
+        }
+      }
+    },
+    "pulseAlertsDevReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are returned"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "top_devices": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional flag indicating if a sorted list of devices by number of alerts should be returned by the api"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours \nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records. \ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsDevReq defines the parameters used in POST request to get Device View of alerts for devices",
+      "example": {
+  "devices": [
+    "RouterSFO"
+  ],
+  "kpis": [
+    ""
+  ],
+  "levels": [
+    ""
+  ],
+  "top_devices": true,
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "5",
+  "offset": "0"
+      }
+    },
+    "pulseAlertsDevTagsReq": {
+      "type": "object",
+      "properties": {
+        "device_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are returned"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "top_devices": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional flag indicating if a sorted list of devices by number of alerts should be returned by the api"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsDevTagsReq defines the parameters used in POST request to get Device View of alerts for device tags",
+      "example": {
+  "device_tags": [
+    "cli"
+  ],
+  "kpis": [
+    ""
+  ],
+  "levels": [
+    ""
+  ],
+  "top_devices": true,
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "5",
+  "offset": "0"
+}
+    },
+    "pulseAlertsKpiDevReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are considered"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "top_kpis": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional flag indicating if a sorted list of devices by number of alerts should be returned by the api"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsKpiReq defines the parameters used in POST request to get KPI view of alerts for devices",
+      "example": {
+  "devices": [
+    "RouterSFO"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "top_kpis": true,
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "20",
+  "offset": "0"
+}
+    },
+    "pulseAlertsKpiDevTagsReq": {
+      "type": "object",
+      "properties": {
+        "device_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are considered"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "top_kpis": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional flag indicating if a sorted list of devices by number of alerts should be returned by the api"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsKpiDevTagsReq defines the parameters used in POST request to get KPI view of alerts for device tags",
+      "example": {
+  "device_tags": [
+    "cli"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "top_kpis": true,
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "20",
+  "offset": "0"
+}
+    },
+    "pulseAlertsResp": {
+      "type": "object",
+      "properties": {
+        "device_alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseDeviceAlerts"
+          },
+          "title": "device_alerts contains a device specific view of alerts filtered by various parameters passed to the api\nit is populated when a device view of alerts is requested for device(s) or device tag(s)"
+        },
+        "kpi_alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiAlerts"
+          },
+          "title": "kpi_alerts contains a kpi specific view of alerts filtered by various parameters passed to the api\nit is populated when a kpi view of alerts is requested for device(s) or device tag(s)"
+        },
+        "series": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertSummaryTS"
+          },
+          "title": "series contains time series  of alert summary by levels"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        },
+        "time_series": {
+          "type": "string",
+          "format": "byte",
+          "title": "time_series contains raw time series without any aggregation\nstring time_series = 5;\nmap \u003cstring, google.protobuf.Any\u003e time_series = 5;\ngoogle.protobuf.Value time_series = 5;\ngoogle.protobuf.Struct time_series = 5;\nbytes time_series = 5;"
+        }
+      }
+    },
+    "pulseAlertsDevViewResp": {
+      "type": "object",
+      "properties": {
+        "device_alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseDeviceAlerts"
+          },
+          "title": "device_alerts contains a device specific view of alerts filtered by various parameters passed to the api\nit is populated when a device view of alerts is requested for device(s) or device tag(s)"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      }
+    },
+    "pulseAlertsKpiViewResp": {
+      "type": "object",
+      "properties": {
+        "kpi_alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiAlerts"
+          },
+          "title": "kpi_alerts contains a kpi specific view of alerts filtered by various parameters passed to the api\nit is populated when a kpi view of alerts is requested for device(s) or device tag(s)"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      }
+    },
+    "pulseAlertsSeriesResp": {
+      "type": "object",
+      "properties": {
+        "series": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertSummaryTS"
+          },
+          "title": "series contains time series  of alert summary by levels"
+        }
+      }
+    },
+    "pulseAlertsTimeSeriesResp": {
+      "type": "object",
+      "properties": {
+        "time_series": {
+          "type": "string",
+          "format": "byte",
+          "title": "time_series contains raw time series without any aggregation\nstring time_series = 5;\nmap \u003cstring, google.protobuf.Any\u003e time_series = 5;\ngoogle.protobuf.Value time_series = 5;\ngoogle.protobuf.Struct time_series = 5;\nbytes time_series = 5;"
+        }
+      }
+    },
+    "pulseAlertsSeriesDtlReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are considered"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsSeriesDtlReq defines the parameters used in POST request to get raw time series of alerts for devices",
+      "example": {
+  "devices": [
+    "RouterSFO"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "20",
+  "offset": "0"
+}
+    },
+    "pulseAlertsSeriesDtlTagsReq": {
+      "type": "object",
+      "properties": {
+        "device_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are considered"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsSeriesDtlTagsReq defines the parameters used in POST request to get raw time series of alerts for device tags",
+      "example": {
+  "device_tags": [
+    "cli"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "20",
+  "offset": "0"
+  }
+    },
+    "pulseAlertsSeriesLevelsDevReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are returned"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "groupby": {
+          "type": "string",
+          "title": "Specifies the group by time interval when the user needs an aggregated count of alerts per interval in a time series format\ne.g. if groupBy = \"30m\" and time_interval = 12h, , the api will aggregate alerts per 30 mins during the 12h period\ngroupBy canbe passed only when Series is passed as true"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsSeriesLevelsDevReq defines the parameters used in POST request to get time series of count of alerts by levels per time interval\nfor devices. Used by bar charts on pulse UI",
+      "example": {
+  "devices": [
+    "RouterSFO"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "time_ago": "0m",
+  "time_interval": "6h",
+  "groupby": "30m",
+  "limit": "20",
+  "offset": "0"
+}
+    },
+    "pulseAlertsSeriesLevelsDevTagsReq": {
+      "type": "object",
+      "properties": {
+        "device_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of devices for which alerts are being requested\nIf nothing is passed alerts for all devices are returned"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of KPI Ids(kpi_id)  to filter the alerts"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional comma separated list of alert levels to filter the alerts\nValid values include CRITICAL,WARNING,INFO,OK"
+        },
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "groupby": {
+          "type": "string",
+          "title": "Specifies the group by time interval when the user needs an aggregated count of alerts per interval in a time series format\ne.g. if groupBy = \"30m\" and time_interval = 12h, , the api will aggregate alerts per 30 mins during the 12h period\ngroupBy canbe passed only when Series is passed as true"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "startTime is the timestamp returned by the api to be used in subsequent calls for pagination\nIn all subsequent calls to this api, the starttime should be sent back in the request parameters\nIn a time series DB where data is continuously being written, the startTime helps preserve the data set of a query by fixing the starttime of the data so that during pagination, data is returned from the same data set that was returned in the first API call."
+        }
+      },
+      "title": "AlertsSeriesLevelsDevTagsReq defines the parameters used in POST request to get time series of count of alerts by levels per time interval\nfor device tags. Used by bar charts on pulse UI",
+      "example": {
+  "device_tags": [
+    "cli"
+  ],
+  "kpis": [
+    "pulse_cpu_threshold"
+  ],
+  "levels": [
+    ""
+  ],
+  "time_ago": "0m",
+  "time_interval": "6h",
+  "groupby": "30m",
+  "limit": "20",
+  "offset": "0"
+  }
+    },
+    "pulseAlertsSeriesSummaryReq": {
+      "type": "object",
+      "properties": {
+        "time_ago": {
+          "type": "string",
+          "title": "Optional start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to alst 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "title": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will aggregate all alerts for past 12 hours and so on\nDefault is 1h"
+        },
+        "limit": {
+          "type": "string",
+          "title": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return alerts for 4 devices\nDefault is 50"
+        },
+        "offset": {
+          "type": "string",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "title": "AlertsSeriesSummaryReq defines the parameters used in POST request to get raw time series of a summary view of Impacted devices and Impacted KPIs (Crosswork UI landing page)",
+      "example": {
+  "time_ago": "0m",
+  "time_interval": "1d",
+  "limit": "20",
+  "offset": "0"
+}
+    },
+    "pulseBasicCompAssocDevice": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "composite_id": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseBasicCompKpi": {
+      "type": "object",
+      "properties": {
+        "comp_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      "title": "Basic composit kpi info"
+    },
+    "pulseCompGetReq": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        },
+        "composite_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "pulseCompReqOne": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        },
+        "composite_id": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseCompMgmtResp": {
+      "type": "object",
+      "properties": {
+        "composites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseAlertLogic"
+          }
+        }
+      }
+    },
+    "pulseAlertLogicOutput": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "pulseCompResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseDeviceAlerts": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "title": "device_id is the device for which alerts are returned"
+        },
+        "device_type": {
+          "type": "string",
+          "title": "device_type is the device type for the specified device"
+        },
+        "device_IP": {
+          "type": "string",
+          "title": "device_IP is the device IP for the specified device"
+        },
+        "impact_score": {
+          "type": "integer",
+          "format": "int64",
+          "title": "impact_score is the impact score value of the specified device\nCurrent implementation of impact_score derivation logic is as below:\nImpact Score  = 4 * (# of critical alerts) + 3 * (# of major alerts) + 2 * (# of warning alerts) + 1 * (# of info alerts)"
+        },
+        "total_alerts": {
+          "type": "integer",
+          "format": "int64",
+          "title": "total_alerts is the total number of alerts for the specified device"
+        },
+        "summary": {
+          "$ref": "#/definitions/pulseAlertSummaryGroup",
+          "title": "summary contains the count of alerts broken down by levels"
+        }
+      }
+    },
+    "pulseKpiAlerts": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "title": "kpi_id is the kpi for which alerts are returned"
+        },
+        "kpi_name": {
+          "type": "string",
+          "title": "kpi_name is the kpi name for the specified kpi"
+        },
+        "kpi_type": {
+          "type": "string",
+          "title": "kpi_type is the kpi type for the specified kpi"
+        },
+        "impact_score": {
+          "type": "integer",
+          "format": "int64",
+          "title": "impact_score is the impact score value of the specified kpi\nCurrent implementation of impact_score derivation logic is as below:\nImpact Score  = 4 * (# of critical alerts) + 3 * (# of major alerts) + 2 * (# of warning alerts) + 1 * (# of info alerts)"
+        },
+        "total_alerts": {
+          "type": "integer",
+          "format": "int64",
+          "title": "total_alerts is the total number of alerts for the specified device"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "devices is a list of devices that are currently alerting for the specific kpis passed in"
+        },
+        "summary": {
+          "$ref": "#/definitions/pulseAlertSummaryGroup",
+          "title": "summary contains the count of alerts broken down by levels"
+        }
+      }
+    },
+    "pulseTimeCount": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "uint64",
+          "title": "time is the timestamp corresponding to alerts"
+        },
+        "alert": {
+          "type": "integer",
+          "format": "int64",
+          "title": "alert is a count of alerts at the corresponding time"
+        }
+      },
+      "title": "TimeCount is a time series that contains count of alerts by time"
+    },
+    "transaction": {
+      "type": "object",
+      "properties": {
+        "txid": {
+          "type": "integer",
+          "description": "Transaction identifier (64-bit integer)."
+        },
+        "start_time": {
+          "type": "string",
+          "description": "Start time of transaction. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time of transaction. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+        },
+        "state": {
+          "type": "string",
+          "description": "State of transaction. Values are 'Failed', 'Partial', 'Processing', 'Queued', and 'Success'."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message, if any, of transaction."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method. Values are 'DELETE', 'POST', and 'PUT'."
+        },
+        "url": {
+          "type": "string",
+          "description": "Request URL."
+        },
+        "request": {
+          "type": "object",
+          "description": "Request body in JSON format."
+        },
+        "tasks": {
+          "type": "object",
+          "properties": {
+            "task": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "uuid": {
+                    "type": "string",
+                    "description": "UUID"
+                  },
+                  "kpi_id": {
+                    "type": "string",
+                    "description": "KPI identifier."
+                  },
+                  "device_id": {
+                    "type": "string",
+                    "description": "Device identifier."
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "description": "Start time of task. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "description": "End time of task. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "State of task. Values are 'Failed', 'Processing', 'Queued', and 'Success'."
+                  },
+                  "operation": {
+                    "type": "string",
+                    "description": "Operation values are 'Create', 'Delete', and 'Update'."
+                  },
+                  "error": {
+                    "type": "string",
+                    "description": "Error message, if any, of task."
+                  },
+                  "subtasks": {
+                    "type": "object",
+                    "properties": {
+                      "subtask": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "subtask_id": {
+                              "type": "string",
+                              "description": "Subtask identifier."
+                            },
+                            "start_time": {
+                              "type": "string",
+                              "description": "Start time of subtask. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+                            },
+                            "end_time": {
+                              "type": "string",
+                              "description": "End time of subtask. Unix time in the format of for example, \"2017-10-30T14:53:33.967154-07:00\"."
+                            },
+                            "state": {
+                              "type": "string",
+                              "description": "State of subtask. Values are 'Failed', 'Processing', 'Queued', and 'Success'."
+                            },
+                            "error": {
+                              "type": "string",
+                              "description": "Error message, if any, of subtask."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "template": {
+      "type": "object",
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "description": "Template identifier."
+        },
+        "template_name": {
+          "type": "string",
+          "description": "Display template name."
+        },
+        "script": {
+          "type": "string",
+          "description": "Kapacitor TICKScript."
+        }
+      }
+    },
+    "templates": {
+      "type": "object",
+      "properties": {
+        "templates": {
+          "type": "object",
+          "properties": {
+            "template": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/template"
+              }
+            }
+          }
+        }
+      }
+    },
+    "transactions": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "object",
+          "properties": {
+            "transaction": {
+              "type": "array",
+              "description": "A transaction is a DELETE, POST, or PUT of KPI and device.",
+              "items": {
+                "$ref": "#/definitions/transaction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "remediate": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "Device Name for which remediation is being requested."
+        },
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI Id for which remediation is being requested."
+        },
+        "levels": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/level"
+              }
+            }
+          }
+        },
+        "time_ago": {
+          "type": "string",
+          "description": "Start time of the Time period in terms of minutes(m) or hours(h)\ne.g if time_ago = 4 then the api wil consider alerts that came in prior to last 4hours\nDefault is now"
+        },
+        "time_interval": {
+          "type": "string",
+          "description": "Specifies the length of the time period in terms of hours or minutes\ne.g. if timeInterval = 12h, the query will consider all alerts for past 12 hours and so on\nDefault is 1h"
+        }
+      }
+    },
+    "level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "description": "Alert levels to be considered for remediation. Valid values include CRITICAL,WARNING,INFO,OK"
+        }
+      }
+    },
+    "link_kpi": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "description": "KPI Id to which remediation is being associated."
+        },
+        "kpi_name": {
+          "type": "string",
+          "description": "Name of the KPI Id to which remediation is being associated."
+        },
+        "remediation": {
+          "$ref": "#/definitions/remediation",
+          "title": "remediation contains parameters for remediating the KPI"
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "kpi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link_kpi"
+          }
+        }
+      },
+      "example": {
+        "kpi": [{
+          "kpi_id": "pulse_interface_flap_detector",
+          "kpi_name": "Interface flap detection",
+          "remediation": {
+            "url": "/crosswork/nca/v1/mopjobs",
+            "body": {
+              "mop_id": "router_op_interface",
+              "mop_name": "Interface State change",
+              "hosts": "{{ index .Content `Producer` }}",
+              "execution_params": {
+                "admin_state": "down",
+                "if_names": ["{{ index .Content `interface-name` }}"],
+                "provider": "Nso",
+                "collection_type": "telemetry",
+                "mop_timeout": "1h",
+                "check_mode": false
+              }
+            }
+          }
+        }
+        ]}
+    },
+    "remediation": {
+      "type": "object",
+      "properties": {
+        "URL": {
+          "type": "string",
+          "description": "URL for the NCA Playbook for this remediation."
+        },
+        "body": {
+          "type": "string",
+          "format": "byte",
+          "description": "Bytes array containing the NCA playbook parameters for this remediation."
+        }
+      },
+      "example": {
+        "device_id": "RouterSFO",
+        "kpi_id": "pulse_interface_flap_detector",
+        "levels": [
+          {
+            "level": "CRITICAL"
+          },
+          {
+            "level": "INFO"
+          }
+        ],
+        "time_ago": "0m",
+        "time_interval": "5m"
+      }
+    },
+    "pulseKpiDeviceProfileGroup": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiProfileDeviceElem"
+          },
+          "title": "Contains a single profile device"
+        }
+      },
+      "title": "KpiDeviceProfileGroup contains a single device and its kpi profiles"
+    },
+    "pulseKpiProfileAssocReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of devices to be enabled with the KPI profiles or to query"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of DLM tags to be enabled with the KPI profiles\nNote that either devices or DLM tags should be passed in to the api."
+        },
+        "kpi_profiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of kpi profiles to be enabled or to query"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "title": "KpiProfileAssocReq defines the parameters used in POST request to:\n1) Enable KPI Profiles on devices (list of devices/DLM device tags and KPI Profiles can be passed in)\n2) Disable KPI Profiles on devices (list of devices/DLM device tags and KPI Profiles can be passed in)\n3) Query KPI Profiles on devices. The user can send a list of devices, Kpi Profiles and limit+offset for pagination"
+    },
+    "pulseKpiProfileAssocResp": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transaction id for the KPI Profile association request"
+        },
+        "device_kpi_profiles": {
+          "$ref": "#/definitions/pulseKpiProfileDeviceGroups",
+          "title": "In case of queries using /query endpoint, kpi profile device groups are returned by the api"
+        }
+      },
+      "description": "KpiProfileAssocResp defines the structure in which KPI profile device information is returned by the api\nIn case of a Enable/Disable/Patch KPI profile operation, a TXID is returned\nIn case of query, list of devices and corresponding KPIs are returned."
+    },
+    "pulseKpiProfileDeviceElem": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "title": "device id"
+        },
+        "kpi_device_profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiProfiles"
+          },
+          "title": "Contains details of kpi profiles enabled on the device"
+        },
+        "enabled_profiles_count": {
+          "type": "string",
+          "format": "int64",
+          "title": "Enabled profiles count for device_id"
+        }
+      },
+      "title": "KpiProfileDeviceElem contains details of kpi profiles enabled on specific device"
+    },
+    "pulseKpiProfileDeviceGroups": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiProfileDeviceElem"
+          },
+          "title": "Contains a set of profile device groups"
+        }
+      },
+      "title": "KpiProfileDeviceGroups contains a list of Devices and KPI profiles"
+    },
+    "pulseKpiProfileKpiRefElem": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "title": "kpi id"
+        },
+        "kpi_name": {
+          "type": "string",
+          "title": "kpi name"
+        },
+        "link": {
+          "type": "string",
+          "title": "specifies the grafana dashboard link"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "specifies the grafana dashboard links if multiple"
+        },
+        "state": {
+          "type": "string",
+          "title": "Specifies state of the kpi on the device"
+        },
+        "remediation": {
+          "$ref": "#/definitions/pulseRemediation",
+          "title": "Contains Remediation details if any exist"
+        },
+        "cadence": {
+          "type": "string",
+          "format": "uint64",
+          "title": "cadence for kpi"
+        },
+        "profile_id": {
+          "type": "string",
+          "title": "kpi profile id"
+        }
+      },
+      "title": "KpiProfileKpiRefElem contains details of a single kpi in a kpi profile in context of a device"
+    },
+    "pulseProfileConfig": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of what this profile is for."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what this profile is for."
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseProfileKpiConfig"
+          },
+          "description": "KPIs configured for this profile."
+        }
+      },
+      "description": "A ProfileConfig consists of several ProfileKpiConfigs with an ID and name."
+    },
+    "pulseProfileControl": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseProfileKpiControl"
+          }
+        },
+        "state": {
+          "$ref": "#/definitions/ProfileControlProfileState"
+        },
+        "state_desc": {
+          "type": "string"
+        },
+        "last_modified_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Last modified timestamp (in Unix epoch ns)"
+        },
+        "enabled_on_device": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Whether has been enabled on device"
+        },
+        "comp_kpis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseBasicCompKpi"
+          },
+          "title": "Array of basic composite kpis"
+        },
+        "device_count": {
+          "type": "string",
+          "format": "int64",
+          "title": "count of devices in active state"
+        }
+      },
+      "description": "A ProfileControl consists of a ProfileControl with a state and state description."
+    },
+    "pulseProfileControlBatch": {
+      "type": "object",
+      "properties": {
+        "profile_controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseProfileControl"
+          }
+        }
+      },
+      "title": "Batch of ProfileControl"
+    },
+    "pulseProfileIDBatch": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A bunch of profile IDs."
+        }
+      }
+    },
+    "pulseProfileKpiConfig": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "title": "Pulse kpi ID"
+        },
+        "cadence": {
+          "type": "string",
+          "format": "int64",
+          "title": "KPI Cadence in seconds"
+        },
+        "alerting": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Whether generate alerts or not"
+        },
+        "downsample_factor": {
+          "type": "string",
+          "format": "int64",
+          "title": "Downsampling rate: How many alerts coming in Cadence will be combined into 1 alert"
+        },
+        "kpi_scripts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiScript"
+          },
+          "title": "Each kpi may have multiple scripts"
+        }
+      },
+      "description": "ProfileKpiConfig is KPI of ID, Cadence, Alerting, Parameters for config."
+    },
+    "pulseProfileKpiControl": {
+      "type": "object",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "title": "Pulse kpi ID"
+        },
+        "kpi_name": {
+          "type": "string",
+          "title": "Pulse kpi Name"
+        },
+        "summary": {
+          "type": "string",
+          "title": "Pulse kpi Summary"
+        },
+        "details": {
+          "type": "string",
+          "title": "Pulse kpi details"
+        },
+        "cadence": {
+          "type": "string",
+          "format": "int64",
+          "title": "KPI Cadence in seconds"
+        },
+        "alerting": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Whether generate alerts or not"
+        },
+        "downsample_factor": {
+          "type": "string",
+          "format": "int64",
+          "title": "Downsampling rate: How many alerts coming in Cadence will be combined into 1 alert"
+        },
+        "kpi_scripts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiScript"
+          },
+          "title": "Each kpi may have multiple scripts"
+        }
+      },
+      "description": "ProfileKpiControl is KPI of ID, Cadence, Alerting, Parameters for config."
+    },
+    "pulseProfilePostArg": {
+      "type": "object",
+      "properties": {
+        "profile_configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseProfileConfig"
+          }
+        }
+      },
+      "title": "Post Argument of Profile"
+    },
+    "pulseProfResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseProfileDeleteArg": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        }
+      }
+    },
+    "pulseProfileQueryArg": {
+      "type": "object",
+      "properties": {
+        "profile_id_pattern": {
+          "type": "string",
+          "description": "Wildcard pattern. Any ID contains the pattern is a match (restricted by limit/offset)."
+        },
+        "profile_name_pattern": {
+          "type": "string",
+          "description": "Wildcard pattern. Any profile name contains the pattern is a match (restricted by limit/offset)."
+        },
+        "description_pattern": {
+          "type": "string",
+          "description": "Wildcard pattern. Any Description contains the pattern is a match (restricted by limit/offset)."
+        },
+        "sort_field": {
+          "type": "string",
+          "title": "Only two values: \"ID\" or \"Description\". Default is \"ID\""
+        },
+        "descending_order": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Sort order. Default is ascending."
+        },
+        "limit": {
+          "type": "string",
+          "format": "int64",
+          "description": "Specifies limit on number of devices to return in a single request\ne.g if limit = 4 then the api will return 4 profiles.\nDefault is 5 and Max is 10."
+        },
+        "offset": {
+          "type": "string",
+          "format": "int64",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "title": "Query Argument of Profile"
+    },
+    "pulseProfileResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/pulseResult"
+        }
+      },
+      "title": "Result of a Profile processing"
+    },
+    "pulseProfileResultBatch": {
+      "type": "object",
+      "properties": {
+        "profile_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseProfileResult"
+          }
+        }
+      },
+      "title": "Results of a bunch of Processing processing"
+    },
+    "pulseKpiScript": {
+      "type": "object",
+      "properties": {
+        "script_id": {
+          "type": "string"
+        },
+        "alert_template": {
+          "type": "string",
+          "title": "Alert Template used by the script"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseParameter"
+          },
+          "title": "Alerting Parameters"
+        }
+      }
+    },
+    "pulseParameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "newValue": {
+          "type": "string"
+        },
+        "possible_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pulseKpiProfiles": {
+      "type": "object",
+      "properties": {
+        "KPIProfileId": {
+          "type": "string",
+          "title": "kpi profile id"
+        },
+        "KpiRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseKpiProfileKpiRefElem"
+          },
+          "title": "Contains details of the kpis in the kpi profile in context of a device"
+        }
+      },
+      "title": "KpiProfiles Contains details of the kpis in a kpi profile in context of a device"
+    },
+    "pulseRemediation": {
+      "type": "object",
+      "properties": {
+        "URL": {
+          "type": "string",
+          "description": "URL for the NCA Playbook for this remediation."
+        },
+        "JsonBody": {
+          "$ref": "#/definitions/protobufAny",
+          "title": "Specifies parameters to remediate an alerting KPI"
+        }
+      },
+      "title": "Remediation contains details of the parameters to remediate an alerting KPI"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name whose content describes the type of the\nserialized protocol buffer message.\n\nFor URLs which use the scheme `http`, `https`, or no scheme, the\nfollowing restrictions and interpretations apply:\n\n* If no scheme is provided, `https` is assumed.\n* The last segment of the URL's path must represent the fully\n  qualified name of the type (as in `path/google.protobuf.Duration`).\n  The name should be in a canonical form (e.g., leading \".\" is\n  not accepted).\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+
+    "pulseTxn": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transaction ID"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for start time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for end time"
+        },
+        "state": {
+          "type": "string",
+          "title": "Transaction status"
+        },
+        "error": {
+          "type": "string",
+          "title": "Transaction error"
+        },
+        "method": {
+          "type": "string",
+          "title": "Transaction Method"
+        }
+      },
+      "title": "Transaction object"
+    },
+    "pulseTxnQueryReq": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transaction ID"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for start time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for end time"
+        },
+        "state": {
+          "type": "string",
+          "title": "Transaction status"
+        },
+        "method": {
+          "type": "string",
+          "title": "Transaction Method"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Specifies limit on number of rows to return in a single request\ne.g if limit = 4 then the api will return 4 rows\nDefault is 10"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        }
+      },
+      "title": "Pulse request object for transactions"
+    },
+    "pulseTxnQueryResp": {
+      "type": "object",
+      "properties": {
+        "txns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseTxn"
+          },
+          "title": "Transaction Objects"
+        }
+      },
+      "title": "Pulse response object for transactions"
+    },
+    "pulseTxnResult": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transaction ID"
+        },
+        "kpi_profile_id": {
+          "type": "string",
+          "title": "Pulse KPI profile ID"
+        },
+        "kpi_id": {
+          "type": "string",
+          "title": "Pulse KPI ID"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "Pulse Device ID"
+        },
+        "kpi_type": {
+          "type": "string",
+          "title": "Pulse KPI type"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for start time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for end time"
+        },
+        "state": {
+          "type": "string",
+          "title": "Transaction status"
+        },
+        "error": {
+          "type": "string",
+          "title": "Transaction error"
+        },
+        "operation": {
+          "type": "string",
+          "title": "Transaction operation"
+        },
+        "creation_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transaction creation timestamp"
+        },
+        "collection_job_id": {
+          "type": "string",
+          "title": "Collection Job Id"
+        }
+      },
+      "title": "Txn_Result Object"
+    },
+    "pulseTxnResultQueryReq": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Transactin ID"
+        },
+        "kpi_profile_id": {
+          "type": "string",
+          "title": "Pulse KPI profile ID"
+        },
+        "kpi_id": {
+          "type": "string",
+          "title": "Pulse KPI ID"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "Pulse Device ID"
+        },
+        "kpi_type": {
+          "type": "string",
+          "title": "Pulse KPI type"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for start time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp  for end time"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Specifies limit on number of rows to return in a single request\ne.g if limit = 4 then the api will return 4 rows\nDefault is 10"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "For pagination, specify the offset while fetching records.\ne.g.: if limit is 10, then in the first API call offset will be 0, in the 2nd call offset=10, 3rd call offset=20 etc"
+        },
+        "state": {
+          "type": "string",
+          "title": "Transaction State"
+        }
+      },
+      "title": "Pulse Request Object for querying Txnresult"
+    },
+    "pulseTxnResultQueryResp": {
+      "type": "object",
+      "properties": {
+        "txn_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pulseTxnResult"
+          },
+          "title": "Txn_results"
+        }
+      },
+      "title": "Pulse Response Object for returning Txnresult"
+    },
+    "pulseKpiProfileAssocDeleteResp": {
+      "type": "object",
+      "properties": {
+        "txid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Transaction ID"
+        },
+        "spanid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Span ID"
+        }
+      },
+      "title": "ProfileAssocDelete Response"
+    },
+     "pulseKpiProfileAssocWriteResp": {
+      "type": "object",
+      "properties": {
+        "txid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Transaction ID"
+        },
+        "spanid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Span ID"
+        }
+      },
+      "title": "ProfileAssocWrite Response"
+    },
+    "pulseKpiProfileAssocDeleteWriteReq": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of devices to be enabled with the KPI profiles or to query"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of DLM tags to be enabled with the KPI profiles\nNote that either devices or DLM tags should be passed in to the api."
+        },
+        "kpi_profiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of kpi profiles to be enabled or to query"
+        }
+       
+      },
+      "title": "KpiProfileAssocReq defines the parameters used in POST request to:\n1) Enable KPI Profiles on devices (list of devices/DLM device tags and KPI Profiles can be passed in)\n2) Disable KPI Profiles on devices (list of devices/DLM device tags and KPI Profiles can be passed in)\n3) Query KPI Profiles on devices. The user can send a list of devices, Kpi Profiles and limit+offset for pagination"
+    }
+  }
+}

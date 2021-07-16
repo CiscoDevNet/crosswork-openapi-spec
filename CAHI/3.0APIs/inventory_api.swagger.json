@@ -1,0 +1,1783 @@
+ {
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Inventory API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "description": "This document contains details of the Crosswork Inventory RESTful APIs that can be used to onboard and manage Device Groups (Tags), Credentials, Providers and Devices"
+  },
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/crosswork/inventory/",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/credentials": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeCredentialsList"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete the list of Credential Profiles",
+        "tags": [
+          "Delete Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        }
+      },
+      "post": {
+        "summary": "Add Credential Profiles in bulk",
+        "tags": [
+          "Add Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates or overwrites Credential Profiles in bulk",
+        "tags": [
+          "Update Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeCredentialsList"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/credentials/query": {
+      "post": {
+        "summary": "Retrieves credentials. A filter structure (RobotNodeData) can be supplied as a field in the structure RobotNodeGetReq, which is used to call this function.",
+        "tags": [
+          "Get Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeCredGetResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeGetReq"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/csvupload": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotCsvUploadReq"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete operation via CSV file upload. With this API, the uploaded list of inventory will be deleted. Can be applied to Credentials, Tags, Providers and Devices",
+        "tags": [
+          "Delete via CSV file"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        }
+      },
+      "post": {
+        "summary": "Add operation via CSV file upload. With this API, the uploaded list of inventory will be added to Crosswork. Can be applied to Credentials, Tags, Providers and Devices",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Add via CSV file"
+        ]
+      },
+      "put": {
+        "summary": "Update operation via CSV file upload. With this API, the uploaded inventory list will be updated in Crossworks. Can be applied to Devices",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Update via CSV file"
+        ]
+      }
+    },
+    "/v1/jobs/query": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeJobGetReq"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Get all Inventory Jobs",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJobList"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Inventory Jobs"
+        ]
+      }
+    },
+    "/v1/nodes": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeDataList"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete CrossWork Nodes in bulk",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request."
+          }
+        },
+        "tags": [
+          "Delete Nodes/Devices"
+        ]
+      },
+      "post": {
+        "summary": "Adds Node information to Crosswork. The client provides Node information as a list of RobotNodeData.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Add Nodes/Devices"
+        ]
+      },
+      "patch": {
+        "summary": "Updates or overwrites Crosswork Nodes in bulk",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Update Nodes/Devices"
+        ]
+      }
+    },
+    "/v1/nodes/query": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeGetReq"
+          }
+        }
+      ],
+      "post": {
+        "summary": "This API retrieves a list of Nodes. It returns complete inventory data for each Node in the list. The user can apply various filters to retrieve specific sets of Nodes by specifying one or more fields to match. The user can also filter on combinations of supported fields.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeDataGetResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Nodes/Devices"
+        ]
+      }
+    },
+    "/v1/nodes/querybrief": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeGetReq"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Retrieves a list of Nodes. Currently, this API behaves just like the Get Nodes/Devices API.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeDataGetResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Nodes Summary"
+        ]
+      }
+    },
+    "/v1/nodes/unassigntag": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeDataList"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Removes one or more Tag associations from the list of Nodes.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Remove Tags from Nodes/Devices"
+        ]
+      }
+    },
+    "/v1/nodes/count": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeGetReq"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a count of all Nodes in the database",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeDataCount"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Nodes Count"
+        ]
+      }
+    },
+    "/v1/providers": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotProviderDataList"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete Providers. A Provider can be deleted only if no Device is referencing the target Provider. Otherwise, the API returns an error.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Delete Providers"
+        ]
+      },
+      "post": {
+        "summary": "Add Providers to Crosswork",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Add Providers"
+        ]
+      },
+      "patch": {
+        "summary": "Update Provider information",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Update Providers"
+        ]
+      }
+    },
+    "/v1/providers/query": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotProviderGetReq"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Retrieves a list of Providers",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotProviderDataGetResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Providers"
+        ]
+      }
+    },
+    "/v1/tags": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeTagList"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete Crosswork Tags that are not yet associated with any Device or Node. A Tag cannot be deleted if it is associated with a Device or Node.",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Delete Tags"
+        ]
+      },
+      "post": {
+        "summary": "Create CrossWork Tags to be associated with Nodes or Devices",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeJob"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Add Tags"
+        ]
+      }
+    },
+    "/v1/tags/query": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/robotapiRobotNodeTagGetReq"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Read the Crosswork Tag information",
+        "responses": {
+          "200": {
+            "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/robotapiRobotNodeTagList"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          }
+        },
+        "tags": [
+          "Get Tags"
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "definitions": {
+    "robotapiRobotCsvUploadReq": {
+      "description": "Request body for uploading a CSV file for any inventory type",
+      "type": "object",
+      "properties": {
+        "csv": {
+          "type": "string",
+          "format": "byte"
+        },
+        "user": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/robotapiRobotInventoryType"
+        }
+      }
+    },
+    "robotapiRobotEntityConnectivityState": {
+      "description": "Derived reachability state for a Device. Cannot be set by user",
+      "type": "string",
+      "enum": [
+        "CONN_STATE_UNKNOWN",
+        "CONN_STATE_REACHABLE",
+        "CONN_STATE_UNREACHABLE",
+        "CONN_STATE_MAX",
+        "CONN_STATE_DEGRADED"
+      ],
+      "default": "CONN_STATE_UNKNOWN"
+    },
+    "robotapiRobotEntityLockState": {
+      "description": "A Device can be locked by an application to prevent other applications from using it. There are multiple possible lock states.",
+      "type": "string",
+      "enum": [
+        "INVALID_STATE",
+        "UNLOCKED",
+        "LOCKED",
+        "ERRORED"
+      ],
+      "default": "INVALID_STATE"
+    },
+    "robotapiRobotFilterData": {
+      "description": "Request body with filter options",
+      "type": "object",
+      "properties": {
+        "SortBy": {
+          "type": "string"
+        },
+        "PageSize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "PageNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Descending": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "robotapiRobotGeoCoordinates": {
+      "description": "Geographical location data for a Node",
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "altitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "robotapiRobotInetAddr": {
+      "description": "Inet Address",
+      "type": "object",
+      "properties": {
+        "inet_af": {
+          "$ref": "#/definitions/robotapiRobotInetAddressFamily"
+        },
+        "inet_addr": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotInetAddressFamily": {
+      "description": "Inet Address Family",
+      "type": "string",
+      "enum": [
+        "ROBOT_INET_ADDR_TYPE_NONE",
+        "ROBOT_INET_ADDR_TYPE_v4",
+        "ROBOT_INET_ADDR_TYPE_v6"
+      ],
+      "default": "ROBOT_INET_ADDR_TYPE_NONE"
+    },
+    "robotapiRobotInvKeyType": {
+      "description": "Supported Inventory Key Types. The API uses the Inventory Key Type’s values to generate a unique UUID for the Device.",
+      "type": "string",
+      "enum": [
+        "INVALID_TYPE",
+        "UUID",
+        "INVENTORY_ID",
+        "NODE_IP",
+        "SERIAL_NUMBER",
+        "MAC",
+        "HOST_NAME"
+      ],
+      "default": "INVALID_TYPE"
+    },
+    "robotapiRobotInventoryType": {
+      "description": "Supported Inventory Type",
+      "type": "string",
+      "enum": [
+        "INV_TYPE_UNKNOWN",
+        "INV_TYPE_NODE",
+        "INV_TYPE_PROVIDER",
+        "INV_TYPE_CREDENTIAL",
+        "INV_TYPE_TAG"
+      ],
+      "default": "INV_TYPE_UNKNOWN"
+    },
+    "robotapiRobotJobState": {
+      "description": "Various Job Result states",
+      "type": "string",
+      "enum": [
+        "JOB_INVALID",
+        "JOB_REJECTED",
+        "JOB_ACCEPTED",
+        "JOB_DB_UPDATED",
+        "JOB_NOTIFICATION_PUBLISHED",
+        "JOB_COMPLETED",
+        "JOB_FAILED"
+      ],
+      "default": "JOB_INVALID"
+    },
+    "robotapiRobotNodeAdminState": {
+      "type": "string",
+      "enum": [
+        "ROBOT_ADMIN_STATE_UNKNOWN",
+        "ROBOT_ADMIN_STATE_UNMANAGED",
+        "ROBOT_ADMIN_STATE_DOWN",
+        "ROBOT_ADMIN_STATE_UP"
+      ],
+      "default": "ROBOT_ADMIN_STATE_UNKNOWN",
+      "description": "Configured state for a Device. This is set during onboarding and can be updated as needed."
+    },
+    "robotapiRobotNodeCapability": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "YANG_MDT",
+        "SNMP",
+        "TL1",
+        "YANG_CLI",
+        "YANG_EPNM",
+        "SNMPTRAPS"
+      ],
+      "default": "NONE",
+      "description": "Capabilities supported by the Device"
+    },
+    "robotapiRobotNodeCredGetResp": {
+      "description": "Get Credentials Response Body",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeCredentials"
+          },
+          "description": "Array of Node Data"
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of total Credential Profiles available at present"
+        }
+      }
+    },
+    "robotapiRobotNodeCredentials": {
+      "type": "object",
+      "description": "Node credentials data",
+      "properties": {
+        "profile": {
+          "type": "string"
+        },
+        "v2_info": {
+          "$ref": "#/definitions/robotapiRobotSnmpV2"
+        },
+        "v3_info": {
+          "$ref": "#/definitions/robotapiRobotSnmpV3"
+        },
+        "user_pass": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotUserPass"
+          }
+        }
+      }
+    },
+    "robotapiRobotNodeCredentialsList": {
+      "description": "List of Credential Profiles",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeCredentials"
+          }
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotNodeCustomProvider": {
+      "description": "Node to Provider mapping data",
+      "type": "object",
+      "properties": {
+        "provider_name": {
+          "type": "string"
+        },
+        "provider_node_id": {
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/definitions/robotapiRobotProviderData"
+        }
+      }
+    },
+    "robotapiRobotNodeData": {
+      "type": "object",
+      "properties": {
+        "inv_key_type": {
+          "$ref": "#/definitions/robotapiRobotInvKeyType"
+        },
+        "inventory_id": {
+          "type": "string",
+          "description": "Custom unique Device identifier"
+        },
+        "node_ip": {
+          "$ref": "#/definitions/robotapiRobotInetAddr"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "Crosswork generates the UUID based on the key type and value provided by the user"
+        },
+        "mac": {
+          "type": "string",
+          "description": "Chassis backplane MAC address. Can be used to generate UUID"
+        },
+        "serial_number": {
+          "type": "string",
+          "description": "Device serial number. Can be used to generate UUID"
+        },
+        "host_name": {
+          "type": "string",
+          "description": "Device host name. Can be used to generate UUID"
+        },
+        "profile": {
+          "type": "string",
+          "description": "Required if the Device is configured to be UP on boarding: The Credential Profile applicable to this Device."
+        },
+        "reachability_state": {
+          "$ref": "#/definitions/robotapiRobotEntityConnectivityState",
+          "title": "Reachability state"
+        },
+        "admin_state": {
+          "$ref": "#/definitions/robotapiRobotNodeAdminState",
+          "title": "Device state the administrator intends for the Device to go to."
+        },
+        "connectivity_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotTransport"
+          },
+          "description": "Required if the Device is configured to be UP: The list of Device connections"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeTag"
+          },
+          "description": "Tags associated with the Device"
+        },
+        "product_info": {
+          "$ref": "#/definitions/robotapiRobotNodeProductInfo",
+          "description": "Node product info"
+        },
+        "geo_info": {
+          "$ref": "#/definitions/robotapiRobotNodeGeoData",
+          "description": "Geographical location info for the Node"
+        },
+        "routing_info": {
+          "$ref": "#/definitions/robotapiRobotRoutinginfo",
+          "description": "Routing info and Management IP info"
+        },
+        "uptime": {
+          "type": "string",
+          "description": "Device uptime"
+        },
+        "last_upd_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Last time this Device entry was updated"
+        },
+        "provider": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/robotapiRobotNodeCustomProvider"
+          },
+          "description": "List of Providers. Only one per Provider type."
+        },
+        "reachability_check": {
+          "$ref": "#/definitions/robotapiRobotReachCheck"
+        },
+        "reachability_state_upd_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "operational_state": {
+          "$ref": "#/definitions/robotapiRobotNodeOperationalState",
+          "description": "Device operational state. Crosswork computes this, so the value is read-only."
+        },
+        "lock_status": {
+          "$ref": "#/definitions/robotapiRobotNodeLockStatus"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of errors causing the Device to be in the ERROR state. Crosswork computes this, so the list is read-only."
+        }
+      }
+    },
+    "robotapiRobotNodeDataCount": {
+      "type": "object",
+      "properties": {
+        "number_of_nodes": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The number of Devices onboarded to Crosswork"
+        }
+      }
+    },
+    "robotapiRobotNodeDataGetResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeData"
+          },
+          "title": "Array of Node Data"
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Total number of Nodes available at present"
+        }
+      }
+    },
+    "robotapiRobotNodeDataList": {
+      "description": "List of Node data",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeData"
+          }
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotNodeGeoData": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "$ref": "#/definitions/robotapiRobotGeoCoordinates"
+        },
+        "building": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "range_incr": {
+          "description": "Geographical range data increments. Applicable only on the request. Used only for transitional data to specify the increments (+/-) on the coordinates given above for finding the list of Devices within the range.",
+          "$ref": "#/definitions/robotapiRobotGeoCoordinates"
+        }
+      }
+    },
+    "robotapiRobotNodeGetReq": {
+      "description": "Node Data request",
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of Nodes requested in the response. The Max Limit and Default Limit are both 100."
+        },
+        "sort_by": {
+          "$ref": "#/definitions/robotapiRobotNodeData",
+          "description": "Sort_by would be used only for fetching the RobotNodeData.\n     RobotNodeCredentials have only one Key \"profile\", which\n     will be always used for sorting."
+        },
+        "next_from": {
+          "type": "string",
+          "description": "Deprecated - Response would contain Data with keys > next_from"
+        },
+        "filter": {
+          "$ref": "#/definitions/robotapiRobotNodeData"
+        },
+        "filterData": {
+          "$ref": "#/definitions/robotapiRobotFilterData"
+        }
+      }
+    },
+    "robotapiRobotNodeJob": {
+      "type": "object",
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "description": "Job id"
+        },
+        "inst_id": {
+          "type": "string",
+          "description": "Server instance identifier"
+        },
+        "state": {
+          "$ref": "#/definitions/robotapiRobotJobState",
+          "description": "Current State of the Job"
+        },
+        "type": {
+          "type": "string",
+          "description": "Job type. Debug purpose"
+        },
+        "error": {
+          "type": "string",
+          "description": "If any error"
+        },
+        "completion_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Remaining time to complete"
+        },
+        "creation_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Job creation time in epoch seconds"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User"
+        },
+        "impacted_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Impacted Nodes, Tags, Providers or Credential Profiles"
+        }
+      },
+      "description": "Every Action related to Inventory will have a Job"
+    },
+    "robotapiRobotNodeJobGetReq": {
+      "description": "Job Request data",
+      "type": "object",
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "description": "job_id or State would be supported filter\ncreation_time would be used for offset and sorting"
+        },
+        "state": {
+          "$ref": "#/definitions/robotapiRobotJobState"
+        },
+        "creation_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Page size. Max limit 100 per req"
+        },
+        "filter": {
+          "$ref": "#/definitions/robotapiRobotNodeJob"
+        },
+        "filterData": {
+          "$ref": "#/definitions/robotapiRobotFilterData"
+        }
+      }
+    },
+    "robotapiRobotNodeJobList": {
+      "type": "object",
+      "properties": {
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeJob"
+          },
+          "description": "creation time based sorted list of RobotNodeJob"
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of total jobs available at present"
+        }
+      }
+    },
+    "robotapiRobotNodeLockReq": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/robotapiRobotEntityLockState",
+          "description": "State"
+        },
+        "uuids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Node UUIDs"
+        },
+        "owner_cookie": {
+          "type": "string"
+        },
+        "lock_id": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "Device Lock Request Data. Used Internally by Applications like NCA and PULSE to lock Devices when using them"
+    },
+    "robotapiRobotNodeLockResp": {
+      "type": "object",
+      "properties": {
+        "rc": {
+          "$ref": "#/definitions/robotapiRobotNodeReqRc",
+          "description": "Request return code"
+        },
+        "rc_msg": {
+          "type": "string",
+          "description": "Return Message"
+        },
+        "owner_cookie": {
+          "type": "string"
+        },
+        "lock_id": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "robotapiRobotNodeLockStatus": {
+      "type": "object",
+      "properties": {
+        "lock_id": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/robotapiRobotEntityLockState"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "robotapiRobotNodeOperationalState": {
+      "type": "string",
+      "enum": [
+        "ROBOT_OPER_STATE_UNKNOWN",
+        "ROBOT_OPER_STATE_UNMANAGED",
+        "ROBOT_OPER_STATE_ADMIN_DOWN",
+        "ROBOT_OPER_STATE_CHECKING",
+        "ROBOT_OPER_STATE_OK",
+        "ROBOT_OPER_STATE_ERROR",
+        "ROBOT_OPER_STATE_LOCKED",
+        "ROBOT_OPER_STATE_DELETING"
+      ],
+      "default": "ROBOT_OPER_STATE_UNKNOWN",
+      "description": "Derived state for a Device. Cannot be set by user"
+    },
+    "robotapiRobotNodeProductInfo": {
+      "type": "object",
+      "properties": {
+        "software_type": {
+          "type": "string",
+          "description": "discovered by Crosswork."
+        },
+        "software_version": {
+          "type": "string",
+          "description": "discovered by Crosswork."
+        },
+        "product_type": {
+          "type": "string"
+        },
+        "product_family": {
+          "type": "string"
+        },
+        "product_series": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "sys_object_id": {
+          "type": "string"
+        },
+        "hw_change_timestamp": {
+          "type": "string"
+        },
+        "config_change_timestamp": {
+          "type": "string"
+        },
+        "capability": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeCapability"
+          }
+        },
+        "device_type": {
+          "$ref": "#/definitions/robotapiRobotNodeType"
+        }
+      }
+    },
+    "robotapiRobotNodeReqRc": {
+      "type": "string",
+      "enum": [
+        "NODE_REQ_INVALID",
+        "NODE_REQ_SUCCESS",
+        "NODE_REQ_FAILURE",
+        "NODE_REQ_DEV_NOT_FOUND",
+        "NODE_REQ_REJECTED"
+      ],
+      "default": "NODE_REQ_INVALID",
+      "description": "Node Request return code. Used when locking Nodes."
+    },
+    "robotapiRobotNodeTag": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "creation_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devices_tagged": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Device Tag Object"
+    },
+    "robotapiRobotNodeTagGetReq": {
+      "description": "Tage Request Data",
+      "type": "object",
+      "properties": {
+        "filter": {
+          "$ref": "#/definitions/robotapiRobotNodeTag"
+        },
+        "filterData": {
+          "$ref": "#/definitions/robotapiRobotFilterData"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "next_from": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotNodeTagList": {
+      "description": "List of Tags",
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotNodeTag"
+          },
+          "description": "List of Tags"
+        },
+        "user": {
+          "type": "string"
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Total number of Tags available at present"
+        }
+      }
+    },
+    "robotapiRobotNodeType": {
+      "type": "string",
+      "enum": [
+        "NODE_TYPE_UNKNOWN",
+        "NODE_TYPE_ROUTER",
+        "NODE_TYPE_SWITCH",
+        "NODE_TYPE_ROADM",
+        "NODE_TYPE_AMPLIFIER",
+        "NODE_TYPE_CBR"
+      ],
+      "default": "NODE_TYPE_UNKNOWN",
+      "description": "- NODE_TYPE_UNKNOWN: Not known\n - NODE_TYPE_ROUTER: Layer 3 router\n - NODE_TYPE_SWITCH: Layer 2 ethernet switch\n - NODE_TYPE_ROADM: Layer 1 optical add/drop Device\n - NODE_TYPE_AMPLIFIER: Layer 1 optical repeater/ amplifier\n - NODE_TYPE_CBR: Converged broadband router\n "
+    },
+    "robotapiRobotOnboardingType": {
+      "type": "string",
+      "enum": [
+        "FROM_PROVIDER",
+        "TO_PROVIDER"
+      ],
+      "default": "FROM_PROVIDER",
+      "description": "- FROM_PROVIDER: The Direction to onboard Devices. FROM PROVIDER will onboard Devices from NSO to CW. and Vice Versa for TO PROVIDER"
+    },
+    "robotapiRobotProviderData": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "description": "Internal key, mandatory field. Allocated internally on Provider\ncreation. UUID is a generated value based on the name"
+        },
+        "name": {
+          "type": "string",
+          "description": "User-defined key, mandatory field."
+        },
+        "type": {
+          "$ref": "#/definitions/robotapiRobotProviderType"
+        },
+        "reachability_state": {
+          "$ref": "#/definitions/robotapiRobotEntityConnectivityState"
+        },
+        "connectivity_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotTransport"
+          },
+          "description": "All supported transports allowed to connect to this Provider."
+        },
+        "profile": {
+          "type": "string",
+          "description": "Credential Profile applicable to this Provider. Mandatory field."
+        },
+        "provider_device_key": {
+          "$ref": "#/definitions/robotapiRobotProviderDeviceKey"
+        },
+        "last_upd_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Last time this Provider Entry was Updated in DB.\nUnix time in seconds."
+        },
+        "last_reach_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Last time this Provider was determined to be reachable.\nUnix time in seconds."
+        },
+        "supported_models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiSupportedModels"
+          },
+          "description": "provider models"
+        },
+        "family": {
+          "$ref": "#/definitions/robotapiRobotProviderFamily",
+          "description": "Provider Family. Not supported currently."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Map to configure Provider-specific properties as key-value pairs"
+        }
+      }
+    },
+    "robotapiRobotProviderDataGetResp": {
+      "type": "object",
+      "properties": {
+        "return": {
+          "$ref": "#/definitions/robotapiRobotResponseInfo"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotProviderData"
+          }
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Total number of Providers available at present"
+        }
+      }
+    },
+    "robotapiRobotProviderDataList": {
+      "description": "List ofProviders",
+      "type": "object",
+      "properties": {
+        "providers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotProviderData"
+          }
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotProviderDeviceKey": {
+      "type": "string",
+      "enum": [
+        "ROBOT_PROVDEVKEY_NONE",
+        "ROBOT_PROVDEVKEY_HOST_NAME",
+        "ROBOT_PROVDEVKEY_NODE_IP",
+        "ROBOT_PROVDEVKEY_INVENTORY_ID"
+      ],
+      "default": "ROBOT_PROVDEVKEY_NONE",
+      "description": "Key types used for generating UUIDs for Providers"
+    },
+    "robotapiRobotProviderFamily": {
+      "type": "string",
+      "enum": [
+        "ROBOT_PROVIDER_UNKNOWN",
+        "ROBOT_PROVIDER_EPNM",
+        "ROBOT_PROVIDER_NSO",
+        "ROBOT_PROVIDER_WAE",
+        "ROBOT_PROVIDER_CSM",
+        "ROBOT_PROVIDER_XTC",
+        "ROBOT_PROVIDER_SYSLOG_STORAGE",
+        "ROBOT_PROVIDER_SR_PCE"
+      ],
+      "default": "ROBOT_PROVIDER_UNKNOWN",
+      "description": "Provider Family types"
+    },
+    "robotapiRobotProviderGetReq": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of Providers requested in the response"
+        },
+        "sort_by_field": {
+          "type": "string",
+          "description": "The field name in RobotProviderData to use for sorting. If this field is omitted, data is sorted on the Provider name, by default."
+        },
+        "last_key": {
+          "type": "string",
+          "description": "Ask for data beyond last_key per the sorted order"
+        },
+        "filter": {
+          "$ref": "#/definitions/robotapiRobotProviderData",
+          "description": "Filter for the request. The UUID, type, name, lock_state, and reachability_state are supported. Combination of filters is also supported."
+        },
+        "filterData": {
+          "$ref": "#/definitions/robotapiRobotFilterData"
+        }
+      }
+    },
+    "robotapiRobotProviderOnboarding": {
+      "type": "object",
+      "properties": {
+        "Type": {
+          "$ref": "#/definitions/robotapiRobotOnboardingType"
+        },
+        "provider_name": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotProviderType": {
+      "type": "string",
+      "enum": [
+        "ROBOT_PROVIDER_NONE",
+        "ROBOT_PROVIDER_CFG_LOCAL",
+        "ROBOT_PROVIDER_INSTALL",
+        "ROBOT_PROVIDER_COMPUTE"
+      ],
+      "default": "ROBOT_PROVIDER_NONE",
+      "description": "Provider types"
+    },
+    "robotapiRobotReachCheck": {
+      "description": "Flag to turn the Reachability Check on or off ",
+      "type": "string",
+      "enum": [
+        "REACH_CHECK_NONE",
+        "REACH_CHECK_DISABLE",
+        "REACH_CHECK_ENABLE"
+      ]
+    },
+    "robotapiRobotResponseInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "format": "int64",
+          "description": "Typically from an enum defined by the component."
+        },
+        "desc": {
+          "type": "string",
+          "description": "Description of error. May not be filled for success error codes."
+        }
+      },
+      "description": "Generic template for responses"
+    },
+    "robotapiRobotRoutinginfo": {
+      "type": "object",
+      "properties": {
+        "global_isis_system_id": {
+          "type": "string"
+        },
+        "global_ospf_router_id": {
+          "type": "string"
+        },
+        "telemetry_intf_src_name": {
+          "type": "string"
+        },
+        "telemetry_intf_src_vrf": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotSnmpV2": {
+      "type": "object",
+      "properties": {
+        "read_community": {
+          "type": "string"
+        },
+        "write_community": {
+          "type": "string"
+        }
+      },
+      "description": "SNMPv2 credential information"
+    },
+    "robotapiRobotSnmpV3": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string"
+        },
+        "auth_type": {
+          "$ref": "#/definitions/robotapiRobotSnmpV3AuthType"
+        },
+        "auth_password": {
+          "type": "string"
+        },
+        "priv_type": {
+          "$ref": "#/definitions/robotapiRobotSnmpV3PrivType"
+        },
+        "priv_password": {
+          "type": "string"
+        },
+        "security_level": {
+          "$ref": "#/definitions/robotapiRobotSnmpV3SecurityLevel"
+        }
+      },
+      "description": "SNMPv3 Credential information"
+    },
+    "robotapiRobotSnmpV3AuthType": {
+      "type": "string",
+      "enum": [
+        "AT_UNKNOWN",
+        "AT_HMAC_MD5",
+        "AT_HMAC_SHA"
+      ],
+      "default": "AT_UNKNOWN"
+    },
+    "robotapiRobotSnmpV3PrivType": {
+      "type": "string",
+      "enum": [
+        "PT_UNKNOWN",
+        "PT_CFB_AES_128",
+        "PT_CBC_DES_56"
+      ],
+      "default": "PT_UNKNOWN"
+    },
+    "robotapiRobotSnmpV3SecurityLevel": {
+      "type": "string",
+      "enum": [
+        "SL_UNKNOWN",
+        "SL_NO_AUTH_NO_PRIV",
+        "SL_AUTH_NO_PRIV",
+        "SL_AUTH_PRIV"
+      ],
+      "default": "SL_UNKNOWN"
+    },
+    "robotapiRobotTransport": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/robotapiRobotTransportType",
+          "description": "Device connectivity type"
+        },
+        "ipaddrs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/robotapiRobotInetAddr"
+          },
+          "description": "V4/V6 IP address for this connectivity type"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Port for this connectivity type"
+        },
+        "timeout": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Timeout for this connectivity type"
+        },
+        "reachability_state": {
+          "$ref": "#/definitions/robotapiRobotEntityConnectivityState",
+          "description": "Reachability Status for Transport Connection"
+        },
+        "reachability_state_upd_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Reachability timestamp. The time when the reachability state was last updated, given in Unix epoch time in seconds."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error reason for protocol reachability failure"
+        }
+      }
+    },
+    "robotapiRobotTransportType": {
+      "type": "string",
+      "enum": [
+        "ROBOT_MSVC_TRANS_NONE",
+        "ROBOT_MSVC_TRANS_TCP",
+        "ROBOT_MSVC_TRANS_UDP",
+        "ROBOT_MSVC_TRANS_HTTP",
+        "ROBOT_MSVC_TRANS_HTTPS",
+        "ROBOT_MSVC_TRANS_GRPC",
+        "ROBOT_MSVC_TRANS_SSH",
+        "ROBOT_MSVC_TRANS_NETCONF",
+        "ROBOT_MSVC_TRANS_TELNET",
+        "ROBOT_MSVC_TRANS_SNMP",
+        "ROBOT_MSVC_TRANS_TL1",
+        "ROBOT_MSVC_TRANS_TL1_SECURE",
+        "ROBOT_MSVC_TRANS_ICMP",
+        "ROBOT_MSVC_TRANS_KAFKA",
+        "ROBOT_MSVC_TRANS_NATS"
+      ],
+      "default": "ROBOT_MSVC_TRANS_NONE",
+      "description": "Transport types for robot micro-services"
+    },
+    "robotapiRobotUpdateNodeSetReq": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/robotapiRobotNodeData",
+          "description": "Common data to be updated across the set of Nodes"
+        },
+        "uuids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotUserPass": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/robotapiRobotUserPassType"
+        },
+        "enable_password": {
+          "$ref": "#/definitions/robotapiRobotUserPassEnable"
+        },
+        "enable_password_data": {
+          "type": "string"
+        }
+      }
+    },
+    "robotapiRobotUserPassEnable": {
+      "type": "string",
+      "enum": [
+        "ROBOT_USERPASSEN_NONE",
+        "ROBOT_USERPASSEN_ENABLE",
+        "ROBOT_USERPASSEN_DISABLE"
+      ],
+      "default": "ROBOT_USERPASSEN_NONE",
+      "description": "ROBOT_USERPASSEN_ENABLE: Enables second-level authentication in Devices where this feature is available. For example: Cisco IOS XE Devices. When this option is selected, the password for second-level authentication must be given."
+    },
+    "robotapiRobotUserPassType": {
+      "type": "string",
+      "enum": [
+        "ROBOT_USERPASS_UNKNOWN",
+        "ROBOT_USERPASS_TCP",
+        "ROBOT_USERPASS_UDP",
+        "ROBOT_USERPASS_HTTP",
+        "ROBOT_USERPASS_HTTPS",
+        "ROBOT_USERPASS_GRPC",
+        "ROBOT_USERPASS_SSH",
+        "ROBOT_USERPASS_NETCONF",
+        "ROBOT_USERPASS_TELNET",
+        "ROBOT_USERPASS_SNMP",
+        "ROBOT_USERPASS_TL1",
+        "ROBOT_USERPASS_TL1_SECURE",
+        "ROBOT_USERPASS_ADMIN",
+        "ROBOT_USERPASS_ENABLE",
+        "ROBOT_USERPASS_MAX"
+      ],
+      "default": "ROBOT_USERPASS_UNKNOWN",
+      "description": "Connectivity types for robot micro-services"
+    },
+    "robotapiRobotUuid": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/robotapiRobotUuidType"
+        }
+      }
+    },
+    "robotapiRobotUuidType": {
+      "type": "string",
+      "enum": [
+        "UUID_TYPE_UNKNOWN",
+        "UUID_TYPE_NODE",
+        "UUID_TYPE_PROVIDER"
+      ],
+      "default": "UUID_TYPE_UNKNOWN"
+    },
+    "robotapiSupportedModels": {
+      "type": "object",
+      "properties": {
+        "model_prefix": {
+          "type": "string",
+          "description": "Yang model prefix. For example: Cisco-IOS-XR, Cisco-NX-OS, Cisco-IOS-XE."
+        },
+        "model_version": {
+          "type": "string",
+          "description": "Yang model version"
+        }
+      }
+    }
+  }
+}

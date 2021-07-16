@@ -1,0 +1,159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Crosswork Authentication APIs",
+    "contact": {
+      "name": "Crosswork Team, Cisco",
+      "email": "support@cisco.com"
+    },
+    "license": {
+      "name": "Cisco Software License Agreement",
+      "url": "http://www.cisco.com/public/sw-license-agreement.html"
+    },
+    "version": "1.0.0",
+    "description": "Crosswork authentication APIs. All Crosswork APIs require an authorization header with the value set to a JSON Web Token (JWT). This document describes the APIs used to acquire JWTs."
+  },
+  "basePath": "/crosswork/sso",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/tickets": {
+      "post": {
+        "summary": "Request a Ticket Granting Ticket - TGT",
+        "operationId": "GetTGT",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "responses": {
+          "201": {
+            "description": " Created. The request was successful. One or more new resources were created.",
+            "schema": {
+              "$ref": "#/definitions/ssoGetTGTResp"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource."
+          },
+          "403": {
+            "description": "Forbidden. The server recognizes the authentication credentials, but the client is not authorized to perform this request."
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "sso"
+        ]
+      }
+    },
+    "/v1/tickets/{tgt}": {
+      "post": {
+        "summary": "Request a JWT Service Ticket",
+        "operationId": "GetJWT",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+              "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/ssoGetJWTResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request."
+          }
+        },
+        "parameters": [
+          {
+            "name": "tgt",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "service",
+            "in": "formData",
+            "required": true,
+            "default": "https://cw.domain.com/app-dashboard",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "sso"
+        ]
+      }
+    },
+"/v2/tickets/jwt": {
+			"post": {
+				"summary": "Request a JWT Service Ticket",
+				"operationId": "GetJWTv2",
+				"consumes": ["application/x-www-form-urlencoded"],
+				"produces": [
+          "text/plain"
+        ],
+				  "parameters": [
+            {
+              "name": "tgt",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "service",
+              "in": "formData",
+              "required": true,
+              "default": "https://cw.domain.com/app-dashboard",
+              "type": "string"
+            }
+          ],
+        "tags": [
+          "sso"
+        ],
+        "responses": {
+          "200": {
+              "description": "OK. The request was successful. The result is contained in the response body.",
+            "schema": {
+              "$ref": "#/definitions/ssoGetJWTResp"
+            }
+          },
+          "404": {
+            "description": "Not Found. The client made a request for a resource that does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. The server could not fulfill the request."
+          }
+        },
+			}
+		}
+  },
+  "definitions": {
+    "ssoGetJWTResp": {
+      "type": "string"
+    },
+    "ssoGetTGTResp": {
+      "type": "string"
+    }
+  }
+}
